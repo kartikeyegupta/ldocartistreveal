@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import WindowShutters from './open-window';
 
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState({
@@ -71,28 +72,32 @@ export default function Home() {
       </div>
       
       {/* New viewport to scroll to */}
-      <div className="min-h-screen bg-[#fcd598] flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4 text-center font-[family-name:var(--font-love-craft)] text-[#d14d72]">
-          <div className="text-[12vw] font-bold">
-            <span className="text-[#ef959e]">{String(timeLeft.days).padStart(2, '0')}</span>
-            <span className="text-[4vw] block">Days</span>
+      <div className="min-h-screen bg-[#fcd598] flex flex-col items-center">
+        <div className="pt-8">
+          <div className="flex items-center gap-8 text-center font-[family-name:var(--font-love-craft)] text-[#d14d72]">
+            <div className="text-[6vw] font-bold">
+              <span className="text-[#ef959e]">{String(timeLeft.days).padStart(2, '0')}</span>
+              <span className="text-[2vw] block">Days</span>
+            </div>
+            <div className="text-[6vw] font-bold">
+              <span className="text-[#ef959e]">{String(timeLeft.hours).padStart(2, '0')}</span>
+              <span className="text-[2vw] block">Hours</span>
+            </div>
+            <div className="text-[6vw] font-bold">
+              <span className="text-[#ef959e]">{String(timeLeft.minutes).padStart(2, '0')}</span>
+              <span className="text-[2vw] block">Minutes</span>
+            </div>
+            <div className="text-[6vw] font-bold">
+              <span className="text-[#ef959e]">{String(timeLeft.seconds).padStart(2, '0')}</span>
+              <span className="text-[2vw] block">Seconds</span>
+            </div>
           </div>
-          <div className="text-[12vw] font-bold">
-            <span className="text-[#ef959e]">{String(timeLeft.hours).padStart(2, '0')}</span>
-            <span className="text-[4vw] block">Hours</span>
-          </div>
-          <div className="text-[12vw] font-bold">
-            <span className="text-[#ef959e]">{String(timeLeft.minutes).padStart(2, '0')}</span>
-            <span className="text-[4vw] block">Minutes</span>
-          </div>
-          <div className="text-[12vw] font-bold">
-            <span className="text-[#ef959e]">{String(timeLeft.seconds).padStart(2, '0')}</span>
-            <span className="text-[4vw] block">Seconds</span>
-          </div>
-          <div className="text-[8vw] mt-12 font-bold">
+          <div className="text-[4vw] mt-4 text-center font-bold font-[family-name:var(--font-love-craft)] text-[#d14d72]">
             Until Artist Reveal
           </div>
         </div>
+        
+        <WindowShutters/>
       </div>
     </main>
   );
