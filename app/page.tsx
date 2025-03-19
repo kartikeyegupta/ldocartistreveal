@@ -63,7 +63,7 @@ export default function Home() {
           <Image 
             src="/flower.png"
             alt="Flower"
-            className="absolute w-[80vw] h-auto top-1/2 left-[11%] -translate-y-1/2 animate-fadeIn"
+            className="absolute w-[30vw] h-auto top-1/2 left-[41%] -translate-y-1/2 animate-fadeIn"
             width={500}
             height={500}
             priority

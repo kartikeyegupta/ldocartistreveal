@@ -1,11 +1,21 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function WindowShutters() {
-  const [areOpen, setAreOpen] = useState(true)
+  const [areOpen, setAreOpen] = useState(false)
   const [rainingClouds, setRainingClouds] = useState<number[]>([])
   const [debugMessage, setDebugMessage] = useState("")
+  const [ferrisRotation, setFerrisRotation] = useState(0)
+  const [sunTextVisible, setSunTextVisible] = useState(false)
+
+  // Ferris wheel rotation effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFerrisRotation(prev => (prev + 0.5) % 360)
+    }, 50)
+    return () => clearInterval(interval)
+  }, [])
 
   // Repositioned clouds higher up with slower speeds
   const clouds = [
@@ -39,30 +49,48 @@ export default function WindowShutters() {
 
   // Generate random raindrops for a cloud
   const generateRaindrops = (cloudId: number, scale: number) => {
-    return Array(10)
-      .fill(0)
-      .map((_, i) => {
-        const leftPos = 10 + Math.random() * 80 // Random position within cloud width
-        const delay = Math.random() * 0.5 // Random delay for natural effect
-        const duration = 1 + Math.random() * 1 // Random duration
-        const width = 0.2 + Math.random() * 0.2 // Random width in vw
-        const height = 1 + Math.random() * 2 // Random height in vh
+    // Create three layers of rain for depth effect
+    const layers = [
+      { count: 20, speedMultiplier: 1.2, opacity: 0.9 },
+      { count: 15, speedMultiplier: 1, opacity: 0.7 },
+      { count: 12, speedMultiplier: 0.8, opacity: 0.5 }
+    ];
+
+    return layers.map((layer, layerIndex) =>
+      Array(layer.count).fill(0).map((_, i) => {
+        const leftPos = 20 + Math.random() * 90; // Full width distribution
+        const delay = Math.random() * 0.8; // Longer max delay for more natural effect
+        const width = (0.08 + Math.random() * 0.08) * scale; // Thinner raindrops
+        const height = (1.2 + Math.random() * 0.8) * scale; // Slightly shorter raindrops
+        const speed = 0.4 + Math.random() * 0.3; // Slightly faster base speed
 
         return (
           <div
-            key={`raindrop-${cloudId}-${i}`}
-            className="absolute bg-blue-500 rounded-b-full opacity-80"
+            key={`raindrop-${cloudId}-${layerIndex}-${i}`}
+            className="absolute bg-gradient-to-b from-blue-400/0 via-blue-400 to-blue-400/0"
             style={{
               left: `${leftPos}%`,
               width: `${width}vw`,
               height: `${height}vh`,
-              animation: `singleRainDrop ${duration}s linear ${delay}s forwards`,
-              transform: `scale(${scale})`,
+              opacity: layer.opacity,
+              transform: `scale(${scale}) translateY(0)`,
+              animation: `rainFall ${speed * layer.speedMultiplier}s linear ${delay}s infinite`,
             }}
           />
-        )
+        );
       })
+    );
   }
+
+  // Effect to auto-hide the sun text after 3 seconds
+  useEffect(() => {
+    if (sunTextVisible) {
+      const timer = setTimeout(() => {
+        setSunTextVisible(false)
+      }, 1500)
+      return () => clearTimeout(timer)
+    }
+  }, [sunTextVisible])
 
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-center p-8">
@@ -82,9 +110,22 @@ export default function WindowShutters() {
           <div className="relative h-full overflow-hidden">
             {/* Sky background with gradient */}
             <div className="absolute inset-0 bg-gradient-to-b from-sky-300 via-sky-400 to-sky-200">
-              {/* Sun */}
-              <div className="absolute right-[15%] top-[20%] h-[8vw] w-[8vw] rounded-full bg-yellow-200 shadow-[0_0_40px_20px_rgba(255,247,237,0.7)]"></div>
-
+              {/* Sun with click interaction */}
+              <button 
+                onClick={() => setSunTextVisible(prev => !prev)}
+                className="absolute right-[5%] top-[5%] h-[8vw] w-[8vw] rounded-full bg-yellow-200 shadow-[0_0_40px_20px_rgba(255,247,237,0.7)] hover:bg-yellow-300 transition-colors focus:outline-none"
+              />
+              {/* Sun text modal */}
+              {sunTextVisible && (
+                <>
+                  {/* Backdrop overlay */}
+                  <div className="fixed inset-0 bg-black/50 z-50 transition-opacity duration-300" />
+                  {/* Modal */}
+                  <div className="fixed inset-0 flex items-center justify-center z-50">
+                      <p className="text-6xl">👖</p>
+                  </div>
+                </>
+              )}
               {/* Clouds - ENHANCED CLICKABILITY */}
               <div className="absolute inset-0 pointer-events-none overflow-visible">
                 {cloudPositions.map((cloud) => (
@@ -114,7 +155,7 @@ export default function WindowShutters() {
 
                       {/* Simple rain effect - one-time animation */}
                       {isRaining(cloud.id) && (
-                        <div className="absolute top-[100%] left-0 w-full">
+                        <div className="absolute top-[5vw] -left-[4vw] w-[13vw]">
                           {generateRaindrops(cloud.id, cloud.scale)}
                         </div>
                       )}
@@ -122,116 +163,313 @@ export default function WindowShutters() {
                   </div>
                 ))}
               </div>
-            </div>
 
-            {/* Window glass effect - subtle reflection */}
-            <div className="absolute inset-0 bg-sky-100 opacity-10 pointer-events-none"></div>
+              {/* Carnival Tent - Very Simple */}
+              <div className="absolute bottom-[5%] left-[2%] w-[28vw] h-[45vh] z-10">
+                {/* Tent poles */}
+                <div className="absolute bottom-0 left-[10%] w-[0.8vw] h-[70%] bg-amber-800"></div>
+                <div className="absolute bottom-0 right-[10%] w-[0.8vw] h-[70%] bg-amber-800"></div>
 
-            {/* 3D perspective wrapper */}
-            <div className="absolute inset-0 z-20 pointer-events-none" style={{ perspective: "1000px" }}>
-              {/* Left shutter */}
-              <div
-                className="absolute left-0 top-0 h-full w-1/2"
-                style={{
-                  transformOrigin: "left center",
-                  transform: areOpen ? "rotateY(-90deg)" : "rotateY(0deg)",
-                  transition: "transform 1s ease-in-out",
-                  backfaceVisibility: "hidden",
-                }}
-              >
-                {/* Shutter frame */}
-                <div className="h-full w-full bg-gradient-to-r from-amber-900 to-amber-800 p-2 shadow-md">
-                  {/* Shutter panels */}
-                  <div className="grid h-full w-full grid-rows-3 gap-2 bg-amber-800">
-                    {[0, 1, 2].map((i) => (
-                      <div
-                        key={i}
-                        className="flex items-center justify-center rounded border-2 border-amber-950 bg-gradient-to-br from-amber-700 to-amber-800 p-2 shadow-inner"
-                      >
-                        <div className="h-full w-full rounded border border-amber-600 shadow-inner"></div>
-                      </div>
-                    ))}
+                {/* Tent top - cone shape */}
+                <div className="absolute bottom-[70%] left-0 right-0 h-[30%] overflow-hidden">
+                  <div className="w-full h-full bg-red-600" style={{ clipPath: "polygon(0 100%, 50% 0, 100% 100%)" }}>
+                    <div className="absolute left-[20%] h-full w-[20%] bg-white"></div>
+                    <div className="absolute left-[60%] h-full w-[20%] bg-white"></div>
                   </div>
-
-                  {/* Edge detail */}
-                  <div className="absolute -right-1 inset-y-0 w-1 bg-amber-950"></div>
                 </div>
 
-                {/* Hinges */}
-                <div className="absolute -left-2 top-[15%] h-10 w-4 rounded-l-lg bg-gradient-to-r from-stone-900 to-stone-700 shadow-md"></div>
-                <div className="absolute -left-2 top-[75%] h-10 w-4 rounded-l-lg bg-gradient-to-r from-stone-900 to-stone-700 shadow-md"></div>
+                {/* Tent body */}
+                <div className="absolute bottom-0 left-[10%] right-[10%] h-[70%] bg-red-600">
+                  {/* White stripes */}
+                  <div className="absolute left-[20%] h-full w-[20%] bg-white"></div>
+                  <div className="absolute left-[60%] h-full w-[20%] bg-white"></div>
 
-                {/* Hinge screws */}
-                <div className="absolute -left-1 top-[17%] h-1.5 w-1.5 rounded-full bg-stone-400 shadow-inner"></div>
-                <div className="absolute -left-1 top-[23%] h-1.5 w-1.5 rounded-full bg-stone-400 shadow-inner"></div>
-                <div className="absolute -left-1 top-[77%] h-1.5 w-1.5 rounded-full bg-stone-400 shadow-inner"></div>
-                <div className="absolute -left-1 top-[83%] h-1.5 w-1.5 rounded-full bg-stone-400 shadow-inner"></div>
-              </div>
-
-              {/* Right shutter */}
-              <div
-                className="absolute right-0 top-0 h-full w-1/2"
-                style={{
-                  transformOrigin: "right center",
-                  transform: areOpen ? "rotateY(90deg)" : "rotateY(0deg)",
-                  transition: "transform 1s ease-in-out",
-                  backfaceVisibility: "hidden",
-                }}
-              >
-                {/* Shutter frame */}
-                <div className="h-full w-full bg-gradient-to-l from-amber-900 to-amber-800 p-2 shadow-md">
-                  {/* Shutter panels */}
-                  <div className="grid h-full w-full grid-rows-3 gap-2 bg-amber-800">
-                    {[0, 1, 2].map((i) => (
-                      <div
-                        key={i}
-                        className="flex items-center justify-center rounded border-2 border-amber-950 bg-gradient-to-br from-amber-700 to-amber-800 p-2 shadow-inner"
-                      >
-                        <div className="h-full w-full rounded border border-amber-600 shadow-inner"></div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Edge detail */}
-                  <div className="absolute -left-1 inset-y-0 w-1 bg-amber-950"></div>
+                  {/* Tent entrance */}
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[40%] h-[60%] bg-black"></div>
                 </div>
 
-                {/* Hinges */}
-                <div className="absolute -right-2 top-[15%] h-10 w-4 rounded-r-lg bg-gradient-to-l from-stone-900 to-stone-700 shadow-md"></div>
-                <div className="absolute -right-2 top-[75%] h-10 w-4 rounded-r-lg bg-gradient-to-l from-stone-900 to-stone-700 shadow-md"></div>
+                {/* Tent decorative edge */}
+                <div className="absolute bottom-[70%] left-[5%] right-[5%]">
+                  <div className="relative h-[1.5vh] w-full flex">
+                    {[...Array(8)].map((_, i) => (
+                      <div
+                        key={i}
+                        className="h-full bg-yellow-300 border-t border-amber-600 flex-1 rounded-b-full"
+                      ></div>
+                    ))}
+                  </div>
+                </div>
 
-                {/* Hinge screws */}
-                <div className="absolute -right-1 top-[17%] h-1.5 w-1.5 rounded-full bg-stone-400 shadow-inner"></div>
-                <div className="absolute -right-1 top-[23%] h-1.5 w-1.5 rounded-full bg-stone-400 shadow-inner"></div>
-                <div className="absolute -right-1 top-[77%] h-1.5 w-1.5 rounded-full bg-stone-400 shadow-inner"></div>
-                <div className="absolute -right-1 top-[83%] h-1.5 w-1.5 rounded-full bg-stone-400 shadow-inner"></div>
+                {/* Flag on top */}
+                <div className="absolute bottom-[100%] left-1/2 -translate-x-1/2">
+                  <div className="w-[0.5vw] h-[3vh] bg-amber-800"></div>
+                  <div className="absolute top-0 left-[0.5vw] w-0 h-0 border-b-[2vh] border-b-sky-400 border-r-[3vh] border-r-transparent"></div>
+                </div>
               </div>
-            </div>
 
-            {/* Shutter latch (visible when closed) */}
-            <div
-              className={`absolute left-1/2 top-1/2 z-30 -translate-x-1/2 -translate-y-1/2 transition-opacity duration-500 pointer-events-none ${
-                areOpen ? "opacity-0" : "opacity-100"
-              }`}
-            >
-              <div className="h-10 w-6 rounded-md bg-gradient-to-b from-stone-600 to-stone-800 shadow-md"></div>
-              <div className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-stone-400 shadow-inner"></div>
+              {/* Ice Cream Freezer - Simplified */}
+              <div className="absolute bottom-[5%] left-[32%] w-[8vw] h-[15vh] z-10">
+                {/* Freezer body */}
+                <div className="absolute inset-0 bg-sky-400 rounded-md border-2 border-gray-700">
+                  {/* Top lid */}
+                  <div className="absolute top-0 inset-x-0 h-[20%] bg-gray-700 rounded-t-md">
+                    <div className="absolute inset-[0.5vh] bg-gray-500 flex">
+                      <div className="flex-1 border border-gray-600 mx-1 bg-gray-400"></div>
+                      <div className="flex-1 border border-gray-600 mx-1 bg-gray-400"></div>
+                    </div>
+                  </div>
+
+                  {/* Control panel */}
+                  <div className="absolute right-[5%] top-1/2 w-[15%] h-[30%] bg-gray-700 rounded-sm">
+                    <div className="absolute h-[2px] bg-gray-400 w-[80%] left-[10%] top-[20%]"></div>
+                    <div className="absolute h-[2px] bg-gray-400 w-[80%] left-[10%] top-[50%]"></div>
+                    <div className="absolute h-[2px] bg-gray-400 w-[80%] left-[10%] top-[80%]"></div>
+                  </div>
+
+                  {/* Ice cream displays */}
+                  <div className="absolute left-[10%] top-[40%] flex space-x-[0.8vw]">
+                    {/* Popsicle */}
+                    <div className="relative w-[1.5vw] h-[6vh]">
+                      <div className="absolute top-0 w-full h-[70%] bg-green-300 rounded-t-lg border border-gray-700"></div>
+                      <div className="absolute top-[30%] left-[20%] w-[0.4vw] h-[60%] bg-green-700 rounded-full"></div>
+                      <div className="absolute top-[30%] right-[20%] w-[0.4vw] h-[60%] bg-green-700 rounded-full"></div>
+                      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[0.4vw] h-[40%] bg-amber-300 border border-gray-700"></div>
+                    </div>
+
+                    {/* Ice cream cone */}
+                    <div className="relative w-[1.8vw] h-[6vh]">
+                      <div className="absolute top-0 w-full h-[50%] bg-red-400 rounded-full border border-gray-700 overflow-hidden">
+                        <div className="absolute bottom-0 left-0 right-0 h-[30%] bg-amber-200 rounded-t-lg"></div>
+                      </div>
+                      <div
+                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1.5vw] h-[60%] bg-amber-300 border border-gray-700"
+                        style={{ clipPath: "polygon(0 0, 100% 0, 50% 100%)" }}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Freezer feet */}
+                <div className="absolute -bottom-[1vh] left-[5%] w-[1vw] h-[0.8vh] bg-gray-800 rounded-b"></div>
+                <div className="absolute -bottom-[1vh] right-[5%] w-[1vw] h-[0.8vh] bg-gray-800 rounded-b"></div>
+              </div>
+
+              {/* Ground/Grass */}
+              <div className="absolute bottom-0 inset-x-0 h-[5vh] bg-green-600"></div>
+
+              {/* Ferris Wheel - Fixed positioning */}
+              <div className="absolute bottom-[5%] right-[10%] w-[35vh] h-[35vh] z-10">
+                {/* Main support structure */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[4vh] h-[5vh] bg-gray-800 rounded-md"></div>
+
+                {/* Central column */}
+                <div className="absolute bottom-[5vh] left-1/2 -translate-x-1/2 w-[2vh] h-[15vh] bg-gray-700"></div>
+
+                {/* Diagonal supports that actually connect to the wheel */}
+                <div
+                  className="absolute bottom-[5vh] left-[40%] w-[1.5vh] h-[18vh] bg-gray-700"
+                  style={{ transform: "rotate(30deg)", transformOrigin: "bottom left" }}
+                ></div>
+                <div
+                  className="absolute bottom-[5vh] right-[40%] w-[1.5vh] h-[18vh] bg-gray-700"
+                  style={{ transform: "rotate(-30deg)", transformOrigin: "bottom right" }}
+                ></div>
+
+                {/* Cross supports */}
+                <div className="absolute bottom-[12vh] left-1/2 -translate-x-1/2 w-[15vh] h-[1.2vh] bg-gray-600"></div>
+                <div className="absolute bottom-[8vh] left-1/2 -translate-x-1/2 w-[10vh] h-[1.2vh] bg-gray-600"></div>
+
+                {/* Connection point to wheel */}
+                <div className="absolute bottom-[19vh] left-1/2 -translate-x-1/2 w-[3vh] h-[3vh] rounded-full bg-gray-800 z-20"></div>
+
+                {/* Wheel - Properly centered */}
+                <div
+                  className="absolute bottom-[5.5vh] left-1/2 -translate-x-1/2 w-[30vh] h-[30vh] rounded-full border-[1vh] border-gray-600"
+                  style={{ transform: `rotate(${ferrisRotation}deg)` }}
+                >
+                  {/* Spokes */}
+                  {[...Array(8)].map((_, i) => {
+                    const angle = i * 45
+                    return (
+                      <div
+                        key={i}
+                        className="absolute top-1/2 left-1/2 w-[13vh] h-[0.6vh] bg-gray-500"
+                        style={{ transform: `translate(-50%, -50%) rotate(${angle}deg)` }}
+                      ></div>
+                    )
+                  })}
+
+                  {/* Cabins */}
+                  {[...Array(8)].map((_, i) => {
+                    const angle = i * 45
+                    const radians = (angle * Math.PI) / 180
+                    const x = Math.sin(radians) * 13
+                    const y = -Math.cos(radians) * 13
+
+                    // Alternate cabin colors
+                    const cabinColors = i % 2 === 0 
+                      ? { background: '#ef4444', borderColor: '#dc2626' }  // red-500 and red-600
+                      : { background: '#facc15', borderColor: '#eab308' }  // yellow-400 and yellow-500
+
+                    return (
+                      <div
+                        key={i}
+                        className="absolute top-1/2 left-1/2"
+                        style={{
+                          transform: `translate(calc(-50% + ${x}vh), calc(-50% + ${y}vh))`,
+                        }}
+                      >
+                        {/* Cabin attachment - visible rod */}
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[0.4vh] h-[1.5vh] bg-gray-700"></div>
+
+                        {/* Cabin */}
+                        <div
+                          className="w-[4vh] h-[5vh] border rounded-md mt-[1.5vh]"
+                          style={{
+                            background: cabinColors.background,
+                            borderColor: cabinColors.borderColor,
+                            transform: `rotate(${-ferrisRotation}deg)`,
+                          }}
+                        >
+                          {/* Cabin window */}
+                          <div className="absolute top-[20%] left-[20%] right-[20%] bottom-[20%] bg-sky-200 rounded-sm"></div>
+                        </div>
+                      </div>
+                    )
+                  })}
+
+                  {/* Center hub */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3vh] h-[3vh] rounded-full bg-gray-800 border-4 border-gray-600 z-10"></div>
+
+                  {/* Decorative lights around the wheel - Fixed to the wheel */}
+                  {[...Array(24)].map((_, i) => {
+                    const angle = i * 15
+                    const radians = (angle * Math.PI) / 180
+                    const x = Math.sin(radians) * 14
+                    const y = -Math.cos(radians) * 14
+
+                    return (
+                      <div
+                        key={i}
+                        className="absolute top-1/2 left-1/2 w-[0.8vh] h-[0.8vh] rounded-full bg-yellow-300"
+                        style={{
+                          transform: `translate(-50%, -50%) rotate(${angle}deg) translate(14vh, 0)`,
+                          boxShadow: "0 0 5px 2px rgba(253, 224, 71, 0.5)",
+                        }}
+                      ></div>
+                    )
+                  })}
+                </div>
+              </div>
+
+              {/* Window glass effect - subtle reflection */}
+              <div className="absolute inset-0 bg-sky-100 opacity-10 pointer-events-none"></div>
+
+              {/* 3D perspective wrapper */}
+              <div className="absolute inset-0 z-20 pointer-events-none" style={{ perspective: "1000px" }}>
+                {/* Left shutter */}
+                <div
+                  className="absolute left-0 top-0 h-full w-1/2"
+                  style={{
+                    transformOrigin: "left center",
+                    transform: areOpen ? "rotateY(-90deg)" : "rotateY(0deg)",
+                    transition: "transform 1s ease-in-out",
+                    backfaceVisibility: "hidden",
+                  }}
+                >
+                  {/* Shutter frame */}
+                  <div className="h-full w-full bg-gradient-to-r from-amber-900 to-amber-800 p-2 shadow-md">
+                    {/* Shutter panels */}
+                    <div className="grid h-full w-full grid-rows-3 gap-2 bg-amber-800">
+                      {[0, 1, 2].map((i) => (
+                        <div
+                          key={i}
+                          className="flex items-center justify-center rounded border-2 border-amber-950 bg-gradient-to-br from-amber-700 to-amber-800 p-2 shadow-inner"
+                        >
+                          <div className="h-full w-full rounded border border-amber-600 shadow-inner"></div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Edge detail */}
+                    <div className="absolute -right-1 inset-y-0 w-1 bg-amber-950"></div>
+                  </div>
+
+                  {/* Hinges */}
+                  <div className="absolute -left-2 top-[15%] h-10 w-4 rounded-l-lg bg-gradient-to-r from-stone-900 to-stone-700 shadow-md"></div>
+                  <div className="absolute -left-2 top-[75%] h-10 w-4 rounded-l-lg bg-gradient-to-r from-stone-900 to-stone-700 shadow-md"></div>
+
+                  {/* Hinge screws */}
+                  <div className="absolute -left-1 top-[17%] h-1.5 w-1.5 rounded-full bg-stone-400 shadow-inner"></div>
+                  <div className="absolute -left-1 top-[23%] h-1.5 w-1.5 rounded-full bg-stone-400 shadow-inner"></div>
+                  <div className="absolute -left-1 top-[77%] h-1.5 w-1.5 rounded-full bg-stone-400 shadow-inner"></div>
+                  <div className="absolute -left-1 top-[83%] h-1.5 w-1.5 rounded-full bg-stone-400 shadow-inner"></div>
+                </div>
+
+                {/* Right shutter */}
+                <div
+                  className="absolute right-0 top-0 h-full w-1/2"
+                  style={{
+                    transformOrigin: "right center",
+                    transform: areOpen ? "rotateY(90deg)" : "rotateY(0deg)",
+                    transition: "transform 1s ease-in-out",
+                    backfaceVisibility: "hidden",
+                  }}
+                >
+                  {/* Shutter frame */}
+                  <div className="h-full w-full bg-gradient-to-l from-amber-900 to-amber-800 p-2 shadow-md">
+                    {/* Shutter panels */}
+                    <div className="grid h-full w-full grid-rows-3 gap-2 bg-amber-800">
+                      {[0, 1, 2].map((i) => (
+                        <div
+                          key={i}
+                          className="flex items-center justify-center rounded border-2 border-amber-950 bg-gradient-to-br from-amber-700 to-amber-800 p-2 shadow-inner"
+                        >
+                          <div className="h-full w-full rounded border border-amber-600 shadow-inner"></div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Edge detail */}
+                    <div className="absolute -left-1 inset-y-0 w-1 bg-amber-950"></div>
+                  </div>
+
+                  {/* Hinges */}
+                  <div className="absolute -right-2 top-[15%] h-10 w-4 rounded-r-lg bg-gradient-to-l from-stone-900 to-stone-700 shadow-md"></div>
+                  <div className="absolute -right-2 top-[75%] h-10 w-4 rounded-r-lg bg-gradient-to-l from-stone-900 to-stone-700 shadow-md"></div>
+
+                  {/* Hinge screws */}
+                  <div className="absolute -right-1 top-[17%] h-1.5 w-1.5 rounded-full bg-stone-400 shadow-inner"></div>
+                  <div className="absolute -right-1 top-[23%] h-1.5 w-1.5 rounded-full bg-stone-400 shadow-inner"></div>
+                  <div className="absolute -right-1 top-[77%] h-1.5 w-1.5 rounded-full bg-stone-400 shadow-inner"></div>
+                  <div className="absolute -right-1 top-[83%] h-1.5 w-1.5 rounded-full bg-stone-400 shadow-inner"></div>
+                </div>
+              </div>
+
+              {/* Shutter latch (visible when closed) */}
+              <div
+                className={`absolute left-1/2 top-1/2 z-30 -translate-x-1/2 -translate-y-1/2 transition-opacity duration-500 pointer-events-none ${
+                  areOpen ? "opacity-0" : "opacity-100"
+                }`}
+              >
+                <div className="h-10 w-6 rounded-md bg-gradient-to-b from-stone-600 to-stone-800 shadow-md"></div>
+                <div className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-stone-400 shadow-inner"></div>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Remove the floatCloud keyframe animation */}
         <style jsx global>{`
-          @keyframes singleRainDrop {
+          @keyframes rainFall {
             0% {
-              transform: translateY(0);
-              opacity: 0.8;
+              transform: translateY(0) scale(1);
             }
-            80% {
+            90% {
               opacity: 0.8;
             }
             100% {
-              transform: translateY(200px);
+              transform: translateY(2000%) scale(1);
               opacity: 0;
             }
           }
