@@ -8,6 +8,10 @@ export default function WindowShutters() {
   const [debugMessage, setDebugMessage] = useState("")
   const [ferrisRotation, setFerrisRotation] = useState(0)
   const [sunTextVisible, setSunTextVisible] = useState(false)
+  const [freezerLightsOn, setFreezerLightsOn] = useState(false)
+  const [butterflies, setButterflies] = useState<
+    Array<{ id: number; x: number; y: number; scale: number; speed: number; delay: number; color: string }>
+  >([])
 
   // Ferris wheel rotation effect
   useEffect(() => {
@@ -17,14 +21,40 @@ export default function WindowShutters() {
     return () => clearInterval(interval)
   }, [])
 
+  useEffect(() => {
+    // Create just 2 butterflies with better positioning and properties
+    const newButterflies = [
+      {
+        id: 0,
+        x: 25, // Left side of window
+        y: 30, // Upper middle area
+        scale: 1.2, // Slightly larger
+        speed: 15, // Slower, more graceful movement
+        delay: 0, // Start immediately
+        color: "from-orange-300 via-amber-200 to-yellow-300", // Monarch-like colors
+      },
+      {
+        id: 1,
+        x: 65, // Right side of window
+        y: 40, // Middle area
+        scale: 1, // Standard size
+        speed: 18, // Different speed for variety
+        delay: 2, // Delayed start for asynchronous movement
+        color: "from-blue-300 via-sky-200 to-cyan-300", // Blue morpho-like colors
+      },
+    ]
+
+    setButterflies(newButterflies)
+  }, [])
+
   // Repositioned clouds higher up with slower speeds
   const clouds = [
-    { id: 1, initialLeft: 0, top: 15, scale: 1.2, speed: 30 },
-    { id: 2, initialLeft: 0, top: 30, scale: 1, speed: 50 },
-    { id: 3, initialLeft: 0, top: 45, scale: 0.9, speed: 80 },
+    { id: 1, initialLeft: 0, top: 7, scale: 1.2, speed: 30 },
+    { id: 2, initialLeft: 0, top: 17.5, scale: 1, speed: 50 },
+    { id: 3, initialLeft: 0, top: 30, scale: 0.9, speed: 80 },
   ]
 
-  const [cloudPositions, setCloudPositions] = useState(clouds)
+  const [cloudPositions] = useState(clouds)
 
   // Handle cloud click
   const handleCloudClick = (cloudId: number) => {
@@ -133,8 +163,8 @@ export default function WindowShutters() {
                     key={cloud.id}
                     className="absolute pointer-events-auto"
                     style={{
-                      left: `${cloud.top * 2}%`,  // Using top value to space clouds horizontally
-                      top: `${cloud.top}%`,
+                      left: `${cloud.top * 2.5}%`,  // Using top value to space clouds horizontally
+                      top: `${cloud.top * 0.75}%`,
                       zIndex: 15,
                     }}
                   >
@@ -214,8 +244,8 @@ export default function WindowShutters() {
                   {/* Top lid */}
                   <div className="absolute top-0 inset-x-0 h-[20%] bg-gray-700 rounded-t-md">
                     <div className="absolute inset-[0.5vh] bg-gray-500 flex">
-                      <div className="flex-1 border border-gray-600 mx-1 bg-gray-400"></div>
-                      <div className="flex-1 border border-gray-600 mx-1 bg-gray-400"></div>
+                      <div className={`flex-1 border border-gray-600 mx-1 ${freezerLightsOn ? 'bg-yellow-300' : 'bg-gray-400'}`}></div>
+                      <div className={`flex-1 border border-gray-600 mx-1 ${freezerLightsOn ? 'bg-yellow-300' : 'bg-gray-400'}`}></div>
                     </div>
                   </div>
 
@@ -256,6 +286,52 @@ export default function WindowShutters() {
 
               {/* Ground/Grass */}
               <div className="absolute bottom-0 inset-x-0 h-[5vh] bg-green-600"></div>
+
+              {/* Power Strip on Ground */}
+              <div className="absolute bottom-[2.5vh] left-[45%] z-20">
+                {/* Power strip with perspective */}
+                <div
+                  className="relative w-[10vw] h-[2.5vh] bg-gradient-to-b from-gray-700 to-gray-900 rounded-md shadow-lg"
+                  style={{ transform: "perspective(500px) rotateX(30deg)" }}
+                >
+                  {/* Power strip sockets */}
+                  <div className="absolute top-[20%] left-[10%] right-[10%] h-[60%] flex justify-around items-center">
+                    {/* Socket 1 */}
+                    <div className="relative w-[1.5vw] h-[1.2vh] bg-gray-800 rounded-sm flex justify-center items-center">
+                      <div className="absolute w-[0.3vw] h-[0.8vh] bg-gray-600 rounded-full mx-[0.2vw]"></div>
+                      <div className="absolute w-[0.3vw] h-[0.8vh] bg-gray-600 rounded-full mx-[0.2vw] translate-x-[0.5vw]"></div>
+                    </div>
+
+                    {/* Socket 2 - with plug inserted */}
+                    <div className="relative w-[1.5vw] h-[1.2vh] bg-gray-800 rounded-sm flex justify-center items-center">
+                      {/* Plug inserted */}
+                      <div className="absolute -top-[1.5vh] w-[1.2vw] h-[1.5vh] bg-gray-300 rounded-t-sm shadow-md">
+                        {/* Prongs (hidden inside socket) */}
+                        <div className="absolute bottom-0 left-[25%] w-[0.25vw] h-[0.6vh] bg-gray-500"></div>
+                        <div className="absolute bottom-0 right-[25%] w-[0.25vw] h-[0.6vh] bg-gray-500"></div>
+                      </div>
+
+                      {/* Cable coming out of plug */}
+                      <div
+                        className="absolute -top-[3.5vh] -right-[-.5vw] w-[9.5vw] h-[0.5vh] bg-black rounded-full"
+                        style={{ transform: "rotate(15deg)" }}
+                      ></div>
+                    </div>
+
+                    {/* Socket 3 */}
+                    <div className="relative w-[1.5vw] h-[1.2vh] bg-gray-800 rounded-sm flex justify-center items-center">
+                      <div className="absolute w-[0.3vw] h-[0.8vh] bg-gray-600 rounded-full mx-[0.2vw]"></div>
+                      <div className="absolute w-[0.3vw] h-[0.8vh] bg-gray-600 rounded-full mx-[0.2vw] translate-x-[0.5vw]"></div>
+                    </div>
+                  </div>
+
+                  {/* Power indicator light */}
+                  <div 
+                    onClick={() => setFreezerLightsOn(prev => !prev)}
+                    className="absolute top-[30%] right-[3%] w-[0.4vw] h-[0.4vw] rounded-full bg-red-500 shadow-[0_0_5px_2px_rgba(239,68,68,0.5)] cursor-pointer hover:brightness-125"
+                  ></div>
+                </div>
+              </div>
 
               {/* Ferris Wheel - Fixed positioning */}
               <div className="absolute bottom-[5%] right-[10%] w-[35vh] h-[35vh] z-10">
@@ -361,7 +437,74 @@ export default function WindowShutters() {
                   })}
                 </div>
               </div>
+              {/* Butterflies - Improved design */}
+              {butterflies.map((butterfly) => (
+                <div
+                  key={`butterfly-${butterfly.id}`}
+                  className="absolute pointer-events-none z-20"
+                  style={{
+                    left: `${butterfly.x}%`,
+                    top: `${butterfly.y}%`,
+                    transform: `scale(${butterfly.scale})`,
+                    animation: `butterflyFloat ${butterfly.speed}s ease-in-out ${butterfly.delay}s infinite alternate`,
+                  }}
+                >
+                  {/* Butterfly body */}
+                  <div className="relative">
+                    {/* Body */}
+                    <div className="absolute left-1/2 top-1/2 h-[2vh] w-[0.5vh] -translate-x-1/2 -translate-y-1/2 bg-black rounded-full z-10"></div>
 
+                    {/* Head */}
+                    <div className="absolute left-1/2 -top-[0.2vh] h-[0.8vh] w-[0.8vh] -translate-x-1/2 rounded-full bg-black z-10"></div>
+
+                    {/* Left wing top */}
+                    <div
+                      className={`absolute -left-[3vh] -top-[2vh] h-[3vh] w-[3vh] rounded-tl-full bg-gradient-to-br ${butterfly.color} opacity-90 border-r border-b border-black/20`}
+                      style={{
+                        transformOrigin: "bottom right",
+                        animation: "butterflyWingTop 0.6s ease-in-out infinite alternate-reverse",
+                        boxShadow: "0 0 5px rgba(255,255,255,0.5)",
+                      }}
+                    ></div>
+
+                    {/* Left wing bottom */}
+                    <div
+                      className={`absolute -left-[3vh] top-[0.5vh] h-[3vh] w-[3vh] rounded-bl-full bg-gradient-to-tr ${butterfly.color} opacity-80 border-r border-t border-black/20`}
+                      style={{
+                        transformOrigin: "top right",
+                        animation: "butterflyWingBottom 0.6s ease-in-out infinite alternate-reverse",
+                        boxShadow: "0 0 5px rgba(255,255,255,0.5)",
+                      }}
+                    ></div>
+
+                    {/* Right wing top */}
+                    <div
+                      className={`absolute -right-[3vh] -top-[2vh] h-[3vh] w-[3vh] rounded-tr-full bg-gradient-to-bl ${butterfly.color} opacity-90 border-l border-b border-black/20`}
+                      style={{
+                        transformOrigin: "bottom left",
+                        animation: "butterflyWingTop 0.6s ease-in-out infinite alternate",
+                        boxShadow: "0 0 5px rgba(255,255,255,0.5)",
+                      }}
+                    ></div>
+
+                    {/* Right wing bottom */}
+                    <div
+                      className={`absolute -right-[3vh] top-[0.5vh] h-[3vh] w-[3vh] rounded-br-full bg-gradient-to-tl ${butterfly.color} opacity-80 border-l border-t border-black/20`}
+                      style={{
+                        transformOrigin: "top left",
+                        animation: "butterflyWingBottom 0.6s ease-in-out infinite alternate",
+                        boxShadow: "0 0 5px rgba(255,255,255,0.5)",
+                      }}
+                    ></div>
+
+                    {/* Antenna */}
+                    <div className="absolute left-1/2 -top-[1vh] h-[1.5vh] w-[0.15vh] -translate-x-[0.3vh] rotate-[-20deg] bg-black"></div>
+                    <div className="absolute left-1/2 -top-[1vh] h-[1.5vh] w-[0.15vh] -translate-x-[0.7vh] rotate-[20deg] bg-black"></div>
+                    <div className="absolute left-1/2 -top-[1vh] h-[0.3vh] w-[0.3vh] -translate-x-[0.3vh] -translate-y-[0.3vh] rounded-full bg-black"></div>
+                    <div className="absolute left-1/2 -top-[1vh] h-[0.3vh] w-[0.3vh] -translate-x-[0.7vh] -translate-y-[0.3vh] rounded-full bg-black"></div>
+                  </div>
+                </div>
+              ))}
               {/* Window glass effect - subtle reflection */}
               <div className="absolute inset-0 bg-sky-100 opacity-10 pointer-events-none"></div>
 
@@ -473,6 +616,43 @@ export default function WindowShutters() {
               opacity: 0;
             }
           }
+          @keyframes butterflyFloat {
+            0% {
+              transform: translate(0, 0) rotate(-5deg);
+            }
+            20% {
+              transform: translate(5vh, -3vh) rotate(8deg);
+            }
+            40% {
+              transform: translate(-2vh, 5vh) rotate(-10deg);
+            }
+            60% {
+              transform: translate(-7vh, -2vh) rotate(5deg);
+            }
+            80% {
+              transform: translate(3vh, 4vh) rotate(-8deg);
+            }
+            100% {
+              transform: translate(6vh, -5vh) rotate(10deg);
+            }
+          }
+
+          @keyframes butterflyWingTop {
+            0% {
+              transform: rotateY(0deg) rotateX(15deg);
+            }
+            100% {
+              transform: rotateY(60deg) rotateX(5deg);
+            }
+          }
+
+          @keyframes butterflyWingBottom {
+            0% {
+              transform: rotateY(0deg) rotateX(-15deg);
+            }
+            100% {
+              transform: rotateY(60deg) rotateX(-5deg);
+            }
         `}</style>
 
         {/* Controls */}
