@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from 'next/font/local';
 import "./globals.css";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const loveCraft = localFont({
   src: '../public/fonts/LoveCraft.ttf',
@@ -30,6 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <GoogleAnalytics gaId="G-34XVKGNHD5"/>
       <body
         className= {`${geistSans.variable} ${geistMono.variable} ${loveCraft.variable} antialiased`} 
       >
