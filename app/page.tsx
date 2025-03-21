@@ -67,36 +67,36 @@ export default function Home() {
 
         {/* Overlay content */}
         <div className={`absolute inset-0 bg-[#fcd598] flex flex-col items-center transition-opacity duration-1000 ${showOverlay ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-          <div className="relative pt-8">
+          <div className="relative pt-2 md:pt-4">
             <Image 
               src="/fulllogo.png" 
               alt="LDOC" 
-              className="w-[25vw] h-auto"
+              className="w-[35vw] h-auto"
               width={1500}
               height={1500}
             />
           </div>
           {/* Centered countdown */}
-          <div className="-mt-[1.25%] flex-1 w-full bg-[#fcd598] z-10 flex flex-col items-center justify-center">
-            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-center font-[family-name:var(--font-love-craft)] text-[#d14d72]">
-              <div className="text-[8vw] md:text-[6vw] font-bold">
+          <div className="-mt-[2%] md:-mt-[0.75%] flex-1 w-full bg-[#fcd598] z-10 flex flex-col items-center justify-center">
+            <div className="flex flex-col md:flex-row items-center gap-2 md:gap-8 text-center font-[family-name:var(--font-love-craft)] text-[#d14d72]">
+              <div className="text-[15vw] md:text-[6vw] font-bold">
                 <span className="text-[#ef959e]">{String(timeLeft.days).padStart(2, '0')}</span>
-                <span className="text-[2.5vw] md:text-[2vw] block">Days</span>
+                <span className="text-[4.5vw] md:text-[2vw] block">Days</span>
               </div>
-              <div className="text-[8vw] md:text-[6vw] font-bold">
+              <div className="text-[15vw] md:text-[6vw] font-bold">
                 <span className="text-[#ef959e]">{String(timeLeft.hours).padStart(2, '0')}</span>
-                <span className="text-[2.5vw] md:text-[2vw] block">Hours</span>
+                <span className="text-[4.5vw] md:text-[2vw] block">Hours</span>
               </div>
-              <div className="text-[8vw] md:text-[6vw] font-bold">
+              <div className="text-[15vw] md:text-[6vw] font-bold">
                 <span className="text-[#ef959e]">{String(timeLeft.minutes).padStart(2, '0')}</span>
-                <span className="text-[2.5vw] md:text-[2vw] block">Minutes</span>
+                <span className="text-[4.5vw] md:text-[2vw] block">Minutes</span>
               </div>
-              <div className="text-[8vw] md:text-[6vw] font-bold">
+              <div className="text-[15vw] md:text-[6vw] font-bold">
                 <span className="text-[#ef959e]">{String(timeLeft.seconds).padStart(2, '0')}</span>
-                <span className="text-[2.5vw] md:text-[2vw] block">Seconds</span>
+                <span className="text-[4.5vw] md:text-[2vw] block">Seconds</span>
               </div>
             </div>
-            <div className="text-[5vw] md:text-[4vw] mt-4 text-center font-bold font-[family-name:var(--font-love-craft)] text-[#d14d72]">
+            <div className="text-[8vw] md:text-[4vw] mt-2 text-center font-bold font-[family-name:var(--font-love-craft)] text-[#d14d72]">
               Until Artist Reveal
             </div>
             <button 
