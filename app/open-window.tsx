@@ -5,7 +5,6 @@ import { useState, useEffect } from "react"
 export default function WindowShutters() {
   const [areOpen, setAreOpen] = useState(false)
   const [rainingClouds, setRainingClouds] = useState<number[]>([])
-  const [debugMessage, setDebugMessage] = useState("")
   const [ferrisRotation, setFerrisRotation] = useState(0)
   const [sunTextVisible, setSunTextVisible] = useState(false)
   const [freezerLightsOn, setFreezerLightsOn] = useState(false)
@@ -58,7 +57,6 @@ export default function WindowShutters() {
 
   // Handle cloud click
   const handleCloudClick = (cloudId: number) => {
-    setDebugMessage(`Cloud ${cloudId} clicked!`)
     console.log(`Cloud ${cloudId} clicked!`)
 
     // Only add to raining clouds if not already raining
@@ -123,11 +121,9 @@ export default function WindowShutters() {
   }, [sunTextVisible])
 
   return (
-    <div className="flex min-h-screen w-full flex-col items-center justify-center p-8">
-      {/* Debug message */}
-      {debugMessage && <div className="absolute top-4 left-4 bg-white p-2 rounded shadow z-50">{debugMessage}</div>}
+    <div className="flex min-h-screen w-full flex-col items-center justify-center p-8 bg-[#fcd598]">
 
-      <div className="relative mx-auto w-full max-w-[90vw] h-[80vh]">
+      <div className="relative mx-auto w-full max-w-[90vw] h-[80vh] bg-[#fcd598]">
         {/* Window frame */}
         <div className="relative h-full overflow-hidden rounded-lg border-[1vw] border-stone-700/50 bg-transparent shadow-2xl">
           {/* Window depth effect */}
@@ -228,6 +224,14 @@ export default function WindowShutters() {
                       ></div>
                     ))}
                   </div>
+                  
+                  {/* Hanging sign with strings */}
+                  <div className="absolute top-[200%] left-1/2 -translate-x-1/2">
+                    {/* Sign board */}
+                    <div className="w-[8vw] h-[3vh] bg-amber-800 border-2 border-amber-950 flex items-center justify-center">
+                      <span className="text-white font-bold text-sm">2009</span>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Flag on top */}
@@ -235,7 +239,10 @@ export default function WindowShutters() {
                   <div className="w-[0.5vw] h-[3vh] bg-amber-800"></div>
                   <div className="absolute top-0 left-[0.5vw] w-0 h-0 border-b-[2vh] border-b-sky-400 border-r-[3vh] border-r-transparent"></div>
                 </div>
+
               </div>
+
+              
 
               {/* Ice Cream Freezer - Simplified */}
               <div className="absolute bottom-[5%] left-[32%] w-[8vw] h-[15vh] z-10">
@@ -420,10 +427,6 @@ export default function WindowShutters() {
                   {/* Decorative lights around the wheel - Fixed to the wheel */}
                   {[...Array(24)].map((_, i) => {
                     const angle = i * 15
-                    const radians = (angle * Math.PI) / 180
-                    const x = Math.sin(radians) * 14
-                    const y = -Math.cos(radians) * 14
-
                     return (
                       <div
                         key={i}
@@ -656,7 +659,7 @@ export default function WindowShutters() {
         `}</style>
 
         {/* Controls */}
-        <div className="mt-6 flex justify-center gap-4">
+        <div className="mt-6 flex justify-center gap-4 bg-[#fcd598]">
           <button
             onClick={() => setAreOpen(!areOpen)}
             className="rounded-md bg-amber-800 px-4 py-2 text-white transition-colors hover:bg-amber-700"

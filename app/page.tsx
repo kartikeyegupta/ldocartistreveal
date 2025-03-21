@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import WindowShutters from './open-window';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState({
@@ -12,9 +12,13 @@ export default function Home() {
     seconds: 0
   });
 
+  const [showOverlay, setShowOverlay] = useState(false);
+
+  const router = useRouter();
+
   useEffect(() => {
     const calculateTimeLeft = () => {
-      const targetDate = new Date('2025-04-08T19:00:00');
+      const targetDate = new Date('2025-04-10T21:00:00');
       const now = new Date();
       const difference = targetDate.getTime() - now.getTime();
 
@@ -38,11 +42,9 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    // Show overlay after 3 seconds
     const timer = setTimeout(() => {
-      window.scrollTo({
-        top: window.innerHeight,
-        behavior: 'smooth'
-      });
+      setShowOverlay(true);
     }, 3000);
 
     return () => clearTimeout(timer);
@@ -50,54 +52,61 @@ export default function Home() {
 
   return (
     <main>
-      <div className="grid grid-rows-[1fr] items-center justify-items-center min-h-screen p-8 pb-20 sm:p-20 font-[family-name:var(--font-love-craft)] bg-[#fcd598]">
-        <div className="relative">
+      <div className="relative min-h-screen bg-[#fcd598]">
+        {/* Base logo */}
+        <div className={`grid place-items-center min-h-screen ${showOverlay ? 'hidden' : ''}`}>
           <Image 
-            src="/logo.png" 
+            src="/fulllogo.png" 
             alt="LDOC" 
             className="w-[80vw] h-auto animate-fadeIn"
             width={1500}
             height={1500}
             priority
           />
-          <Image 
-            src="/flower.png"
-            alt="Flower"
-            className="absolute w-[30vw] h-auto top-1/2 left-[41%] -translate-y-1/2 animate-fadeIn"
-            width={500}
-            height={500}
-            priority
-          />
         </div>
-      </div>
-      
-      {/* New viewport to scroll to */}
-      <div className="min-h-screen bg-[#fcd598] flex flex-col items-center">
-        <div className="pt-8">
-          <div className="flex items-center gap-8 text-center font-[family-name:var(--font-love-craft)] text-[#d14d72]">
-            <div className="text-[6vw] font-bold">
-              <span className="text-[#ef959e]">{String(timeLeft.days).padStart(2, '0')}</span>
-              <span className="text-[2vw] block">Days</span>
-            </div>
-            <div className="text-[6vw] font-bold">
-              <span className="text-[#ef959e]">{String(timeLeft.hours).padStart(2, '0')}</span>
-              <span className="text-[2vw] block">Hours</span>
-            </div>
-            <div className="text-[6vw] font-bold">
-              <span className="text-[#ef959e]">{String(timeLeft.minutes).padStart(2, '0')}</span>
-              <span className="text-[2vw] block">Minutes</span>
-            </div>
-            <div className="text-[6vw] font-bold">
-              <span className="text-[#ef959e]">{String(timeLeft.seconds).padStart(2, '0')}</span>
-              <span className="text-[2vw] block">Seconds</span>
-            </div>
+
+        {/* Overlay content */}
+        <div className={`absolute inset-0 bg-[#fcd598] flex flex-col items-center transition-opacity duration-1000 ${showOverlay ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+          <div className="relative pt-8">
+            <Image 
+              src="/fulllogo.png" 
+              alt="LDOC" 
+              className="w-[25vw] h-auto"
+              width={1500}
+              height={1500}
+            />
           </div>
-          <div className="text-[4vw] mt-4 text-center font-bold font-[family-name:var(--font-love-craft)] text-[#d14d72]">
-            Until Artist Reveal
+          {/* Centered countdown */}
+          <div className="-mt-[1.25%] flex-1 w-full bg-[#fcd598] z-10 flex flex-col items-center justify-center">
+            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-center font-[family-name:var(--font-love-craft)] text-[#d14d72]">
+              <div className="text-[8vw] md:text-[6vw] font-bold">
+                <span className="text-[#ef959e]">{String(timeLeft.days).padStart(2, '0')}</span>
+                <span className="text-[2.5vw] md:text-[2vw] block">Days</span>
+              </div>
+              <div className="text-[8vw] md:text-[6vw] font-bold">
+                <span className="text-[#ef959e]">{String(timeLeft.hours).padStart(2, '0')}</span>
+                <span className="text-[2.5vw] md:text-[2vw] block">Hours</span>
+              </div>
+              <div className="text-[8vw] md:text-[6vw] font-bold">
+                <span className="text-[#ef959e]">{String(timeLeft.minutes).padStart(2, '0')}</span>
+                <span className="text-[2.5vw] md:text-[2vw] block">Minutes</span>
+              </div>
+              <div className="text-[8vw] md:text-[6vw] font-bold">
+                <span className="text-[#ef959e]">{String(timeLeft.seconds).padStart(2, '0')}</span>
+                <span className="text-[2.5vw] md:text-[2vw] block">Seconds</span>
+              </div>
+            </div>
+            <div className="text-[5vw] md:text-[4vw] mt-4 text-center font-bold font-[family-name:var(--font-love-craft)] text-[#d14d72]">
+              Until Artist Reveal
+            </div>
+            <button 
+              onClick={() => router.push('/hint')}
+              className="hidden md:block mt-8 px-8 py-4 text-[4vw] md:text-[3vw] font-[family-name:var(--font-love-craft)] text-[#ef959e] border-4 border-[#ef959e] hover:bg-[#ef959e] hover:text-[#fcd598] transition-colors rounded-lg"
+            >
+              ?????
+            </button>
           </div>
         </div>
-        
-        <WindowShutters/>
       </div>
     </main>
   );
