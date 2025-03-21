@@ -79,9 +79,9 @@ export default function WindowShutters() {
   const generateRaindrops = (cloudId: number, scale: number) => {
     // Create three layers of rain for depth effect
     const layers = [
-      { count: 20, speedMultiplier: 1.2, opacity: 0.9 },
-      { count: 15, speedMultiplier: 1, opacity: 0.7 },
-      { count: 12, speedMultiplier: 0.8, opacity: 0.5 }
+      { count: 40, speedMultiplier: 1.2, opacity: 0.9 },
+      { count: 40, speedMultiplier: 1, opacity: 0.7 },
+      { count: 40, speedMultiplier: 0.8, opacity: 0.5 }
     ];
 
     return layers.map((layer, layerIndex) =>
@@ -181,7 +181,7 @@ export default function WindowShutters() {
 
                       {/* Simple rain effect - one-time animation */}
                       {isRaining(cloud.id) && (
-                        <div className="absolute top-[5vw] -left-[4vw] w-[13vw]">
+                        <div className="absolute top-[8vw] -left-[3vw] w-[13vw]">
                           {generateRaindrops(cloud.id, cloud.scale)}
                         </div>
                       )}
@@ -659,7 +659,8 @@ export default function WindowShutters() {
         `}</style>
 
         {/* Controls */}
-        <div className="mt-6 flex justify-center gap-4 bg-[#fcd598]">
+        </div>
+        <div className="w-full mt-6 flex justify-center gap-4 bg-[#fcd598]">
           <button
             onClick={() => setAreOpen(!areOpen)}
             className="rounded-md bg-amber-800 px-4 py-2 text-white transition-colors hover:bg-amber-700"
@@ -667,8 +668,6 @@ export default function WindowShutters() {
             {areOpen ? "Close Shutters" : "Open Shutters"}
           </button>
         </div>
-
-      </div>
     </div>
   )
 }
