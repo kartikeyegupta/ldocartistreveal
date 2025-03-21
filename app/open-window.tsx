@@ -79,14 +79,14 @@ export default function WindowShutters() {
   const generateRaindrops = (cloudId: number, scale: number) => {
     // Create three layers of rain for depth effect
     const layers = [
-      { count: 40, speedMultiplier: 1.2, opacity: 0.9 },
-      { count: 40, speedMultiplier: 1, opacity: 0.7 },
-      { count: 40, speedMultiplier: 0.8, opacity: 0.5 }
+      { count: 20, speedMultiplier: 1.2, opacity: 0.9 },
+      { count: 15, speedMultiplier: 1, opacity: 0.7 },
+      { count: 12, speedMultiplier: 0.8, opacity: 0.5 }
     ];
 
     return layers.map((layer, layerIndex) =>
       Array(layer.count).fill(0).map((_, i) => {
-        const leftPos = 20 + Math.random() * 90; // Full width distribution
+        const leftPos = 40 + Math.random() * 90; // Full width distribution
         const delay = Math.random() * 0.8; // Longer max delay for more natural effect
         const width = (0.08 + Math.random() * 0.08) * scale; // Thinner raindrops
         const height = (1.2 + Math.random() * 0.8) * scale; // Slightly shorter raindrops
@@ -181,7 +181,7 @@ export default function WindowShutters() {
 
                       {/* Simple rain effect - one-time animation */}
                       {isRaining(cloud.id) && (
-                        <div className="absolute top-[8vw] -left-[3vw] w-[13vw]">
+                        <div className="absolute top-[7vw] -left-[5vw] w-[13vw]">
                           {generateRaindrops(cloud.id, cloud.scale)}
                         </div>
                       )}
