@@ -123,7 +123,7 @@ export default function WindowShutters() {
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-center p-8 bg-[#fcd598]">
 
-      <div className="relative mx-auto w-full max-w-[90vw] h-[80vh] bg-[#fcd598]">
+      <div className="relative mx-auto w-full max-w-[90vw] h-[80vh] bg-[#fcd598] mt-[5%]">
         {/* Window frame */}
         <div className="relative h-full overflow-hidden rounded-lg border-[1vw] border-stone-700/50 bg-transparent shadow-2xl">
           {/* Window depth effect */}
