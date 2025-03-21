@@ -45,7 +45,7 @@ export default function Home() {
     // Show overlay after 3 seconds
     const timer = setTimeout(() => {
       setShowOverlay(true);
-    }, 3000);
+    }, 1500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -101,7 +101,7 @@ export default function Home() {
             </div>
             <button 
               onClick={() => router.push('/hint')}
-              className="hidden md:block mt-8 px-8 py-4 text-[4vw] md:text-[3vw] font-[family-name:var(--font-love-craft)] text-[#ef959e] border-4 border-[#ef959e] hover:bg-[#ef959e] hover:text-[#fcd598] transition-colors rounded-lg"
+              className="block mt-8 px-8 py-4 text-[4vw] md:text-[3vw] font-[family-name:var(--font-love-craft)] text-[#ef959e] border-4 border-[#ef959e] hover:bg-[#ef959e] hover:text-[#fcd598] transition-colors rounded-lg"
             >
               ?????
             </button>

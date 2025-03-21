@@ -47,39 +47,29 @@ body {
 }
 
 /* Mobile rotation styles */
+.mobile-rotate-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
 @media screen and (max-width: 768px) and (orientation: portrait) {
-  .mobile-rotate-container {
-    transform: rotate(90deg);
-    transform-origin: center center;
-    width: 100vh;
-    height: 100vw;
+  .mobile-rotate-container::before {
+    content: "Please rotate your device to landscape mode or increase screen width";
     position: fixed;
     top: 0;
     left: 0;
-  }
-  
-  body::before {
-    content: "Please rotate your device to landscape mode";
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    background: #fcd598;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    font-family: Arial, sans-serif;
-  }
-}
-
-@media screen and (max-width: 768px) and (orientation: landscape) {
-  .mobile-rotate-container {
-    transform: none;
-  }
-  
-  body::before {
-    display: none;
+    padding: 20px;
+    z-index: 9999;
+    font-size: 1.5rem;
+    color: #d14d72;
+    font-family: 'Lovecraft', sans-serif;
   }
 }
