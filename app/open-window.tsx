@@ -663,7 +663,7 @@ export default function WindowShutters() {
         <div className="w-full mt-6 flex justify-center gap-4 bg-[#fcd598]">
           <button
             onClick={() => setAreOpen(!areOpen)}
-            className="rounded-md bg-amber-800 px-4 py-2 text-white transition-colors hover:bg-amber-700"
+            className="cursor-pointer rounded-md bg-amber-800 px-4 py-2 text-white transition-colors hover:bg-amber-700"
           >
             {areOpen ? "Close Shutters" : "Open Shutters"}
           </button>
