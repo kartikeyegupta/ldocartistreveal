@@ -139,7 +139,7 @@ export default function WindowShutters() {
               {/* Sun with click interaction */}
               <button 
                 onClick={() => setSunTextVisible(prev => !prev)}
-                className="absolute right-[5%] top-[5%] h-[8vw] w-[8vw] rounded-full bg-yellow-200 shadow-[0_0_40px_20px_rgba(255,247,237,0.7)] hover:bg-yellow-300 transition-colors focus:outline-none"
+                className="cursor-pointer absolute right-[5%] top-[5%] h-[8vw] w-[8vw] rounded-full bg-yellow-200 shadow-[0_0_40px_20px_rgba(255,247,237,0.7)] hover:bg-yellow-300 transition-colors focus:outline-none"
               />
               {/* Sun text modal */}
               {sunTextVisible && (
@@ -166,7 +166,7 @@ export default function WindowShutters() {
                   >
                     {/* Clickable area - much larger than the cloud */}
                     <button
-                      className="relative p-8 -m-8 focus:outline-none"
+                      className="cursor-pointer relative p-8 -m-8 focus:outline-none"
                       onClick={() => handleCloudClick(cloud.id)}
                       style={{ transform: `scale(${cloud.scale})` }}
                     >
@@ -229,7 +229,7 @@ export default function WindowShutters() {
                   <div className="absolute top-[200%] left-1/2 -translate-x-1/2">
                     {/* Sign board */}
                     <div className="w-[8vw] h-[3vh] bg-amber-800 border-2 border-amber-950 flex items-center justify-center">
-                      <span className="text-white font-bold text-sm">2009</span>
+                      <span className="text-white font-bold text-sm">MMIX</span>
                     </div>
                   </div>
                 </div>
@@ -310,7 +310,7 @@ export default function WindowShutters() {
                     </div>
 
                     {/* Socket 2 - with plug inserted */}
-                    <div className="relative w-[1.5vw] h-[1.2vh] bg-gray-800 rounded-sm flex justify-center items-center">
+                    <div onClick={() => setFreezerLightsOn(prev => !prev)} className="cursor-pointer relative w-[1.5vw] h-[1.2vh] bg-gray-800 rounded-sm flex justify-center items-center">
                       {/* Plug inserted */}
                       <div className="absolute -top-[1.5vh] w-[1.2vw] h-[1.5vh] bg-gray-300 rounded-t-sm shadow-md">
                         {/* Prongs (hidden inside socket) */}
