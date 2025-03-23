@@ -77,6 +77,7 @@ export default function Home() {
             />
           </div>
           {/* Centered countdown */}
+          {/* LDOC's the biggest Party in the USA */}
           <div className="-mt-[2%] md:-mt-[0.75%] flex-1 w-full bg-[#fcd598] z-10 flex flex-col items-center justify-center">
             <div className="flex flex-col md:flex-row items-center gap-2 md:gap-8 text-center font-[family-name:var(--font-love-craft)] text-[#d14d72]">
               <div className="text-[15vw] md:text-[6vw] font-bold">
