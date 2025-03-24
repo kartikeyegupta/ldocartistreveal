@@ -8,6 +8,7 @@ export default function WindowShutters() {
   const [ferrisRotation, setFerrisRotation] = useState(0)
   const [sunTextVisible, setSunTextVisible] = useState(false)
   const [freezerLightsOn, setFreezerLightsOn] = useState(false)
+  const [springTextVisible, setSpringTextVisible] = useState(false)
   const [butterflies, setButterflies] = useState<
     Array<{ id: number; x: number; y: number; scale: number; speed: number; delay: number; color: string }>
   >([])
@@ -119,6 +120,28 @@ export default function WindowShutters() {
       return () => clearTimeout(timer)
     }
   }, [sunTextVisible])
+
+  // Update the useEffect for text timing
+  useEffect(() => {
+    if (areOpen) {
+      // Delay the text appearance by 1000ms
+      const showTimer = setTimeout(() => {
+        setSpringTextVisible(true)
+      }, 1500)
+      
+      // Hide the text after 2.5s (1s delay + 1.5s display time)
+      const hideTimer = setTimeout(() => {
+        setSpringTextVisible(false)
+      }, 4000)
+      
+      return () => {
+        clearTimeout(showTimer)
+        clearTimeout(hideTimer)
+      }
+    } else {
+      setSpringTextVisible(false)
+    }
+  }, [areOpen])
 
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-center p-8 bg-[#fcd598]">
@@ -605,6 +628,17 @@ export default function WindowShutters() {
           </div>
         </div>
 
+        {/* Spring text container positioned at the top */}
+        {springTextVisible && (
+          <div className="absolute inset-0 flex items-start justify-center z-40 pointer-events-none overflow-hidden pt-8">
+            <div className="relative">
+              <div className="text-4xl font-bold text-pink-500 font-[family-name:var(--font-love-craft)] animate-wipe-in">
+                Spring into LDOC 🌸
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Remove the floatCloud keyframe animation */}
         <style jsx global>{`
           @keyframes rainFall {
@@ -656,6 +690,30 @@ export default function WindowShutters() {
             100% {
               transform: rotateY(60deg) rotateX(-5deg);
             }
+          }
+
+          @keyframes wipe-in {
+            0% {
+              clip-path: inset(0 100% 0 0);
+            }
+            100% {
+              clip-path: inset(0 0 0 0);
+            }
+          }
+
+          @keyframes wipe-out {
+            0% {
+              clip-path: inset(0 0 0 0);
+            }
+            100% {
+              clip-path: inset(0 0 0 100%);
+            }
+          }
+
+          .animate-wipe-in {
+            animation: wipe-in 0.5s ease-out forwards,
+                       wipe-out 0.5s ease-in forwards 1s;
+          }
         `}</style>
 
         {/* Controls */}
