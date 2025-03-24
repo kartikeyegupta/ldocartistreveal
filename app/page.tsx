@@ -18,7 +18,7 @@ export default function Home() {
 
   useEffect(() => {
     const calculateTimeLeft = () => {
-      const targetDate = new Date('2025-04-10T21:00:00');
+      const targetDate = new Date('2025-04-10T20:00:00');
       const now = new Date();
       const difference = targetDate.getTime() - now.getTime();
 
