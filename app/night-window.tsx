@@ -38,31 +38,37 @@ export default function NightShutters() {
               <div className="absolute inset-0 z-10">
                 {/* Ice Cream Freezer */}
                 <button
-                  className="absolute right-[0%] bottom-[20%] h-[30%] w-[27%] cursor-pointer bg-transparent"
+                  className="absolute right-[0%] bottom-[19%] h-[36%] w-[27%] cursor-pointer bg-transparent"
                   onClick={() => handleItemClick("freezer")}
                   aria-label="Ice Cream Freezer"
                 />
                 {/* Rocking Horse */}
                 <button
-                  className="absolute left-[25%] bottom-[25%] h-[25%] w-[15%] cursor-pointer bg-transparent"
+                  className="absolute left-[10%] bottom-[20%] h-[35%] w-[30%] cursor-pointer bg-transparent"
                   onClick={() => handleItemClick("horse")}
                   aria-label="Rocking Horse"
                 />
-                {/* Ferris Wheel */}
-                <button
-                  className="absolute right-[25%] top-[30%] h-[35%] w-[15%] cursor-pointer bg-transparent"
-                  onClick={() => handleItemClick("ferris")}
-                  aria-label="Ferris Wheel"
+                 {/* Word Tiles */}
+                 <button
+                  className="absolute left-[17%] bottom-[3%] h-[13%] w-[35%] cursor-pointer bg-transparent"
+                  onClick={() => handleItemClick("tiles")}
+                  aria-label="Word Tiles"
                 />
-                {/* Tent */}
+                {/* Clock Seconds Hand */}
                 <button
-                  className="absolute left-[15%] top-[20%] h-[40%] w-[20%] cursor-pointer bg-transparent"
-                  onClick={() => handleItemClick("tent")}
-                  aria-label="Tent"
+                  className="absolute right-[8.5%] top-[4%] h-[20%] w-[15%] cursor-pointer bg-transparent"
+                  onClick={() => handleItemClick("clock")}
+                  aria-label="Clock Seconds Hand"
+                />
+                {/* Jet */}
+                 <button
+                  className="absolute right-[44%] top-[8%] h-[10%] w-[15%] cursor-pointer bg-transparent"
+                  onClick={() => handleItemClick("jet")}
+                  aria-label="Jet"
                 />
                 {/* Roulette */}
                 <button
-                  className="absolute left-[45%] bottom-[20%] h-[15%] w-[15%] cursor-pointer bg-transparent"
+                  className="absolute left-[50%] bottom-[17%] h-[20%] w-[20%] cursor-pointer bg-transparent"
                   onClick={() => handleItemClick("roulette")}
                   aria-label="Roulette"
                 />
@@ -73,19 +79,25 @@ export default function NightShutters() {
             {areOpen && selectedItem && (
               <div className="absolute inset-0 z-10 pointer-events-none">
                 {selectedItem === "freezer" && (
-                  <div className="absolute right-[1%] bottom-[20%] h-[37%] w-[27%] rounded-full border-4 border-red-500 animate-pulse"></div>
+                  <div className="absolute right-[-7%] bottom-[19%] h-[38%] w-[36%] rounded-full border-4 border-red-500 animate-pulse"></div>
+                )}
+                {selectedItem === "tiles" && (
+                  <div className="absolute left-[17%] bottom-[3%] h-[13%] w-[35%] rounded-full border-4 border-red-500 animate-pulse"></div>
                 )}
                 {selectedItem === "horse" && (
-                  <div className="absolute left-[25%] bottom-[25%] h-[25%] w-[15%] rounded-full border-4 border-red-500 animate-pulse"></div>
+                  <div className="absolute left-[8%] bottom-[17%] h-[48%] w-[44%] rounded-full border-4 border-red-500 animate-pulse"></div>
                 )}
-                {selectedItem === "ferris" && (
-                  <div className="absolute right-[25%] top-[30%] h-[35%] w-[15%] rounded-full border-4 border-red-500 animate-pulse"></div>
+                {selectedItem === "clock" && (
+                  <div className="absolute right-[8.5%] top-[4%] h-[20%] w-[15%] rounded-full border-4 border-red-500 animate-pulse"></div>
+                )}
+                {selectedItem === "jet" && (
+                  <div className="absolute right-[44%] top-[8%] h-[10%] w-[15%] rounded-full border-4 border-red-500 animate-pulse"></div>
                 )}
                 {selectedItem === "tent" && (
                   <div className="absolute left-[15%] top-[20%] h-[40%] w-[20%] rounded-full border-4 border-red-500 animate-pulse"></div>
                 )}
                 {selectedItem === "roulette" && (
-                  <div className="absolute left-[45%] bottom-[20%] h-[15%] w-[15%] rounded-full border-4 border-red-500 animate-pulse"></div>
+                  <div className="absolute left-[47%] bottom-[15%] h-[23%] w-[25%] rounded-full border-4 border-red-500 animate-pulse"></div>
                 )}
               </div>
             )}
@@ -185,11 +197,6 @@ export default function NightShutters() {
           >
             {areOpen ? "Close Shutters" : "Open Shutters"}
           </button>
-          {areOpen && selectedItem && (
-          <div className="text-[#fcd598] flex items-center">
-            Selected: {selectedItem.charAt(0).toUpperCase() + selectedItem.slice(1)}
-          </div>
-        )}
         </div>
     </div>
   )
