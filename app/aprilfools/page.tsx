@@ -1,43 +1,103 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NightShutters from '../night-window';
-
+import Image from 'next/image';
+import Stars from '../stars';
 export default function Home() {
-  const [password, setPassword] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // const [password, setPassword] = useState('');
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(true);
+  const [audioPlayed, setAudioPlayed] = useState(false);
+  const [fadeOut, setFadeOut] = useState(false);
+  const [typedText, setTypedText] = useState('');
+  const [showImage, setShowImage] = useState(true);
+  const firstText = "Lavar again???";
+  const secondText = "Lavar told us that the last clues were too hard..";
+  const thirdText = "so we decided to give you more.. 😊 ";
+  const fourthText = "April Fools! - your fav LDOC committee";
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (password === 'committee') {
-      setIsAuthenticated(true);
+  useEffect(() => {
+    if (showOverlay && !audioPlayed) {
+      let currentIndex = 0;
+      const typingInterval = setInterval(() => {
+        if (currentIndex < firstText.length) {
+          setTypedText(firstText.slice(0, currentIndex + 1));
+          currentIndex++;
+        } else {
+          clearInterval(typingInterval);
+        }
+      }, 50);
+
+      return () => clearInterval(typingInterval);
+    }
+  }, [showOverlay, audioPlayed]);
+
+  const handleImageClick = () => {
+    if (!audioPlayed) {
+      const audio = new Audio('/lavarswervinginthecorner.mp3');
+      audio.play();
+      setAudioPlayed(true);
+      setShowImage(false);
+      setTypedText('');
+
+      // Function to handle typing animation
+      const typeText = (text: string, onComplete: () => void) => {
+        let currentIndex = 0;
+        const typingInterval = setInterval(() => {
+          if (currentIndex < text.length) {
+            setTypedText(text.slice(0, currentIndex + 1));
+            currentIndex++;
+          } else {
+            clearInterval(typingInterval);
+            onComplete();
+          }
+        }, 50);
+      };
+
+      // Chain the typing animations
+      typeText(secondText, () => {
+        setTimeout(() => {
+          setTypedText('');
+          typeText(thirdText, () => {
+            setTimeout(() => {
+              setTypedText('');
+              typeText(fourthText, () => {
+                setTimeout(() => {
+                  setFadeOut(true);
+                  setTimeout(() => setShowOverlay(false), 500);
+                }, 1000);
+              });
+            }, 1000);
+          });
+        }, 2000);
+      });
     }
   };
 
-  if (!isAuthenticated) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="px-4 py-2 border rounded text-black"
-            placeholder="Enter password"
-          />
-          <button type="submit" className="block w-full px-4 py-2 bg-blue-500 text-white rounded">
-            Submit
-          </button>
-        </form>
-      </div>
-    );
-  }
-
   return (
     <>
+      {showOverlay && (
+        <div className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#000000] transition-opacity duration-1000 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}>
+          <Stars />
+          <div className="text-[#fcd598] text-xl mb-8 font-['Lovecraft'] glow-text">
+            {typedText}
+          </div>
+          {showImage && (
+            <Image
+              src="/lavartrollwide.png"
+              alt="Lavar"
+              width={1000}
+              height={500}
+              className="object-contain cursor-pointer border-4 border-[#fcd598] rounded-lg z-20"
+              onClick={handleImageClick}
+            />
+          )}
+        </div>
+      )}
       <div className="absolute top-4 left-0 right-0 text-center font-bold text-[#fcd598] text-xl z-20 p-4 font-['Lovecraft'] mb-[5%] glow-text">
-        Look around and click to uncover hidden clues...
+        Same drill as last time..
       </div>
-      <NightShutters />
+      {!showOverlay && <NightShutters />}
     </>
   );
 }

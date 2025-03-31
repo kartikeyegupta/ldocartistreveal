@@ -13,7 +13,7 @@ export default function Stars() {
       x: Math.random() * 100, // percentage across screen
       y: Math.random() * 100, // percentage down screen
       size: Math.random() * 2 + 1, // size between 1-3px
-      delay: Math.random() * 2, // random delay for animation
+      delay: Math.random() * .5, // random delay for animation
     }))
 
     setStars(newStars)
