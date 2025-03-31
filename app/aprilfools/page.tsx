@@ -79,7 +79,7 @@ export default function Home() {
       {showOverlay && (
         <div className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#000000] transition-opacity duration-1000 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}>
           <Stars />
-          <div className="text-[#fcd598] text-xl mb-8 font-['Lovecraft'] glow-text">
+          <div className="text-[#fcd598] text-xl mb-4 font-['Lovecraft'] glow-text">
             {typedText}
           </div>
           {showImage && (
