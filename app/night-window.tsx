@@ -15,7 +15,7 @@ export default function NightShutters() {
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-center p-8 bg-[#1a3942]">
       <Stars />
-      <div className="relative mx-auto w-full max-w-[70vw] aspect-[4/3] bg-[#1a3942] mt-[5vh]">
+      <div className="relative mx-auto w-full max-w-[70vw] aspect-[4/3] bg-[#1a3942] mt-[7vh]">
         {/* Window frame */}
         <div className="relative h-full overflow-hidden rounded-lg border-[1vw] border-stone-900/80 bg-transparent shadow-2xl">
           {/* Window depth effect */}
