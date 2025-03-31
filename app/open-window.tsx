@@ -308,6 +308,12 @@ export default function WindowShutters() {
                     </div>
                   </div>
                 </div>
+                
+               {/* Price tag */}
+               {/* <div className="absolute top-[4vh] -right-[2vw] w-[5vw] h-[3vh] bg-yellow-300 border-2 border-yellow-600 rounded-md transform rotate-12 shadow-lg z-20 flex items-center justify-center">
+                  <div className="text-red-600 font-bold text-sm">$31.00</div>
+                  <div className="absolute -top-[1vh] left-[0.5vw] w-[1vw] h-[1.5vh] bg-yellow-300 border-2 border-yellow-600 rounded-full"></div>
+              </div> */}
 
                 {/* Freezer feet */}
                 <div className="absolute -bottom-[1vh] left-[5%] w-[1vw] h-[0.8vh] bg-gray-800 rounded-b"></div>
@@ -616,14 +622,14 @@ export default function WindowShutters() {
               </div>
 
               {/* Shutter latch (visible when closed) */}
-              <div
+              {/* <div
                 className={`absolute left-1/2 top-1/2 z-30 -translate-x-1/2 -translate-y-1/2 transition-opacity duration-500 pointer-events-none ${
                   areOpen ? "opacity-0" : "opacity-100"
                 }`}
               >
                 <div className="h-10 w-6 rounded-md bg-gradient-to-b from-stone-600 to-stone-800 shadow-md"></div>
                 <div className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-stone-400 shadow-inner"></div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -721,7 +727,7 @@ export default function WindowShutters() {
         <div className="w-full mt-6 flex justify-center gap-4 bg-[#fcd598]">
           <button
             onClick={() => setAreOpen(!areOpen)}
-            className="cursor-pointer rounded-md bg-amber-800 px-4 py-2 text-white transition-colors hover:bg-amber-700"
+            className="font-[family-name:var(--font-love-craft)] cursor-pointer rounded-md bg-amber-800 px-4 py-2 text-white transition-colors hover:bg-amber-700"
           >
             {areOpen ? "Close Shutters" : "Open Shutters"}
           </button>
