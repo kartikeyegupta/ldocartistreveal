@@ -88,7 +88,7 @@ export default function Home() {
               alt="Lavar"
               width={1000}
               height={500}
-              className="object-contain cursor-pointer border-4 border-[#fcd598] rounded-lg z-20"
+              className="object-contain cursor-pointer border-4 border-[#fcd598] rounded-lg z-20 max-h-[70vh] w-auto"
               onClick={handleImageClick}
             />
           )}
