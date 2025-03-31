@@ -13,9 +13,9 @@ export default function NightShutters() {
   }
 
   return (
-    <div className="flex min-h-screen w-full flex-col items-center justify-center p-8 bg-[#1a3942]">
+    <div className="flex min-h-screen w-full flex-col items-center justify-center p-8 bg-[#000000]">
       <Stars />
-      <div className="relative mx-auto w-full max-w-[70vw] aspect-[4/3] bg-[#1a3942] mt-[7vh]">
+      <div className="relative mx-auto w-full max-w-[70vw] aspect-[4/3] bg-[#000000] mt-[7vh]">
         {/* Window frame */}
         <div className="relative h-full overflow-hidden rounded-lg border-[1vw] border-stone-900/80 bg-transparent shadow-2xl">
           {/* Window depth effect */}
@@ -25,7 +25,7 @@ export default function NightShutters() {
           <div className="absolute bottom-0 left-0 right-0 h-[4vh] bg-gradient-to-b from-stone-800/50 to-stone-900/50 shadow-inner"></div>
 
           {/* Window content */}
-          <div className="relative h-full overflow-hidden bg-[#1a3942]">
+          <div className="relative h-full overflow-hidden bg-[#000000]">
             <Image 
               src="/ghiblifyfinal.png" 
               alt="Ghibli style artwork"
@@ -190,10 +190,10 @@ export default function NightShutters() {
         {/* Controls */}
         </div>
         </div>
-        <div className="w-full mt-4 flex justify-center gap-4 bg-[#1a3942]">
+        <div className="w-full mt-4 flex justify-center gap-4 bg-[#000000]">
           <button
             onClick={() => setAreOpen(!areOpen)}
-            className="font-[family-name:var(--font-love-craft)] cursor-pointer rounded-md bg-[#fcd598] px-4 py-2 text-[#1a3942] transition-colors hover:bg-[#e6c088]"
+            className="font-[family-name:var(--font-love-craft)] cursor-pointer rounded-md bg-[#fcd598] px-4 py-2 text-[#000000] transition-colors hover:bg-[#e6c088]"
           >
             {areOpen ? "Close Shutters" : "Open Shutters"}
           </button>

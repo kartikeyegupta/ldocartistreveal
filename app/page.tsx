@@ -100,11 +100,14 @@ export default function Home() {
             <div className="text-[8vw] md:text-[4vw] mt-2 text-center font-bold font-[family-name:var(--font-love-craft)] text-[#d14d72]">
               Until Artist Reveal
             </div>
+            <div className="text-[4vw] md:text-[2vw] mt-1 text-center font-bold font-[family-name:var(--font-love-craft)] text-[#d14d72]">
+              On Abele Quad!
+            </div>
             <button 
-              onClick={() => router.push('/hint')}
+              onClick={() => router.push('/aprilfools')}
               className="cursor-pointer block mt-8 px-8 py-4 text-[4vw] md:text-[3vw] font-[family-name:var(--font-love-craft)] text-[#ef959e] border-4 border-[#ef959e] hover:bg-[#ef959e] hover:text-[#fcd598] transition-colors rounded-lg"
             >
-              ?????
+              New Hints 🤗
             </button>
           </div>
         </div>
