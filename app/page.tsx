@@ -1,117 +1,221 @@
+// 'use client';
+
+// import Image from 'next/image';
+// import { useEffect, useState } from 'react';
+// import { useRouter } from 'next/navigation';
+
+// export default function Home() {
+//   const [timeLeft, setTimeLeft] = useState({
+//     days: 0,
+//     hours: 0,
+//     minutes: 0,
+//     seconds: 0
+//   });
+
+//   const [showOverlay, setShowOverlay] = useState(false);
+
+//   const router = useRouter();
+
+//   useEffect(() => {
+//     const calculateTimeLeft = () => {
+//       const targetDate = new Date('2025-04-10T20:00:00');
+//       const now = new Date();
+//       const difference = targetDate.getTime() - now.getTime();
+
+//       if (difference > 0) {
+//         setTimeLeft({
+//           days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+//           hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+//           minutes: Math.floor((difference / 1000 / 60) % 60),
+//           seconds: Math.floor((difference / 1000) % 60)
+//         });
+//       }
+//     };
+
+//     // Initial calculation
+//     calculateTimeLeft();
+
+//     // Update every second
+//     const timer = setInterval(calculateTimeLeft, 1000);
+
+//     return () => clearInterval(timer);
+//   }, []);
+
+//   useEffect(() => {
+//     // Show overlay after 3 seconds
+//     const timer = setTimeout(() => {
+//       setShowOverlay(true);
+//     }, 1500);
+
+//     return () => clearTimeout(timer);
+//   }, []);
+
+//   return (
+//     <main>
+//       <div className="relative min-h-screen bg-[#fcd598]">
+//         {/* Base logo */}
+//         <div className={`grid place-items-center min-h-screen ${showOverlay ? 'hidden' : ''}`}>
+//           <Image 
+//             src="/fulllogo.png" 
+//             alt="LDOC" 
+//             className="w-[80vw] h-auto animate-fadeIn"
+//             width={1500}
+//             height={1500}
+//             priority
+//           />
+//         </div>
+
+//         {/* Overlay content */}
+//         <div className={`absolute inset-0 bg-[#fcd598] flex flex-col items-center transition-opacity duration-1000 ${showOverlay ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+//           <div className="relative pt-2 md:pt-4">
+//             <Image 
+//               src="/fulllogo.png" 
+//               alt="LDOC" 
+//               className="w-[35vw] h-auto"
+//               width={1500}
+//               height={1500}
+//             />
+//           </div>
+//           {/* Centered countdown */}
+//           {/* <!-- LDOC's the biggest Party in the USA --> */}
+//           <div className="-mt-[2%] md:-mt-[0.75%] flex-1 w-full bg-[#fcd598] z-10 flex flex-col items-center justify-center">
+//             <div className="flex flex-col md:flex-row items-center gap-2 md:gap-8 text-center font-[family-name:var(--font-love-craft)] text-[#d14d72]">
+//               <div className="text-[15vw] md:text-[6vw] font-bold">
+//                 <span className="text-[#ef959e]">{String(timeLeft.days).padStart(2, '0')}</span>
+//                 <span className="text-[4.5vw] md:text-[2vw] block">Days</span>
+//               </div>
+//               <div className="text-[15vw] md:text-[6vw] font-bold">
+//                 <span className="text-[#ef959e]">{String(timeLeft.hours).padStart(2, '0')}</span>
+//                 <span className="text-[4.5vw] md:text-[2vw] block">Hours</span>
+//               </div>
+//               <div className="text-[15vw] md:text-[6vw] font-bold">
+//                 <span className="text-[#ef959e]">{String(timeLeft.minutes).padStart(2, '0')}</span>
+//                 <span className="text-[4.5vw] md:text-[2vw] block">Minutes</span>
+//               </div>
+//               <div className="text-[15vw] md:text-[6vw] font-bold">
+//                 <span className="text-[#ef959e]">{String(timeLeft.seconds).padStart(2, '0')}</span>
+//                 <span className="text-[4.5vw] md:text-[2vw] block">Seconds</span>
+//               </div>
+//             </div>
+//             <div className="text-[8vw] md:text-[4vw] mt-2 text-center font-bold font-[family-name:var(--font-love-craft)] text-[#d14d72]">
+//               Until Artist Reveal
+//             </div>
+//             <div className="text-[4vw] md:text-[2vw] mt-1 text-center font-bold font-[family-name:var(--font-love-craft)] text-[#d14d72]">
+//               On Abele Quad!
+//             </div>
+//             <button 
+//               onClick={() => router.push('/aprilfools')}
+//               className="cursor-pointer block mt-8 px-8 py-4 text-[4vw] md:text-[3vw] font-[family-name:var(--font-love-craft)] text-[#ef959e] border-4 border-[#ef959e] hover:bg-[#ef959e] hover:text-[#fcd598] transition-colors rounded-lg"
+//             >
+//               New Hints 🤗
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+//     </main>
+//   );
+// }
+
 'use client';
-
+import { useState, useEffect } from 'react';
+import NightShutters from './night-window';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-
+import Stars from './stars';
 export default function Home() {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
-
-  const [showOverlay, setShowOverlay] = useState(false);
-
-  const router = useRouter();
-
-  useEffect(() => {
-    const calculateTimeLeft = () => {
-      const targetDate = new Date('2025-04-10T20:00:00');
-      const now = new Date();
-      const difference = targetDate.getTime() - now.getTime();
-
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60)
-        });
-      }
-    };
-
-    // Initial calculation
-    calculateTimeLeft();
-
-    // Update every second
-    const timer = setInterval(calculateTimeLeft, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
+  // const [password, setPassword] = useState('');
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(true);
+  const [audioPlayed, setAudioPlayed] = useState(false);
+  const [fadeOut, setFadeOut] = useState(false);
+  const [typedText, setTypedText] = useState('');
+  const [showImage, setShowImage] = useState(true);
+  const firstText = "Lavar again???";
+  const secondText = "Lavar told us that the last clues were too hard..";
+  const thirdText = "so we decided to give you more.. 😊 ";
+  const fourthText = "April Fools! - your fav LDOC committee";
 
   useEffect(() => {
-    // Show overlay after 3 seconds
-    const timer = setTimeout(() => {
-      setShowOverlay(true);
-    }, 1500);
+    if (showOverlay && !audioPlayed) {
+      let currentIndex = 0;
+      const typingInterval = setInterval(() => {
+        if (currentIndex < firstText.length) {
+          setTypedText(firstText.slice(0, currentIndex + 1));
+          currentIndex++;
+        } else {
+          clearInterval(typingInterval);
+        }
+      }, 50);
 
-    return () => clearTimeout(timer);
-  }, []);
+      return () => clearInterval(typingInterval);
+    }
+  }, [showOverlay, audioPlayed]);
+
+  const handleImageClick = () => {
+    if (!audioPlayed) {
+      const audio = new Audio('/lavarswervinginthecorner.mp3');
+      audio.play();
+      setAudioPlayed(true);
+      setShowImage(false);
+      setTypedText('');
+
+      // Function to handle typing animation
+      const typeText = (text: string, onComplete: () => void) => {
+        let currentIndex = 0;
+        const typingInterval = setInterval(() => {
+          if (currentIndex < text.length) {
+            setTypedText(text.slice(0, currentIndex + 1));
+            currentIndex++;
+          } else {
+            clearInterval(typingInterval);
+            onComplete();
+          }
+        }, 50);
+      };
+
+      // Chain the typing animations
+      typeText(secondText, () => {
+        setTimeout(() => {
+          setTypedText('');
+          typeText(thirdText, () => {
+            setTimeout(() => {
+              setTypedText('');
+              typeText(fourthText, () => {
+                setTimeout(() => {
+                  setFadeOut(true);
+                  setTimeout(() => setShowOverlay(false), 500);
+                }, 1000);
+              });
+            }, 1000);
+          });
+        }, 2000);
+      });
+    }
+  };
 
   return (
-    <main>
-      <div className="relative min-h-screen bg-[#fcd598]">
-        {/* Base logo */}
-        <div className={`grid place-items-center min-h-screen ${showOverlay ? 'hidden' : ''}`}>
-          <Image 
-            src="/fulllogo.png" 
-            alt="LDOC" 
-            className="w-[80vw] h-auto animate-fadeIn"
-            width={1500}
-            height={1500}
-            priority
-          />
-        </div>
-
-        {/* Overlay content */}
-        <div className={`absolute inset-0 bg-[#fcd598] flex flex-col items-center transition-opacity duration-1000 ${showOverlay ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-          <div className="relative pt-2 md:pt-4">
-            <Image 
-              src="/fulllogo.png" 
-              alt="LDOC" 
-              className="w-[35vw] h-auto"
-              width={1500}
-              height={1500}
+    <>
+      {showOverlay && (
+        <div className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#000000] transition-opacity duration-1000 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}>
+          <Stars />
+          <div className="text-[#fcd598] text-xl mb-4 font-['Lovecraft'] glow-text">
+            {typedText}
+          </div>
+          {showImage && (
+            <Image
+              src="/lavartrollwide.png"
+              alt="Lavar"
+              width={1000}
+              height={500}
+              className="object-contain cursor-pointer border-4 border-[#fcd598] rounded-lg z-20 max-h-[70vh] w-auto"
+              onClick={handleImageClick}
             />
-          </div>
-          {/* Centered countdown */}
-          {/* <!-- LDOC's the biggest Party in the USA --> */}
-          <div className="-mt-[2%] md:-mt-[0.75%] flex-1 w-full bg-[#fcd598] z-10 flex flex-col items-center justify-center">
-            <div className="flex flex-col md:flex-row items-center gap-2 md:gap-8 text-center font-[family-name:var(--font-love-craft)] text-[#d14d72]">
-              <div className="text-[15vw] md:text-[6vw] font-bold">
-                <span className="text-[#ef959e]">{String(timeLeft.days).padStart(2, '0')}</span>
-                <span className="text-[4.5vw] md:text-[2vw] block">Days</span>
-              </div>
-              <div className="text-[15vw] md:text-[6vw] font-bold">
-                <span className="text-[#ef959e]">{String(timeLeft.hours).padStart(2, '0')}</span>
-                <span className="text-[4.5vw] md:text-[2vw] block">Hours</span>
-              </div>
-              <div className="text-[15vw] md:text-[6vw] font-bold">
-                <span className="text-[#ef959e]">{String(timeLeft.minutes).padStart(2, '0')}</span>
-                <span className="text-[4.5vw] md:text-[2vw] block">Minutes</span>
-              </div>
-              <div className="text-[15vw] md:text-[6vw] font-bold">
-                <span className="text-[#ef959e]">{String(timeLeft.seconds).padStart(2, '0')}</span>
-                <span className="text-[4.5vw] md:text-[2vw] block">Seconds</span>
-              </div>
-            </div>
-            <div className="text-[8vw] md:text-[4vw] mt-2 text-center font-bold font-[family-name:var(--font-love-craft)] text-[#d14d72]">
-              Until Artist Reveal
-            </div>
-            <div className="text-[4vw] md:text-[2vw] mt-1 text-center font-bold font-[family-name:var(--font-love-craft)] text-[#d14d72]">
-              On Abele Quad!
-            </div>
-            <button 
-              onClick={() => router.push('/aprilfools')}
-              className="cursor-pointer block mt-8 px-8 py-4 text-[4vw] md:text-[3vw] font-[family-name:var(--font-love-craft)] text-[#ef959e] border-4 border-[#ef959e] hover:bg-[#ef959e] hover:text-[#fcd598] transition-colors rounded-lg"
-            >
-              New Hints 🤗
-            </button>
-          </div>
+          )}
         </div>
+      )}
+      <div className="absolute top-4 left-0 right-0 text-center font-bold text-[#fcd598] text-xl z-20 p-4 font-['Lovecraft'] mb-[5%] glow-text">
+        Same drill as last time..
       </div>
-    </main>
+      {!showOverlay && <NightShutters />}
+    </>
   );
 }
