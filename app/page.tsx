@@ -103,12 +103,12 @@ export default function Home() {
             <div className="text-[4vw] md:text-[2vw] mt-1 text-center font-bold font-[family-name:var(--font-love-craft)] text-[#d14d72]">
               On Abele Quad!
             </div>
-            {/* <button 
+            <button 
               onClick={() => router.push('/lavardoc')}
               className="cursor-pointer block mt-8 px-8 py-4 text-[4vw] md:text-[3vw] font-[family-name:var(--font-love-craft)] text-[#ef959e] border-4 border-[#ef959e] hover:bg-[#ef959e] hover:text-[#fcd598] transition-colors rounded-lg"
             >
-              New Clues 🤗
-            </button> */}
+              Lavardoc 🤗
+            </button>
             <button 
               onClick={() => router.push('/hint')}
               className="cursor-pointer block mt-8 px-8 py-4 text-[4vw] md:text-[3vw] font-[family-name:var(--font-love-craft)] text-[#ef959e] border-4 border-[#ef959e] hover:bg-[#ef959e] hover:text-[#fcd598] transition-colors rounded-lg mb-10"
