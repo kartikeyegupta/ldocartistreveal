@@ -12,6 +12,22 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  async redirects() {
+    return [
+      {
+        "source": "/(.*)",
+        "has": [
+          {
+            "type": "header",
+            "key": "host",
+            "value": "lavardoc.com"
+          }
+        ],
+        "destination": "https://dukeldoc.com/lavardoc",
+        "permanent": true
+      }
+    ]
+  }
 };
 
 export default nextConfig;
