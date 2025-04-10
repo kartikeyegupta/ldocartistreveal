@@ -38,7 +38,7 @@ export default function Home() {
             <Image 
               src="/fulllogo.png" 
               alt="LDOC" 
-              className="w-[10vw] h-auto"
+              className="w-[35vw] h-auto"
               width={1500}
               height={1500}
             />
@@ -62,7 +62,7 @@ export default function Home() {
           </div>
 
           <div className="text-center mb-6">
-            <p className="font-[family-name:var(--font-love-craft)] text-[#ff69b4] text-[3vw] md:text-[2.5vw]">
+            <p className="font-[family-name:var(--font-love-craft)] text-[#ff69b4] text-[6vw] md:text-[4vw]">
               ABELE QUAD @ 8 PM TODAY
             </p>
           </div>
@@ -70,13 +70,13 @@ export default function Home() {
           <div className="flex flex-col items-center gap-4 mb-10">
             <button 
               onClick={() => router.push('/lavardoc')}
-              className="cursor-pointer px-4 py-2 text-[2vw] md:text-[1.5vw] font-[family-name:var(--font-love-craft)] text-[#ef959e] border-4 border-[#ef959e] hover:bg-[#ef959e] hover:text-[#fcd598] transition-colors rounded-lg"
+              className="cursor-pointer px-8 py-6 text-[4vw] md:text-[4vw] font-[family-name:var(--font-love-craft)] text-[#ef959e] border-4 border-[#ef959e] hover:bg-[#ef959e] hover:text-[#fcd598] transition-colors rounded-lg"
             >
               New Clues 🤗
             </button>
             <button 
               onClick={() => router.push('/hint')}
-              className="cursor-pointer px-4 py-2 text-[2vw] md:text-[1.5vw] font-[family-name:var(--font-love-craft)] text-[#ef959e] border-4 border-[#ef959e] hover:bg-[#ef959e] hover:text-[#fcd598] transition-colors rounded-lg"
+              className="cursor-pointer px-8 py-6 text-[4vw] md:text-[4vw] font-[family-name:var(--font-love-craft)] text-[#ef959e] border-4 border-[#ef959e] hover:bg-[#ef959e] hover:text-[#fcd598] transition-colors rounded-lg"
             >
               Old Clues 😴
             </button>
