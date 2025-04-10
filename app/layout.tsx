@@ -30,10 +30,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-[#fcd598]">
       <GoogleAnalytics gaId="G-34XVKGNHD5"/>
       <body
-        className= {`${geistSans.variable} ${geistMono.variable} ${loveCraft.variable} antialiased`} 
+        className={`${geistSans.variable} ${geistMono.variable} ${loveCraft.variable} antialiased`} 
       >
         {children}
       </body>

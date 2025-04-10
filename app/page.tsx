@@ -5,41 +5,8 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
-
   const [showOverlay, setShowOverlay] = useState(false);
-
   const router = useRouter();
-
-  useEffect(() => {
-    const calculateTimeLeft = () => {
-      const targetDate = new Date('2025-04-10T20:00:00');
-      const now = new Date();
-      const difference = targetDate.getTime() - now.getTime();
-
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60)
-        });
-      }
-    };
-
-    // Initial calculation
-    calculateTimeLeft();
-
-    // Update every second
-    const timer = setInterval(calculateTimeLeft, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
 
   useEffect(() => {
     // Show overlay after 3 seconds
@@ -51,8 +18,8 @@ export default function Home() {
   }, []);
 
   return (
-    <main>
-      <div className="relative min-h-screen bg-[#fcd598]">
+    <main className="min-h-screen bg-[#fcd598]">
+      <div className="relative min-h-screen">
         {/* Base logo */}
         <div className={`grid place-items-center min-h-screen ${showOverlay ? 'hidden' : ''}`}>
           <Image 
@@ -71,47 +38,45 @@ export default function Home() {
             <Image 
               src="/fulllogo.png" 
               alt="LDOC" 
-              className="w-[35vw] h-auto"
+              className="w-[10vw] h-auto"
               width={1500}
               height={1500}
             />
           </div>
-          {/* Centered countdown */}
-          {/* <!-- LDOC's the biggest Party in the USA --> */}
-          <div className="-mt-[2%] md:-mt-[0.75%] flex-1 w-full bg-[#fcd598] z-10 flex flex-col items-center justify-center">
-            <div className="flex flex-col md:flex-row items-center gap-2 md:gap-8 text-center font-[family-name:var(--font-love-craft)] text-[#d14d72]">
-              <div className="text-[15vw] md:text-[6vw] font-bold">
-                <span className="text-[#ef959e]">{String(timeLeft.days).padStart(2, '0')}</span>
-                <span className="text-[4.5vw] md:text-[2vw] block">Days</span>
-              </div>
-              <div className="text-[15vw] md:text-[6vw] font-bold">
-                <span className="text-[#ef959e]">{String(timeLeft.hours).padStart(2, '0')}</span>
-                <span className="text-[4.5vw] md:text-[2vw] block">Hours</span>
-              </div>
-              <div className="text-[15vw] md:text-[6vw] font-bold">
-                <span className="text-[#ef959e]">{String(timeLeft.minutes).padStart(2, '0')}</span>
-                <span className="text-[4.5vw] md:text-[2vw] block">Minutes</span>
-              </div>
-              <div className="text-[15vw] md:text-[6vw] font-bold">
-                <span className="text-[#ef959e]">{String(timeLeft.seconds).padStart(2, '0')}</span>
-                <span className="text-[4.5vw] md:text-[2vw] block">Seconds</span>
-              </div>
+          
+          {/* YouTube embed space */}
+          <div className="w-full max-w-4xl aspect-video mt-0 mb-5">
+            {/* Add your YouTube iframe here */}
+            <div className="w-full h-full rounded-lg flex items-center justify-center">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube.com/embed/2s6w1ytPiMY?si=FFUeCEHNfAfeZ9Zn" 
+                title="YouTube video player" 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerPolicy="strict-origin-when-cross-origin" 
+                allowFullScreen
+              />
             </div>
-            <div className="text-[8vw] md:text-[4vw] mt-2 text-center font-bold font-[family-name:var(--font-love-craft)] text-[#d14d72]">
-              Until Artist Reveal
-            </div>
-            <div className="text-[4vw] md:text-[2vw] mt-1 text-center font-bold font-[family-name:var(--font-love-craft)] text-[#d14d72]">
-              On Abele Quad!
-            </div>
+          </div>
+
+          <div className="text-center mb-6">
+            <p className="font-[family-name:var(--font-love-craft)] text-[#ff69b4] text-[3vw] md:text-[2.5vw]">
+              ABELE QUAD @ 8 PM TODAY
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center gap-4 mb-10">
             <button 
               onClick={() => router.push('/lavardoc')}
-              className="cursor-pointer block mt-8 px-8 py-4 text-[4vw] md:text-[3vw] font-[family-name:var(--font-love-craft)] text-[#ef959e] border-4 border-[#ef959e] hover:bg-[#ef959e] hover:text-[#fcd598] transition-colors rounded-lg"
+              className="cursor-pointer px-4 py-2 text-[2vw] md:text-[1.5vw] font-[family-name:var(--font-love-craft)] text-[#ef959e] border-4 border-[#ef959e] hover:bg-[#ef959e] hover:text-[#fcd598] transition-colors rounded-lg"
             >
               New Clues 🤗
             </button>
             <button 
               onClick={() => router.push('/hint')}
-              className="cursor-pointer block mt-8 px-8 py-4 text-[4vw] md:text-[3vw] font-[family-name:var(--font-love-craft)] text-[#ef959e] border-4 border-[#ef959e] hover:bg-[#ef959e] hover:text-[#fcd598] transition-colors rounded-lg mb-10"
+              className="cursor-pointer px-4 py-2 text-[2vw] md:text-[1.5vw] font-[family-name:var(--font-love-craft)] text-[#ef959e] border-4 border-[#ef959e] hover:bg-[#ef959e] hover:text-[#fcd598] transition-colors rounded-lg"
             >
               Old Clues 😴
             </button>
