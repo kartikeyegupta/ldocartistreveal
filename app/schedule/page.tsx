@@ -7,15 +7,28 @@ export default function Schedule() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
+  const [expandedBreakfast, setExpandedBreakfast] = useState(false);
+
+  // Group breakfast events
+  const breakfastEvents = [
+    { sponsor: "Duke Stores", location: "Wannamaker Quad" },
+    { sponsor: "Nasher Museum", location: "Craven Quad" },
+    { sponsor: "Career Center", location: "Few Quad" },
+    { sponsor: "Duke Libraries", location: "Kilgo Quad" },
+    { sponsor: "Alumni Engagement and Development", location: "Keohane Quad" },
+    { sponsor: "NSFP", location: "Edens Quad" },
+    { sponsor: "OUE", location: "Crowell Quad" }
+  ];
 
   const events = [
-    { time: "9:00 AM - 11:00 AM", event: "Duke Stores Breakfast", location: "Wannamaker Quad", categories: ["Free Food"] },
-    { time: "9:00 AM - 11:00 AM", event: "Nasher Museum Breakfast", location: "Craven Quad", categories: ["Free Food"] },
-    { time: "9:00 AM - 11:00 AM", event: "Career Center Breakfast", location: "Few Quad", categories: ["Free Food"] },
-    { time: "9:00 AM - 11:00 AM", event: "Duke Libraries Breakfast", location: "Kilgo Quad", categories: ["Free Food"] },
-    { time: "9:00 AM - 11:00 AM", event: "Alumni Engagement and Development Breakfast", location: "Keohane Quad", categories: ["Free Food"] },
-    { time: "9:00 AM - 11:00 AM", event: "NSFP Breakfast", location: "Edens Quad", categories: ["Free Food"] },
-    { time: "9:00 AM - 11:00 AM", event: "OUE Breakfast", location: "Crowell Quad", categories: ["Free Food"] },
+    { 
+      time: "9:00 AM - 11:00 AM", 
+      event: "Breakfast", 
+      location: "", 
+      categories: ["Free Food"],
+      isBreakfast: true,
+      subEvents: breakfastEvents
+    },
     { time: "10:00 AM - 2:00 PM", event: "Chapel Activities - Lawn Games, Cotton Candy, Popcorn, and T-shirts", location: "Chapel Quad", categories: ["Giveaways"] },
     { time: "10:00 AM - 2:00 PM", event: "Poetry Fox", location: "WU", categories: ["Giveaways"] },
     { time: "10:00 AM - 12:00 PM", event: "VR Escape Room", location: "Link", categories: ["Giveaways"] },
@@ -54,12 +67,38 @@ export default function Schedule() {
     { time: "2:00 PM - 4:00 PM", event: "Karaoke", location: "Wellness", categories: [] },
     { time: "3:00 PM - 6:00 PM", event: "Penn Pavilion BBQ", location: "Penn Pavilion", categories: ["Free Food"] },
     { time: "3:30 PM - 5:00 PM", event: "Duke PAWS", location: "BC Plaza", categories: [] },
-    { time: "10:00 PM - 12:00 AM", event: "Food Trucks", location: "Wellness Lot", categories: ["Free Food"] },
+    { time: "10:00 PM - 11:59 PM", event: "Food Trucks", location: "Wellness Lot", categories: ["Free Food"] },
     { time: "10:00 PM - 10:30 PM", event: "Midnight Pizza", location: "Chapel Quad", categories: ["Free Food"] }
   ];
 
+  // Function to parse time string into minutes since midnight
+  const parseTimeToMinutes = (timeStr: string) => {
+    const [time, period] = timeStr.split(' ');
+    const [hours, minutes] = time.split(':').map(Number);
+    return (hours % 12 + (period === 'PM' ? 12 : 0)) * 60 + minutes;
+  };
+
+  // Function to get start and end times from time range
+  const getEventTimes = (timeRange: string) => {
+    const [startTime, endTime] = timeRange.split(' - ');
+    return {
+      start: parseTimeToMinutes(startTime),
+      end: parseTimeToMinutes(endTime)
+    };
+  };
+
+  // Sort events by start time, then by end time
+  const sortedEvents = [...events].sort((a, b) => {
+    const aTimes = getEventTimes(a.time);
+    const bTimes = getEventTimes(b.time);
+    if (aTimes.start !== bTimes.start) {
+      return aTimes.start - bTimes.start;
+    }
+    return aTimes.end - bTimes.end;
+  });
+
   // Get unique locations
-  const locations = Array.from(new Set(events.map(event => {
+  const locations = Array.from(new Set(sortedEvents.map(event => {
     // Combine Few Quad locations
     if (event.location.includes('Few Quad') || event.location.includes('Few GG/HH Quad') || event.location.includes('Few FF/GG Quad')) {
       return 'Few Quad';
@@ -75,7 +114,7 @@ export default function Schedule() {
     return event.location;
   }))).sort();
 
-  const filteredEvents = events
+  const filteredEvents = sortedEvents
     .filter(event => {
       if (activeFilter && !event.categories.includes(activeFilter)) {
         return false;
@@ -99,6 +138,15 @@ export default function Schedule() {
              event.location.includes('Wellness Lot'))) {
           return true;
         }
+        // Handle breakfast event locations
+        if (event.isBreakfast) {
+          return event.subEvents.some(breakfast => {
+            if (selectedLocation === 'Few Quad' && breakfast.location.includes('Few Quad')) return true;
+            if (selectedLocation === 'BC Plaza' && breakfast.location.includes('BC Plaza')) return true;
+            if (selectedLocation === 'Wellness' && breakfast.location.includes('Wellness')) return true;
+            return breakfast.location === selectedLocation;
+          });
+        }
         if (event.location !== selectedLocation) {
           return false;
         }
@@ -108,7 +156,11 @@ export default function Schedule() {
         return (
           event.event.toLowerCase().includes(query) ||
           event.location.toLowerCase().includes(query) ||
-          event.time.toLowerCase().includes(query)
+          event.time.toLowerCase().includes(query) ||
+          (event.isBreakfast && event.subEvents.some(breakfast => 
+            breakfast.sponsor.toLowerCase().includes(query) ||
+            breakfast.location.toLowerCase().includes(query)
+          ))
         );
       }
       return true;
@@ -238,7 +290,32 @@ export default function Schedule() {
                   <div className="text-xs md:text-[1.5vw] font-[family-name:var(--font-love-craft)] text-[#ef959e]">
                     {event.location}
                   </div>
-                  {event.categories.length > 0 && (
+                  {event.isBreakfast && (
+                    <div className="mt-3">
+                      <button
+                        onClick={() => setExpandedBreakfast(!expandedBreakfast)}
+                        className="w-full px-4 py-2 rounded-lg bg-white/20 hover:bg-white/30 text-[#d14d72] font-[family-name:var(--font-love-craft)] flex items-center justify-between transition-colors"
+                      >
+                        <span>View Locations</span>
+                        <span className="text-lg">{expandedBreakfast ? '▼' : '▶'}</span>
+                      </button>
+                      {expandedBreakfast && (
+                        <div className="mt-3 space-y-2">
+                          {event.subEvents.map((breakfast, i) => (
+                            <div 
+                              key={i} 
+                              className="px-4 py-2 rounded-lg bg-white/10 border border-[#ef959e]/30 hover:bg-white/20 transition-colors"
+                            >
+                              <div className="text-[#d14d72] font-[family-name:var(--font-love-craft)]">
+                                {breakfast.sponsor} - {breakfast.location}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  {event.categories.length > 0 && !event.isBreakfast && (
                     <div className="flex flex-wrap gap-2 mt-2">
                       {event.categories.map((category, i) => (
                         <span
