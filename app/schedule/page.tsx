@@ -29,44 +29,44 @@ export default function Schedule() {
       isBreakfast: true,
       subEvents: breakfastEvents
     },
-    { time: "10:00 AM - 2:00 PM", event: "Chapel Activities - Lawn Games, Cotton Candy, Popcorn, and T-shirts", location: "Chapel Quad", categories: ["Giveaways"] },
-    { time: "10:00 AM - 2:00 PM", event: "Poetry Fox", location: "WU", categories: ["Giveaways"] },
-    { time: "10:00 AM - 12:00 PM", event: "VR Escape Room", location: "Link", categories: ["Giveaways"] },
-    { time: "10:00 AM - 10:45 AM", event: "Yoga", location: "K-Ville", categories: [] },
-    { time: "10:30 AM - 12:30 PM", event: "DuWell Narcan Training", location: "BC Plaza", categories: [] },
-    { time: "11:00 AM - 12:40 PM", event: "Dance Performances", location: "BC Plaza Stage", categories: [] },
-    { time: "11:00 AM - 1:00 PM", event: "VisArts Flower Crown Making + Cowboy Hat Decorating", location: "Chapel Quad", categories: ["Giveaways"] },
-    { time: "11:00 AM - 3:00 PM", event: "Duke Rec Lawn Games", location: "K-Ville", categories: [] },
+    { time: "10:00 AM - 2:00 PM", event: "Chapel Activities - Lawn Games, Cotton Candy, Popcorn, and T-shirts", location: "Chapel Quad", categories: ["Free Food", "Interactive Events", "Giveaways"] },
+    { time: "10:00 AM - 2:00 PM", event: "Poetry Fox", location: "WU", categories: ["Interactive Events"] },
+    { time: "10:00 AM - 12:00 PM", event: "VR Escape Room", location: "Link MPS Studio - Between Link and Bostock", categories: ["Interactive Events"] },
+    { time: "10:00 AM - 10:45 AM", event: "Yoga", location: "K-Ville", categories: ["Interactive Events"] },
+    { time: "10:30 AM - 12:30 PM", event: "DuWell Narcan Training", location: "BC Plaza", categories: ["Interactive Events"] },
+    { time: "11:00 AM - 12:40 PM", event: "Dance Performances", location: "BC Plaza Stage", categories: ["Interactive Events"] },
+    { time: "11:00 AM - 1:00 PM", event: "VisArts Flower Crown Making + Cowboy Hat Decorating", location: "Chapel Quad", categories: ["Giveaways", "Interactive Events"] },
+    { time: "11:00 AM - 3:00 PM", event: "Duke Rec Lawn Games", location: "K-Ville", categories: ["Interactive Events"] },
     { time: "11:00 AM - 2:00 PM", event: "Food Trucks", location: "Wellness Lot", categories: ["Free Food"] },
-    { time: "11:30 AM - 2:30 PM", event: "Chapel Climbs", location: "Chapel", categories: [] },
-    { time: "11:30 AM - 4:30 PM", event: "Sensory Friendly Programming", location: "Academic Resource Center - East Campus", categories: [] },
-    { time: "12:00 PM - 2:00 PM", event: "SPEV Wall Art", location: "BC Plaza", categories: ["Giveaways"] },
-    { time: "12:00 PM - 3:30 PM", event: "Zim Zoom - Photo Booth", location: "BC Plaza", categories: [] },
-    { time: "12:00 PM - 2:00 PM", event: "Tote Bags", location: "Chapel Quad", categories: ["Giveaways"] },
-    { time: "12:00 PM - 3:00 PM", event: "Tarot Card Readings", location: "Chapel Quad", categories: [] },
-    { time: "12:00 PM - 2:00 PM", event: "Cynanotypes with DukeArts", location: "Chapel Quad", categories: ["Giveaways"] },
-    { time: "12:00 PM - 2:00 PM", event: "Mindfulness Painting", location: "Wellness", categories: [] },
-    { time: "12:30 PM - 2:30 PM", event: "STR Postcards", location: "BC Plaza Stage", categories: ["Giveaways"] },
-    { time: "12:30 PM - 2:00 PM", event: "Jazz@", location: "BC Plaza Bookstore Stage", categories: [] },
-    { time: "12:30 PM - 2:30 PM", event: "Succulents/Mini Pot Station", location: "BC Plaza", categories: ["Giveaways"] },
+    { time: "11:30 AM - 2:30 PM", event: "Chapel Climbs", location: "Chapel", categories: ["Interactive Events"] },
+    { time: "11:30 AM - 4:30 PM", event: "Sensory Friendly Programming", location: "Academic Resource Center - East Campus", categories: ["Interactive Events"] },
+    { time: "12:00 PM - 2:00 PM", event: "SPEV Wall Art", location: "BC Plaza", categories: ["Interactive Events"] },
+    { time: "12:00 PM - 3:30 PM", event: "Zim Zoom - Photo Booth", location: "BC Plaza", categories: ["Interactive Events"] },
+    { time: "12:00 PM - 2:00 PM", event: "Tote Bags", location: "Chapel Quad", categories: ["Giveaways", "Interactive Events"] },
+    { time: "12:00 PM - 3:00 PM", event: "Tarot Card Readings", location: "Chapel Quad", categories: ["Interactive Events"] },
+    { time: "12:00 PM - 2:00 PM", event: "Cynanotypes with DukeArts", location: "Chapel Quad", categories: ["Giveaways", "Interactive Events"] },
+    { time: "12:00 PM - 2:00 PM", event: "Mindfulness Painting", location: "Wellness", categories: ["Interactive Events"] },
+    { time: "12:30 PM - 2:30 PM", event: "STR Postcards", location: "BC Plaza Stage", categories: ["Interactive Events", "Giveaways"] },
+    { time: "12:30 PM - 2:00 PM", event: "Jazz@", location: "BC Plaza Bookstore Stage", categories: ["Interactive Events"] },
+    { time: "12:30 PM - 2:30 PM", event: "Succulents/Mini Pot Station", location: "BC Plaza", categories: ["Interactive Events", "Giveaways"] },
     { time: "1:00 PM - 3:00 PM", event: "Ice cream, Popcorn, Cotton Candy", location: "BC Plaza", categories: ["Free Food"] },
-    { time: "1:00 PM - 3:00 PM", event: "Face Painting", location: "BC Plaza", categories: [] },
-    { time: "1:00 PM - 5:00 PM", event: "The Devil's Blooming Garden", location: "Crowell Quad", categories: ["Darties"] },
+    { time: "1:00 PM - 3:00 PM", event: "Face Painting", location: "BC Plaza", categories: ["Interactive Events"] },
+    { time: "1:00 PM - 5:00 PM", event: "The Devil's Blooming Garden", location: "Crowell Quad - Pike & Wayne", categories: ["Darties"] },
     { time: "1:00 PM - 4:00 PM", event: "BSA Cookout", location: "Keohane Quad", categories: ["Free Food"] },
-    { time: "1:00 PM - 5:00 PM", event: "Summer in the Spring", location: "Few GG/HH Quad", categories: ["Darties"] },
-    { time: "1:00 PM - 5:00 PM", event: "Spring Fling", location: "Few FF/GG Quad", categories: ["Darties"] },
-    { time: "1:00 PM - 5:00 PM", event: "Sunny Spring Bash", location: "Quad between Few and Craven", categories: ["Darties"] },
-    { time: "1:00 PM - 5:00 PM", event: "Spring into Summer", location: "Craven Quad", categories: ["Darties"] },
-    { time: "1:00 PM - 5:00 PM", event: "Sunflower Power Hour", location: "Kilgo Quad", categories: ["Darties"] },
-    { time: "1:00 PM - 4:00 PM", event: "East Farewell Fiesta", location: "Wannamaker Quad", categories: ["Darties"] },
-    { time: "2:00 PM - 6:00 PM", event: "LLDOC: Senior Sendoff", location: "Clocktower Quad", categories: ["Darties"] },
-    { time: "1:00 PM - 4:00 PM", event: "Casino Games", location: "Outside Kraft - WU", categories: [] },
-    { time: "1:00 PM - 2:00 PM", event: "Duke@Nite Trivia", location: "Inside Kraft - WU", categories: [] },
-    { time: "2:00 PM - 4:00 PM", event: "I&E Events - Polaroids, Popsicles, Lawn Games", location: "BC Plaza", categories: ["Giveaways", "Free Food"] },
-    { time: "2:00 PM - 3:30 PM", event: "Stuff-a-Critter", location: "Chapel Quad", categories: ["Giveaways"] },
-    { time: "2:00 PM - 4:00 PM", event: "Karaoke", location: "Wellness", categories: [] },
+    { time: "1:00 PM - 5:00 PM", event: "Summer in the Spring", location: "Few GG/HH Quad - Theta Chi", categories: ["Darties"] },
+    { time: "1:00 PM - 5:00 PM", event: "Spring Fling", location: "Few FF/GG Quad - Sigma Chi, Pikapp & Hoops with Troops", categories: ["Darties"] },
+    { time: "1:00 PM - 5:00 PM", event: "Sunny Spring Bash", location: "Quad between Few and Craven - ATO", categories: ["Darties"] },
+    { time: "1:00 PM - 5:00 PM", event: "Spring into Summer", location: "Craven Quad - ADPhi", categories: ["Darties"] },
+    { time: "1:00 PM - 5:00 PM", event: "Sunflower Power Hour", location: "Kilgo Quad - Mirecourt, Illyria, Browstone, Round Table, Maxwell & Duke Dhamaka", categories: ["Darties"] },
+    { time: "1:00 PM - 4:00 PM", event: "East Farewell Fiesta", location: "Wannamaker Quad - Class of 2028", categories: ["Darties"] },
+    { time: "2:00 PM - 6:00 PM", event: "LLDOC: Senior Sendoff", location: "Clocktower Quad - Class of 2025, Blue Light, Swift & Hollows Quad Councils", categories: ["Darties"] },
+    { time: "1:00 PM - 4:00 PM", event: "Casino Games", location: "Outside Kraft - WU", categories: ["Interactive Events"] },
+    { time: "1:00 PM - 2:00 PM", event: "Duke@Nite Trivia", location: "Inside Kraft - WU", categories: ["Interactive Events"] },
+    { time: "2:00 PM - 4:00 PM", event: "I&E Events - Polaroids, Popsicles, Lawn Games", location: "BC Plaza", categories: ["Interactive Events", "Giveaways", "Free Food"] },
+    { time: "2:00 PM - 3:30 PM", event: "Stuff-a-Critter", location: "Chapel Quad", categories: ["Interactive Events", "Giveaways"] },
+    { time: "2:00 PM - 4:00 PM", event: "Karaoke", location: "Wellness", categories: ["Interactive Events"] },
     { time: "3:00 PM - 6:00 PM", event: "Penn Pavilion BBQ", location: "Penn Pavilion", categories: ["Free Food"] },
-    { time: "3:30 PM - 5:00 PM", event: "Duke PAWS", location: "BC Plaza", categories: [] },
+    { time: "3:30 PM - 5:00 PM", event: "Duke PAWS", location: "BC Plaza", categories: ["Interactive Events"] },
     { time: "10:00 PM - 11:59 PM", event: "Food Trucks", location: "Wellness Lot", categories: ["Free Food"] },
     { time: "10:00 PM - 10:30 PM", event: "Midnight Pizza", location: "Chapel Quad", categories: ["Free Food"] }
   ];
@@ -107,10 +107,41 @@ export default function Schedule() {
     if (event.location.includes('BC Plaza') || event.location.includes('BC Plaza Stage') || event.location.includes('BC Plaza Bookstore Stage')) {
       return 'BC Plaza';
     }
+    // Combine WU locations
+    if (event.location.includes('Inside Kraft - WU') || event.location.includes('Outside Kraft - WU')) {
+      return 'WU';
+    }
     // Combine Wellness locations
     if (event.location.includes('Wellness') || event.location.includes('Wellness Lot')) {
       return 'Wellness';
     }
+    // Cut Down Clocktower locations
+    if (event.location.includes('Clocktower Quad')) {
+      return 'Clocktower Quad';
+    }
+    // Cut Down Craven locations
+    if (event.location.includes('Craven Quad')) {
+      return 'Craven Quad';
+    }
+   // Cut Down Crowell locations
+   if (event.location.includes('Crowell Quad')) {
+    return 'Crowell Quad';
+  }
+  // Cut Down Kilgo locations
+  if (event.location.includes('Kilgo Quad')) {
+    return 'Kilgo Quad';
+  }
+  // Cut Down Quad between Few and Craven locations
+  if (event.location.includes('Quad between Few and Craven')) {
+    return 'Quad between Few and Cravend';
+  }
+  // Cut Down Wannamaker locations
+  if (event.location.includes('Wannamaker Quad')) {
+    return 'Wannamaker Quad';
+  }
+  if (event.location.includes('Link MPS Studio')) {
+    return 'Perkins Link';
+  }
     return event.location;
   }))).sort();
 
@@ -121,12 +152,45 @@ export default function Schedule() {
       }
       if (selectedLocation) {
         // Handle combined location filtering
-        if (selectedLocation === 'Few Quad' && 
-            (event.location.includes('Few Quad') || 
-             event.location.includes('Few GG/HH Quad') || 
-             event.location.includes('Few FF/GG Quad'))) {
+        if (selectedLocation === 'WU' && 
+            (event.location.includes('Inside Kraft - WU') || 
+             event.location.includes('Outside Kraft - WU'))) {
           return true;
         }
+        if (selectedLocation === 'Clocktower Quad' && 
+          (event.location.includes('Clocktower Quad'))) {
+        return true;
+        }
+        if (selectedLocation === 'Craven Quad' && 
+          (event.location.includes('Craven Quad'))) {
+        return true;
+        }
+        if (selectedLocation === 'Crowell Quad' && 
+          (event.location.includes('Crowell Quad'))) {
+        return true;
+        }
+        if (selectedLocation === 'Kilgo Quad' && 
+          (event.location.includes('Kilgo Quad'))) {
+        return true;
+        }
+        if (selectedLocation === 'Wannamaker Quad' && 
+          (event.location.includes('Wannamaker Quad'))) {
+        return true;
+        }
+        if (selectedLocation === 'Quad between Few and Craven' && 
+          (event.location.includes('Quad between Few and Craven'))) {
+        return true;
+        }
+        if (selectedLocation === 'Perkins Link' && 
+          (event.location.includes('Link MPS Studio'))) {
+        return true;
+        }
+        if (selectedLocation === 'Few Quad' && 
+          (event.location.includes('Few Quad') || 
+           event.location.includes('Few GG/HH Quad') || 
+           event.location.includes('Few FF/GG Quad'))) {
+        return true;
+      }
         if (selectedLocation === 'BC Plaza' && 
             (event.location.includes('BC Plaza') || 
              event.location.includes('BC Plaza Stage') || 
@@ -214,7 +278,7 @@ export default function Schedule() {
                   : 'bg-white/10 text-[#d14d72] hover:bg-[#ef959e] hover:text-white'
               }`}
             >
-              All Events
+              All
             </button>
             <button
               onClick={() => setActiveFilter("Free Food")}
@@ -225,6 +289,16 @@ export default function Schedule() {
               }`}
             >
               Free Food
+            </button>
+            <button
+              onClick={() => setActiveFilter("Interactive Events")}
+              className={`px-4 py-2 rounded-full font-[family-name:var(--font-love-craft)] transition-colors ${
+                activeFilter === "Interactive Events"
+                  ? 'bg-[#d14d72] text-white'
+                  : 'bg-white/10 text-[#d14d72] hover:bg-[#ef959e] hover:text-white'
+              }`}
+            >
+              Interactive
             </button>
             <button
               onClick={() => setActiveFilter("Giveaways")}
@@ -318,12 +392,13 @@ export default function Schedule() {
                   {event.categories.length > 0 && !event.isBreakfast && (
                     <div className="flex flex-wrap gap-2 mt-2">
                       {event.categories.map((category, i) => (
-                        <span
+                        <button
                           key={i}
-                          className="text-xs px-2 py-1 rounded-full bg-[#ef959e] text-white"
+                          onClick={() => setActiveFilter(category)}
+                          className="text-xs px-2 py-1 rounded-full bg-[#ef959e] text-white hover:bg-[#d14d72] transition-colors cursor-pointer"
                         >
                           {category}
-                        </span>
+                        </button>
                       ))}
                     </div>
                   )}
