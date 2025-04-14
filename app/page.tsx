@@ -12,6 +12,7 @@ export default function Schedule() {
   const [expandedDance, setExpandedDance] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
   const [expandedConcert, setExpandedConcert] = useState(true);
+  const [expandedDescriptions, setExpandedDescriptions] = useState<{[key: string]: boolean}>({});
 
   useEffect(() => {
     // Show overlay after 1.5 seconds
@@ -58,7 +59,13 @@ export default function Schedule() {
     { time: "10:00 AM - 2:00 PM", event: "Chapel Activities - Lawn Games, Cotton Candy, Popcorn, and T-shirts", location: "Chapel Quad", categories: ["Free Food", "Interactive Events", "Giveaways"] },
     { time: "10:00 AM - 2:00 PM", event: "Poetry Fox", location: "WU", categories: ["Interactive Events"] },
     { time: "10:00 AM - 12:00 PM", event: "VR Escape Room", location: "Link MPS Studio - Between Link and Bostock", categories: ["Interactive Events"] },
-    { time: "10:00 AM - 10:45 AM", event: "Yoga", location: "K-Ville", categories: ["Interactive Events"] },
+    { 
+      time: "10:00 AM - 10:45 AM", 
+      event: "Yoga", 
+      location: "K-Ville", 
+      categories: ["Interactive Events"],
+      description: "Start your LDOC the chill way with an outdoor yoga session on Kville! Flow, stretch, and vibe with us at 10AM– no experience needed. Bring a mat if you have one; we've got extras if you don't. Let's soak up the sun and good energy before the celebrations begin!"
+    },
     { time: "10:30 AM - 12:30 PM", event: "DuWell Narcan Training", location: "BC Plaza", categories: ["Interactive Events"] },
     { 
       time: "11:00 AM - 12:40 PM", 
@@ -93,26 +100,92 @@ export default function Schedule() {
     { time: "11:00 AM - 2:00 PM", event: "Food Trucks", location: "Wellness Lot", categories: ["Free Food"] },
     { time: "11:30 AM - 2:30 PM", event: "Chapel Climbs", location: "Chapel", categories: ["Interactive Events"] },
     { time: "11:30 AM - 4:30 PM", event: "Sensory Friendly Programming", location: "Academic Resource Center - East Campus", categories: ["Interactive Events"] },
-    { time: "12:00 PM - 2:00 PM", event: "SPEV Wall Art", location: "BC Plaza", categories: ["Interactive Events"] },
+    { 
+      time: "12:00 PM - 2:00 PM", 
+      event: "SPEV Wall Art", 
+      location: "BC Plaza", 
+      categories: ["Interactive Events"],
+      description: "DUU Special Events, (aka Spev) hosts a variety of large, campus-wide events that cater towards the ever-changing needs of the diverse Duke body. On LDOC, join Spev outside WU to celebrate the end of classes with a burst of color! Come add your paint, your style, and your voice to our collaborative Graffiti Wall!"
+    },
     { time: "12:00 PM - 3:30 PM", event: "Zim Zoom - Photo Booth", location: "BC Plaza", categories: ["Interactive Events"] },
     { time: "12:00 PM - 2:00 PM", event: "Tote Bags", location: "Chapel Quad", categories: ["Giveaways", "Interactive Events"] },
     { time: "12:00 PM - 3:00 PM", event: "Tarot Card Readings", location: "Chapel Quad", categories: ["Interactive Events"] },
     { time: "12:00 PM - 2:00 PM", event: "Cynanotypes with DukeArts", location: "Chapel Quad", categories: ["Giveaways", "Interactive Events"] },
     { time: "12:00 PM - 2:00 PM", event: "Mindfulness Painting", location: "Wellness", categories: ["Interactive Events"] },
-    { time: "12:30 PM - 2:30 PM", event: "STR Postcards", location: "BC Plaza Stage", categories: ["Interactive Events", "Giveaways"] },
-    { time: "12:30 PM - 2:00 PM", event: "Jazz@", location: "BC Plaza Bookstore Stage", categories: ["Interactive Events"] },
+    { 
+      time: "12:30 PM - 2:30 PM", 
+      event: "STR Postcards", 
+      location: "BC Plaza Stage", 
+      categories: ["Interactive Events", "Giveaways"],
+      description: "Join Small Town Records and take a minute out of your LDOC to write a postcard to a friend or loved one📬 LDOC x STR postcards will be set up on the BC Plaza stage starting at 12:30. Stamps and supplies included! And don't miss STR's Hannon Stern performing at 5:30 on Abele Quad!"
+    },
+    { 
+      time: "12:30 PM - 2:00 PM", 
+      event: "Jazz@", 
+      location: "BC Plaza Bookstore Stage", 
+      categories: ["Interactive Events"],
+      description: "Jazz@ is a student organization that seeks to connect the jazz artist with the jazz audience at Duke. We provide live jazz concerts and jazz-related events across campus throughout the year, including favorites like Jazz@ the Mary Lou and the annual Vocal Night. Come join us on and around the Duke Store stage (the bookstore side) 12:30pm on LDOC for lots of jazz tunes, great energy, and special Jazz@ LDOC merch!"
+    },
     { time: "12:30 PM - 2:30 PM", event: "Succulents/Mini Pot Station", location: "BC Plaza", categories: ["Interactive Events", "Giveaways"] },
     { time: "1:00 PM - 3:00 PM", event: "Ice cream, Popcorn, Cotton Candy", location: "BC Plaza", categories: ["Free Food"] },
     { time: "1:00 PM - 3:00 PM", event: "Face Painting", location: "BC Plaza", categories: ["Interactive Events"] },
-    { time: "1:00 PM - 5:00 PM", event: "The Devil's Blooming Garden", location: "Crowell Quad - Pike & Wayne", categories: ["Darties"] },
+    { 
+      time: "1:00 PM - 5:00 PM", 
+      event: "The Devil's Blooming Garden", 
+      location: "Crowell Quad - Pike & Wayne", 
+      categories: ["Darties"],
+      description: "Join Pike and Wayne at the Devil's Blooming Garden in Crowell Quad. Music that embraces nature will permeate the space, daring the listeners to surrender themselves to the beauty of spring. Everyone is welcome in the Garden. Good music. Good eats. Good times."
+    },
     { time: "1:00 PM - 4:00 PM", event: "BSA Cookout", location: "Keohane Quad", categories: ["Free Food"] },
-    { time: "1:00 PM - 5:00 PM", event: "Summer in the Spring", location: "Few GG/HH Quad - Theta Chi", categories: ["Darties"] },
-    { time: "1:00 PM - 5:00 PM", event: "Spring Fling", location: "Few FF/GG Quad - Sigma Chi, Pikapp & Hoops with Troops", categories: ["Darties"] },
-    { time: "1:00 PM - 5:00 PM", event: "Sunny Spring Bash", location: "Quad between Few and Craven - ATO", categories: ["Darties"] },
-    { time: "1:00 PM - 5:00 PM", event: "Spring into Summer", location: "Craven Quad - ADPhi", categories: ["Darties"] },
-    { time: "1:00 PM - 5:00 PM", event: "Sunflower Power Hour", location: "Kilgo Quad - Mirecourt, Illyria, Browstone, Round Table, Maxwell & Duke Dhamaka", categories: ["Darties"] },
-    { time: "1:00 PM - 4:00 PM", event: "East Farewell Fiesta", location: "Wannamaker Quad - Class of 2028", categories: ["Darties"] },
-    { time: "2:00 PM - 6:00 PM", event: "LLDOC: Senior Sendoff", location: "Clocktower Quad - Class of 2025, Blue Light, Swift & Hollows Quad Councils", categories: ["Darties"] },
+    { 
+      time: "1:00 PM - 5:00 PM", 
+      event: "Summer in the Spring", 
+      location: "Few GG/HH Quad - Theta Chi", 
+      categories: ["Darties"],
+      description: "Join Theta Chi in the Few GG/HH Quad for a fun-filled summer-vibe-themed event! Join us for delicious food, refreshing summer drinks, music, and lawn games that will transport you to sunny paradise. Bring your friends and soak up the good vibes"
+    },
+    { 
+      time: "1:00 PM - 5:00 PM", 
+      event: "Spring Fling", 
+      location: "Few FF/GG Quad - Sigma Chi, Pikapp & Hoops with Troops", 
+      categories: ["Darties"],
+      description: "Join Sigma Chi, Pikapp, and Hoops with Troops for a vibrant Spring Fling in Few FF/GG Quad! Enjoy a friendly atmosphere filled with lawn games, food, and refreshing drinks while soaking in the Woodstock-inspired vibe with flower decorations and music. Bring your friends for a day of camaraderie, creativity, and colorful festivities and a chance to embrace the beauty of spring!"
+    },
+    { 
+      time: "1:00 PM - 5:00 PM", 
+      event: "Sunny Spring Bash", 
+      location: "Quad between Few and Craven - ATO", 
+      categories: ["Darties"],
+      description: "Join ATO in celebrating LDOC with food, drinks, and outdoor games that capture the spirit of spring! Enjoy delicious refreshments and engage in fun activities like cornhole as we bid farewell to the semester and welcome the sunny days ahead!"
+    },
+    { 
+      time: "1:00 PM - 5:00 PM", 
+      event: "Spring into Summer", 
+      location: "Craven Quad - ADPhi", 
+      categories: ["Darties"],
+      description: "ADPhi is bringing sunshine and fun times to Craven Quad for LDOC! Join in celebrating the joy of spring with delicious food, cold treats, and good fun. Come for the food and activities and leave with LDOC memories!"
+    },
+    { 
+      time: "1:00 PM - 5:00 PM", 
+      event: "Sunflower Power Hour", 
+      location: "Kilgo Quad - Mirecourt, Illyria, Browstone, Round Table, Maxwell & Duke Dhamaka", 
+      categories: ["Darties"],
+      description: "Join the SLGs and Duke Dhamaka in Kilgo Quad where we combine vibrant spring-themed activities with cultural heritage! Enjoy flower crown making, beaded jewelry, and a fun contest to crown the Spring Queen/King, all while celebrating the Punjabi harvest festival with music, dance, and delicious food. Don't forget the classic GrillGo with lots of yums coming from the Kilgo grills!"
+    },
+    { 
+      time: "1:00 PM - 4:00 PM", 
+      event: "East Farewell Fiesta", 
+      location: "Wannamaker Quad - Class of 2028", 
+      categories: ["Darties"],
+      description: "Join the Class of 2028 outside Wannamaker Quad for a lively celebration hosted by the East Campus Council! Enjoy music, food, fun activities, and more as we bid farewell to Easton this LDOC and welcome the exciting experience of living on West!"
+    },
+    { 
+      time: "2:00 PM - 6:00 PM", 
+      event: "LLDOC: Senior Sendoff", 
+      location: "Clocktower Quad - Class of 2025, Blue Light, Swift & Hollows Quad Councils", 
+      categories: ["Darties"],
+      description: "The Class of 2025, along with the Blue Light, Swift, and Hollows Quad Councils, invite all seniors to Clocktower Quad for their LAST Last Day of Classes and a memorable sendoff celebration! Enjoy a festive beer garden atmosphere with delicious food, refreshing drinks, and don't miss the champagne toast at 5 PM (make sure you are in the beer garden by 4:45 to participate!) to celebrate your achievements and the exciting journey ahead!"
+    },
     { time: "1:00 PM - 4:00 PM", event: "Casino Games", location: "Outside Kraft - WU", categories: ["Interactive Events"] },
     { time: "1:00 PM - 2:00 PM", event: "Duke@Nite Trivia", location: "Inside Kraft - WU", categories: ["Interactive Events"] },
     { time: "2:00 PM - 4:00 PM", event: "I&E Events - Polaroids, Popsicles, Lawn Games", location: "BC Plaza", categories: ["Interactive Events", "Giveaways", "Free Food"] },
@@ -530,6 +603,25 @@ export default function Schedule() {
                             {category}
                           </button>
                         ))}
+                      </div>
+                    )}
+                    {event.description && (
+                      <div className="mt-2">
+                        <button
+                          onClick={() => setExpandedDescriptions(prev => ({
+                            ...prev,
+                            [event.event]: !prev[event.event]
+                          }))}
+                          className="w-full px-3 py-1 rounded-lg bg-white/20 hover:bg-white/30 text-[#d14d72] font-[family-name:var(--font-love-craft)] flex items-center justify-between transition-colors text-sm"
+                        >
+                          <span>View Description</span>
+                          <span className="text-base">{expandedDescriptions[event.event] ? '▼' : '▶'}</span>
+                        </button>
+                        {expandedDescriptions[event.event] && (
+                          <div className="mt-2 px-3 py-2 rounded-lg bg-white/10 border border-[#ef959e]/30 text-[#d14d72] font-[family-name:var(--font-love-craft)] text-sm">
+                            {event.description}
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>
