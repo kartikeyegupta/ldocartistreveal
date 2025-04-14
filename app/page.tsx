@@ -434,31 +434,31 @@ export default function Schedule() {
                   <div className="absolute left-[8px] md:left-[16px] top-[50%] w-[8px] h-[8px] md:w-[10px] md:h-[10px] rounded-full bg-[#ef959e] group-hover:bg-[#d14d72] transition-colors"/>
 
                   {/* Event content */}
-                  <div className="ml-8 md:ml-12 p-3 md:p-6 bg-white/10 backdrop-blur-sm rounded-lg border-2 border-[#ef959e] w-full">
-                    <div className="text-sm md:text-[2vw] font-[family-name:var(--font-love-craft)] text-[#ef959e] group-hover:text-[#d14d72] transition-colors">
+                  <div className="ml-8 md:ml-12 p-2 md:p-4 bg-white/10 backdrop-blur-sm rounded-lg border-2 border-[#ef959e] w-full">
+                    <div className="text-xs md:text-base font-[family-name:var(--font-love-craft)] text-[#ef959e] group-hover:text-[#d14d72] transition-colors">
                       {event.time}
                     </div>
-                    <div className="text-lg md:text-[3vw] font-[family-name:var(--font-love-craft)] text-[#d14d72]">
+                    <div className="text-base md:text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72]">
                       {event.event}
                     </div>
-                    <div className="text-xs md:text-[1.5vw] font-[family-name:var(--font-love-craft)] text-[#ef959e]">
+                    <div className="text-xs md:text-sm font-[family-name:var(--font-love-craft)] text-[#ef959e]">
                       {event.location}
                     </div>
                     {event.isBreakfast && (
-                      <div className="mt-3">
+                      <div className="mt-2">
                         <button
                           onClick={() => setExpandedBreakfast(!expandedBreakfast)}
-                          className="w-full px-4 py-2 rounded-lg bg-white/20 hover:bg-white/30 text-[#d14d72] font-[family-name:var(--font-love-craft)] flex items-center justify-between transition-colors"
+                          className="w-full px-3 py-1 rounded-lg bg-white/20 hover:bg-white/30 text-[#d14d72] font-[family-name:var(--font-love-craft)] flex items-center justify-between transition-colors text-sm"
                         >
                           <span>View Locations</span>
-                          <span className="text-lg">{expandedBreakfast ? '▼' : '▶'}</span>
+                          <span className="text-base">{expandedBreakfast ? '▼' : '▶'}</span>
                         </button>
                         {expandedBreakfast && (
-                          <div className="mt-3 space-y-2">
+                          <div className="mt-2 space-y-1">
                             {event.subEvents.map((breakfast, i) => (
                               <div 
                                 key={i} 
-                                className="px-4 py-2 rounded-lg bg-white/10 border border-[#ef959e]/30 hover:bg-white/20 transition-colors"
+                                className="px-3 py-1 rounded-lg bg-white/10 border border-[#ef959e]/30 hover:bg-white/20 transition-colors text-sm"
                               >
                                 <div className="text-[#d14d72] font-[family-name:var(--font-love-craft)]">
                                   {breakfast.sponsor} - {breakfast.location}
@@ -470,20 +470,20 @@ export default function Schedule() {
                       </div>
                     )}
                     {event.isDance && (
-                      <div className="mt-3">
+                      <div className="mt-2">
                         <button
                           onClick={() => setExpandedDance(!expandedDance)}
-                          className="w-full px-4 py-2 rounded-lg bg-white/20 hover:bg-white/30 text-[#d14d72] font-[family-name:var(--font-love-craft)] flex items-center justify-between transition-colors"
+                          className="w-full px-3 py-1 rounded-lg bg-white/20 hover:bg-white/30 text-[#d14d72] font-[family-name:var(--font-love-craft)] flex items-center justify-between transition-colors text-sm"
                         >
                           <span>View Groups</span>
-                          <span className="text-lg">{expandedDance ? '▼' : '▶'}</span>
+                          <span className="text-base">{expandedDance ? '▼' : '▶'}</span>
                         </button>
                         {expandedDance && (
-                          <div className="mt-3 space-y-2">
+                          <div className="mt-2 space-y-1">
                             {event.subEvents.map((dance, i) => (
                               <div 
                                 key={i} 
-                                className="px-4 py-2 rounded-lg bg-white/10 border border-[#ef959e]/30 hover:bg-white/20 transition-colors"
+                                className="px-3 py-1 rounded-lg bg-white/10 border border-[#ef959e]/30 hover:bg-white/20 transition-colors text-sm"
                               >
                                 <div className="text-[#d14d72] font-[family-name:var(--font-love-craft)]">
                                   {dance.group} - {dance.time}
@@ -495,20 +495,20 @@ export default function Schedule() {
                       </div>
                     )}
                     {event.isConcert && (
-                      <div className="mt-3">
+                      <div className="mt-2">
                         <button
                           onClick={() => setExpandedConcert(!expandedConcert)}
-                          className="w-full px-4 py-2 rounded-lg bg-white/20 hover:bg-white/30 text-[#d14d72] font-[family-name:var(--font-love-craft)] flex items-center justify-between transition-colors"
+                          className="w-full px-3 py-1 rounded-lg bg-white/20 hover:bg-white/30 text-[#d14d72] font-[family-name:var(--font-love-craft)] flex items-center justify-between transition-colors text-sm"
                         >
                           <span>View Lineup</span>
-                          <span className="text-lg">{expandedConcert ? '▼' : '▶'}</span>
+                          <span className="text-base">{expandedConcert ? '▼' : '▶'}</span>
                         </button>
                         {expandedConcert && (
-                          <div className="mt-3 space-y-2">
+                          <div className="mt-2 space-y-1">
                             {event.subEvents.map((concert, i) => (
                               <div 
                                 key={i} 
-                                className="px-4 py-2 rounded-lg bg-white/10 border border-[#ef959e]/30 hover:bg-white/20 transition-colors"
+                                className="px-3 py-1 rounded-lg bg-white/10 border border-[#ef959e]/30 hover:bg-white/20 transition-colors text-sm"
                               >
                                 <div className="text-[#d14d72] font-[family-name:var(--font-love-craft)]">
                                   {concert.artist} - {concert.time}
@@ -520,12 +520,12 @@ export default function Schedule() {
                       </div>
                     )}
                     {event.categories.length > 0 && !event.isBreakfast && !event.isDance && !event.isConcert && (
-                      <div className="flex flex-wrap gap-2 mt-2">
+                      <div className="flex flex-wrap gap-1 mt-1">
                         {event.categories.map((category, i) => (
                           <button
                             key={i}
                             onClick={() => setActiveFilter(category)}
-                            className="text-xs px-2 py-1 rounded-full bg-[#ef959e] text-white hover:bg-[#d14d72] transition-colors cursor-pointer font-[family-name:var(--font-love-craft)]"
+                            className="text-xs px-2 py-0.5 rounded-full bg-[#ef959e] text-white hover:bg-[#d14d72] transition-colors cursor-pointer font-[family-name:var(--font-love-craft)]"
                           >
                             {category}
                           </button>
