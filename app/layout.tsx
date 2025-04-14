@@ -20,8 +20,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Duke LDOC Artist Reveal 2025",
-  description: "Who's it gonna be?",
+  title: "Duke LDOC 2025",
+  description: "Hannon Stern. Penelope Road. Rich the Kid. Natasha Bedingfield. 04/23/2025.",
 };
 
 export default function RootLayout({
