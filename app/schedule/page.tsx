@@ -28,7 +28,7 @@ export default function Schedule() {
     { time: "11:30 AM - 2:30 PM", event: "Chapel Climbs", location: "Chapel", categories: [] },
     { time: "11:30 AM - 4:30 PM", event: "Sensory Friendly Programming", location: "Academic Resource Center (East Campus)", categories: [] },
     { time: "12:00 PM - 2:00 PM", event: "SPEV Wall Art", location: "BC Plaza", categories: ["Giveaways"] },
-    { time: "12:00 PM - 3:30 PM", event: "Zim Zoom", location: "BC Plaza", categories: [] },
+    { time: "12:00 PM - 3:30 PM", event: "Zim Zoom - Photo Booth", location: "BC Plaza", categories: [] },
     { time: "12:00 PM - 2:00 PM", event: "Tote Bags", location: "Chapel Quad", categories: ["Giveaways"] },
     { time: "12:00 PM - 3:00 PM", event: "Tarot Card Readings", location: "Chapel Quad", categories: [] },
     { time: "12:00 PM - 2:00 PM", event: "Cynanotypes with DukeArts", location: "Chapel Quad", categories: ["Giveaways"] },
