@@ -521,7 +521,7 @@ export default function Schedule() {
                 >
                   {/* Timeline dot and line */}
                   <div className="absolute left-[12px] md:left-[20px] top-0 bottom-0 w-1 bg-[#ef959e] group-hover:bg-[#d14d72] transition-colors"/>
-                  <div className="absolute left-[8px] md:left-[16px] top-[50%] w-[8px] h-[8px] md:w-[10px] md:h-[10px] rounded-full bg-[#ef959e] group-hover:bg-[#d14d72] transition-colors"/>
+                  <div className="absolute left-[10px] md:left-[17px] top-[50%] w-[8px] h-[8px] md:w-[10px] md:h-[10px] rounded-full bg-[#ef959e] group-hover:bg-[#d14d72] transition-colors"/>
 
                   {/* Event content */}
                   <div className="ml-8 md:ml-12 p-2 md:p-4 bg-white/10 backdrop-blur-sm rounded-lg border-2 border-[#ef959e] w-full">
