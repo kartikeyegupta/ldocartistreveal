@@ -36,7 +36,7 @@ export default function Schedule() {
     { time: "12:30 PM - 2:30 PM", event: "STR Postcards", location: "BC Plaza Stage", categories: ["Giveaways"] },
     { time: "12:30 PM - 2:00 PM", event: "Jazz@", location: "BC Plaza Bookstore Stage", categories: [] },
     { time: "12:30 PM - 2:30 PM", event: "Succulents/Mini Pot Station", location: "BC Plaza", categories: ["Giveaways"] },
-    { time: "1:00 PM - 3:00 PM", event: "Ice cream (Pincho Loco), popcorn (Mad Popper), cotton candy (Capital City)", location: "BC Plaza", categories: ["Free Food"] },
+    { time: "1:00 PM - 3:00 PM", event: "Ice cream, Popcorn, Cotton Candy", location: "BC Plaza", categories: ["Free Food"] },
     { time: "1:00 PM - 3:00 PM", event: "Face Painting", location: "BC Plaza", categories: [] },
     { time: "1:00 PM - 5:00 PM", event: "The Devil's Blooming Garden", location: "Crowell Quad", categories: ["Darties"] },
     { time: "1:00 PM - 4:00 PM", event: "BSA Cookout", location: "Keohane Quad", categories: ["Free Food"] },
