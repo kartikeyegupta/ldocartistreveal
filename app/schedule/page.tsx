@@ -6,6 +6,7 @@ import { useState } from 'react';
 export default function Schedule() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
 
   const events = [
     { time: "9:00 AM - 11:00 AM", event: "Duke Stores Breakfast", location: "Wannamaker Quad", categories: ["Free Food"] },
@@ -57,10 +58,50 @@ export default function Schedule() {
     { time: "10:00 PM - 10:30 PM", event: "Midnight Pizza", location: "Chapel Quad", categories: ["Free Food"] }
   ];
 
+  // Get unique locations
+  const locations = Array.from(new Set(events.map(event => {
+    // Combine Few Quad locations
+    if (event.location.includes('Few Quad') || event.location.includes('Few GG/HH Quad') || event.location.includes('Few FF/GG Quad')) {
+      return 'Few Quad';
+    }
+    // Combine BC Plaza locations
+    if (event.location.includes('BC Plaza') || event.location.includes('BC Plaza Stage') || event.location.includes('BC Plaza Bookstore Stage')) {
+      return 'BC Plaza';
+    }
+    // Combine Wellness locations
+    if (event.location.includes('Wellness') || event.location.includes('Wellness Lot')) {
+      return 'Wellness';
+    }
+    return event.location;
+  }))).sort();
+
   const filteredEvents = events
     .filter(event => {
       if (activeFilter && !event.categories.includes(activeFilter)) {
         return false;
+      }
+      if (selectedLocation) {
+        // Handle combined location filtering
+        if (selectedLocation === 'Few Quad' && 
+            (event.location.includes('Few Quad') || 
+             event.location.includes('Few GG/HH Quad') || 
+             event.location.includes('Few FF/GG Quad'))) {
+          return true;
+        }
+        if (selectedLocation === 'BC Plaza' && 
+            (event.location.includes('BC Plaza') || 
+             event.location.includes('BC Plaza Stage') || 
+             event.location.includes('BC Plaza Bookstore Stage'))) {
+          return true;
+        }
+        if (selectedLocation === 'Wellness' && 
+            (event.location.includes('Wellness') || 
+             event.location.includes('Wellness Lot'))) {
+          return true;
+        }
+        if (event.location !== selectedLocation) {
+          return false;
+        }
       }
       if (searchQuery) {
         const query = searchQuery.toLowerCase();
@@ -153,6 +194,27 @@ export default function Schedule() {
             >
               Darties
             </button>
+          </div>
+
+          {/* Location Filter */}
+          <div className="max-w-2xl mx-auto mb-8">
+            <div className="relative">
+              <select
+                value={selectedLocation || ''}
+                onChange={(e) => setSelectedLocation(e.target.value || null)}
+                className="w-full px-4 py-3 rounded-full bg-white/10 border-2 border-[#ef959e] text-[#d14d72] font-[family-name:var(--font-love-craft)] text-sm md:text-base appearance-none cursor-pointer focus:outline-none focus:border-[#d14d72]"
+              >
+                <option value="">All Locations</option>
+                {locations.map((location) => (
+                  <option key={location} value={location}>
+                    {location}
+                  </option>
+                ))}
+              </select>
+              <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#ef959e]">
+                ▼
+              </div>
+            </div>
           </div>
 
           <div className="max-w-3xl mx-auto">
