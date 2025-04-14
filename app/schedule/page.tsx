@@ -9,6 +9,7 @@ export default function Schedule() {
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
   const [expandedBreakfast, setExpandedBreakfast] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [expandedDance, setExpandedDance] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,7 +49,20 @@ export default function Schedule() {
     { time: "10:00 AM - 12:00 PM", event: "VR Escape Room", location: "Link MPS Studio - Between Link and Bostock", categories: ["Interactive Events"] },
     { time: "10:00 AM - 10:45 AM", event: "Yoga", location: "K-Ville", categories: ["Interactive Events"] },
     { time: "10:30 AM - 12:30 PM", event: "DuWell Narcan Training", location: "BC Plaza", categories: ["Interactive Events"] },
-    { time: "11:00 AM - 12:40 PM", event: "Dance Performances", location: "BC Plaza Stage", categories: ["Interactive Events"] },
+    { 
+      time: "11:00 AM - 12:40 PM", 
+      event: "Dance Performances", 
+      location: "BC Plaza Stage", 
+      categories: ["Interactive Events"],
+      isDance: true,
+      subEvents: [
+        { group: "Swing", time: "11:00 AM - 11:20 AM" },
+        { group: "Out of the Blue", time: "11:20 AM - 11:40 AM" },
+        { group: "Deja Blue", time: "11:40 AM - 12:00 PM" },
+        { group: "Street Med", time: "12:00 PM - 12:20 PM" },
+        { group: "Sabrosura", time: "12:20 PM - 12:40 PM" }
+      ]
+    },
     { time: "11:00 AM - 1:00 PM", event: "VisArts Flower Crown Making + Cowboy Hat Decorating", location: "Chapel Quad", categories: ["Giveaways", "Interactive Events"] },
     { time: "11:00 AM - 3:00 PM", event: "Duke Rec Lawn Games", location: "K-Ville", categories: ["Interactive Events"] },
     { time: "11:00 AM - 2:00 PM", event: "Food Trucks", location: "Wellness Lot", categories: ["Free Food"] },
@@ -403,7 +417,32 @@ export default function Schedule() {
                       )}
                     </div>
                   )}
-                  {event.categories.length > 0 && !event.isBreakfast && (
+                  {event.isDance && (
+                    <div className="mt-3">
+                      <button
+                        onClick={() => setExpandedDance(!expandedDance)}
+                        className="w-full px-4 py-2 rounded-lg bg-white/20 hover:bg-white/30 text-[#d14d72] font-[family-name:var(--font-love-craft)] flex items-center justify-between transition-colors"
+                      >
+                        <span>View Groups</span>
+                        <span className="text-lg">{expandedDance ? '▼' : '▶'}</span>
+                      </button>
+                      {expandedDance && (
+                        <div className="mt-3 space-y-2">
+                          {event.subEvents.map((dance, i) => (
+                            <div 
+                              key={i} 
+                              className="px-4 py-2 rounded-lg bg-white/10 border border-[#ef959e]/30 hover:bg-white/20 transition-colors"
+                            >
+                              <div className="text-[#d14d72] font-[family-name:var(--font-love-craft)]">
+                                {dance.group} - {dance.time}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  {event.categories.length > 0 && !event.isBreakfast && !event.isDance && (
                     <div className="flex flex-wrap gap-2 mt-2">
                       {event.categories.map((category, i) => (
                         <button
