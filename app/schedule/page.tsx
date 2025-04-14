@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 export default function Schedule() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const events = [
     { time: "9:00 AM - 11:00 AM", event: "Duke Stores Breakfast", location: "Wannamaker Quad", categories: ["Free Food"] },
@@ -36,15 +37,15 @@ export default function Schedule() {
     { time: "12:30 PM - 2:30 PM", event: "Succulents/Mini Pot Station", location: "BC Plaza", categories: ["Giveaways"] },
     { time: "1:00 PM - 3:00 PM", event: "Ice cream (Pincho Loco), popcorn (Mad Popper), cotton candy (Capital City)", location: "BC Plaza", categories: ["Free Food"] },
     { time: "1:00 PM - 3:00 PM", event: "Face Painting", location: "BC Plaza", categories: [] },
-    { time: "1:00 PM - 5:00 PM", event: "The Devil's Blooming Garden", location: "Crowell Quad", categories: ["Darties", "Free Food"] },
+    { time: "1:00 PM - 5:00 PM", event: "The Devil's Blooming Garden", location: "Crowell Quad", categories: ["Darties"] },
     { time: "1:00 PM - 4:00 PM", event: "BSA Cookout", location: "Keohane Quad", categories: ["Free Food"] },
-    { time: "1:00 PM - 5:00 PM", event: "Summer in the Spring", location: "Few GG/HH Quad", categories: ["Darties", "Free Food"] },
-    { time: "1:00 PM - 5:00 PM", event: "Spring Fling", location: "Few FF/GG Quad", categories: ["Darties", "Free Food"] },
-    { time: "1:00 PM - 5:00 PM", event: "Sunny Spring Bash", location: "Quad between Few and Craven", categories: ["Darties", "Free Food"] },
-    { time: "1:00 PM - 5:00 PM", event: "Spring into Summer", location: "Craven Quad", categories: ["Darties", "Free Food"] },
-    { time: "1:00 PM - 5:00 PM", event: "Sunflower Power Hour", location: "Kilgo Quad", categories: ["Darties", "Free Food"] },
-    { time: "1:00 PM - 4:00 PM", event: "East Farewell Fiesta", location: "Wannamaker Quad", categories: ["Darties", "Free Food"] },
-    { time: "2:00 PM - 6:00 PM", event: "LLDOC: Senior Sendoff", location: "Clocktower Quad", categories: ["Darties", "Free Food"] },
+    { time: "1:00 PM - 5:00 PM", event: "Summer in the Spring", location: "Few GG/HH Quad", categories: ["Darties"] },
+    { time: "1:00 PM - 5:00 PM", event: "Spring Fling", location: "Few FF/GG Quad", categories: ["Darties"] },
+    { time: "1:00 PM - 5:00 PM", event: "Sunny Spring Bash", location: "Quad between Few and Craven", categories: ["Darties"] },
+    { time: "1:00 PM - 5:00 PM", event: "Spring into Summer", location: "Craven Quad", categories: ["Darties"] },
+    { time: "1:00 PM - 5:00 PM", event: "Sunflower Power Hour", location: "Kilgo Quad", categories: ["Darties"] },
+    { time: "1:00 PM - 4:00 PM", event: "East Farewell Fiesta", location: "Wannamaker Quad", categories: ["Darties"] },
+    { time: "2:00 PM - 6:00 PM", event: "LLDOC: Senior Sendoff", location: "Clocktower Quad", categories: ["Darties"] },
     { time: "1:00 PM - 4:00 PM", event: "Casino Games", location: "Outside Kraft (WU)", categories: [] },
     { time: "1:00 PM - 2:00 PM", event: "Duke@Nite Trivia", location: "Inside Kraft (WU)", categories: [] },
     { time: "2:00 PM - 4:00 PM", event: "I&E Events (Polaroids, Popsicles, Lawn Games)", location: "BC Plaza", categories: ["Giveaways", "Free Food"] },
@@ -56,9 +57,21 @@ export default function Schedule() {
     { time: "10:00 PM - 10:30 PM", event: "Midnight Pizza", location: "Chapel Quad", categories: ["Free Food"] }
   ];
 
-  const filteredEvents = activeFilter 
-    ? events.filter(event => event.categories.includes(activeFilter))
-    : events;
+  const filteredEvents = events
+    .filter(event => {
+      if (activeFilter && !event.categories.includes(activeFilter)) {
+        return false;
+      }
+      if (searchQuery) {
+        const query = searchQuery.toLowerCase();
+        return (
+          event.event.toLowerCase().includes(query) ||
+          event.location.toLowerCase().includes(query) ||
+          event.time.toLowerCase().includes(query)
+        );
+      }
+      return true;
+    });
 
   return (
     <main>
@@ -75,8 +88,29 @@ export default function Schedule() {
 
         <div className="container mx-auto px-4 py-4 md:py-8">
           <h1 className="text-center text-3xl md:text-[4vw] font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-6 md:mb-12">
-            LDOC 2024 Schedule
+            LDOC 2025 Schedule
           </h1>
+
+          {/* Search Bar */}
+          <div className="max-w-2xl mx-auto mb-6 md:mb-8">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search events, locations, or times..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full px-4 py-3 rounded-full bg-white/10 border-2 border-[#ef959e] text-[#d14d72] placeholder-[#ef959e] focus:outline-none focus:border-[#d14d72] font-[family-name:var(--font-love-craft)] text-sm md:text-base"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#ef959e] hover:text-[#d14d72]"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+          </div>
 
           <div className="flex flex-wrap justify-center gap-2 mb-8">
             <button
