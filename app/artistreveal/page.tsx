@@ -61,11 +61,11 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="text-center mb-6">
+          {/* <div className="text-center mb-6">
             <p className="font-[family-name:var(--font-love-craft)] text-[#ff69b4] text-[6vw] md:text-[4vw]">
               ABELE QUAD @ 8 PM TODAY
             </p>
-          </div>
+          </div> */}
 
           <div className="flex flex-col items-center gap-4 mb-10">
             <button 
