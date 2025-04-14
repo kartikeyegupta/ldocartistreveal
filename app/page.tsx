@@ -99,7 +99,13 @@ export default function Schedule() {
     { time: "11:00 AM - 3:00 PM", event: "Duke Rec Lawn Games", location: "K-Ville", categories: ["Interactive Events"] },
     { time: "11:00 AM - 2:00 PM", event: "Food Trucks", location: "Wellness Lot", categories: ["Free Food"] },
     { time: "11:30 AM - 2:30 PM", event: "Chapel Climbs", location: "Chapel", categories: ["Interactive Events"] },
-    { time: "11:30 AM - 4:30 PM", event: "Sensory Friendly Programming", location: "Academic Resource Center - East Campus", categories: ["Interactive Events"] },
+    { 
+      time: "11:30 AM - 4:30 PM", 
+      event: "Sensory Friendly Programming", 
+      location: "Academic Resource Center - East Campus", 
+      categories: ["Interactive Events"],
+      description: "Drop by the ARC for a low-key, sensory-friendly craft and snack hang out. Stay as long as you like - no pressure. Ideal for students who want to get creative and meet people but prefer smaller groups. All materials provided."
+    },
     { 
       time: "12:00 PM - 2:00 PM", 
       event: "SPEV Wall Art", 
