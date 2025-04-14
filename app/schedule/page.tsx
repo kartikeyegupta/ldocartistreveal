@@ -94,7 +94,7 @@ export default function Schedule() {
     { time: "2:00 PM - 3:30 PM", event: "Stuff-a-Critter", location: "Chapel Quad", categories: ["Interactive Events", "Giveaways"] },
     { time: "2:00 PM - 4:00 PM", event: "Karaoke", location: "Wellness", categories: ["Interactive Events"] },
     { time: "3:00 PM - 6:00 PM", event: "Penn Pavilion BBQ", location: "Penn Pavilion", categories: ["Free Food"] },
-    { time: "3:30 PM - 5:00 PM", event: "Duke PAWS", location: "BC Plaza", categories: ["Interactive Events"] },
+    { time: "3:30 PM - 5:00 PM", event: "Duke PAWS - Therapy Dogs", location: "BC Plaza", categories: ["Interactive Events"] },
     { time: "10:00 PM - 11:59 PM", event: "Food Trucks", location: "Wellness Lot", categories: ["Free Food"] },
     { time: "10:00 PM - 10:30 PM", event: "Midnight Pizza", location: "Chapel Quad", categories: ["Free Food"] }
   ];
