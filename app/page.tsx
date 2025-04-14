@@ -12,6 +12,7 @@ export default function Schedule() {
   const [expandedDance, setExpandedDance] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
   const [expandedConcert, setExpandedConcert] = useState(true);
+  const [expandedFoodTrucks, setExpandedFoodTrucks] = useState(false);
   const [expandedDescriptions, setExpandedDescriptions] = useState<{[key: string]: boolean}>({});
 
   useEffect(() => {
@@ -52,11 +53,11 @@ export default function Schedule() {
       time: "9:00 AM - 11:00 AM", 
       event: "Breakfast", 
       location: "", 
-      categories: ["Free Food"],
+      categories: ["Food"],
       isBreakfast: true,
       subEvents: breakfastEvents
     },
-    { time: "10:00 AM - 2:00 PM", event: "Chapel Activities - Lawn Games, Cotton Candy, Popcorn, and T-shirts", location: "Chapel Quad", categories: ["Free Food", "Interactive Events", "Giveaways"] },
+    { time: "10:00 AM - 2:00 PM", event: "Chapel Activities - Lawn Games, Cotton Candy, Popcorn, and T-shirts", location: "Chapel Quad", categories: ["Food", "Interactive Events", "Giveaways"] },
     { time: "10:00 AM - 2:00 PM", event: "Poetry Fox", location: "WU", categories: ["Interactive Events"] },
     { time: "10:00 AM - 12:00 PM", event: "VR Escape Room", location: "Link MPS Studio - Between Link and Bostock", categories: ["Interactive Events"] },
     { 
@@ -97,7 +98,12 @@ export default function Schedule() {
     },
     { time: "10:00 AM - 12:00 PM", event: "VisArts Flower Crown Making + Cowboy Hat Decorating", location: "Chapel Quad", categories: ["Giveaways", "Interactive Events"] },
     { time: "11:00 AM - 3:00 PM", event: "Duke Rec Lawn Games", location: "K-Ville", categories: ["Interactive Events"] },
-    { time: "11:00 AM - 2:00 PM", event: "Food Trucks", location: "Wellness Lot", categories: ["Free Food"] },
+    { time: "11:00 AM - 2:00 PM", event: "Food Trucks", location: "Wellness Lot", categories: ["Food"], isFoodTruck: true, subEvents: [
+      { vendor: "Latin Effect", time: "11:00 AM - 2:00 PM" },
+      { vendor: "Bon Fritay", time: "11:00 AM - 2:00 PM" },
+      { vendor: "Bulkogi", time: "11:00 AM - 2:00 PM" },
+      { vendor: "The Flat Drum", time: "11:00 AM - 2:00 PM" }
+    ] },
     { time: "11:30 AM - 2:30 PM", event: "Chapel Climbs", location: "Chapel", categories: ["Interactive Events"] },
     { 
       time: "11:30 AM - 4:30 PM", 
@@ -133,7 +139,7 @@ export default function Schedule() {
       description: "Jazz@ is a student organization that seeks to connect the jazz artist with the jazz audience at Duke. We provide live jazz concerts and jazz-related events across campus throughout the year, including favorites like Jazz@ the Mary Lou and the annual Vocal Night. Come join us on and around the Duke Store stage (the bookstore side) 12:30pm on LDOC for lots of jazz tunes, great energy, and special Jazz@ LDOC merch!"
     },
     { time: "12:30 PM - 2:30 PM", event: "Succulents/Mini Pot Station", location: "BC Plaza", categories: ["Interactive Events", "Giveaways"] },
-    { time: "1:00 PM - 3:00 PM", event: "Ice cream, Popcorn, Cotton Candy", location: "BC Plaza", categories: ["Free Food"] },
+    { time: "1:00 PM - 3:00 PM", event: "Ice cream,  Popcorn, Cotton Candy", location: "BC Plaza", categories: ["Food"] },
     { time: "1:00 PM - 3:00 PM", event: "Face Painting", location: "BC Plaza", categories: ["Interactive Events"] },
     { 
       time: "1:00 PM - 5:00 PM", 
@@ -142,7 +148,7 @@ export default function Schedule() {
       categories: ["Darties"],
       description: "Join Pike and Wayne at the Devil's Blooming Garden in Crowell Quad. Music that embraces nature will permeate the space, daring the listeners to surrender themselves to the beauty of spring. Everyone is welcome in the Garden. Good music. Good eats. Good times."
     },
-    { time: "1:00 PM - 4:00 PM", event: "BSA Cookout", location: "Keohane Quad", categories: ["Free Food"] },
+    { time: "1:00 PM - 4:00 PM", event: "BSA Cookout", location: "Keohane Quad", categories: ["Food"] },
     { 
       time: "1:00 PM - 5:00 PM", 
       event: "Summer in the Spring", 
@@ -194,13 +200,18 @@ export default function Schedule() {
     },
     { time: "1:00 PM - 4:00 PM", event: "Casino Games", location: "Outside Kraft - WU", categories: ["Interactive Events"] },
     { time: "1:00 PM - 2:00 PM", event: "Duke@Nite Trivia", location: "Inside Kraft - WU", categories: ["Interactive Events"] },
-    { time: "2:00 PM - 4:00 PM", event: "I&E Events - Polaroids, Popsicles, Lawn Games", location: "BC Plaza", categories: ["Interactive Events", "Giveaways", "Free Food"] },
+    { time: "2:00 PM - 4:00 PM", event: "I&E Events - Polaroids, Popsicles, Lawn Games", location: "BC Plaza", categories: ["Interactive Events", "Giveaways", "Food"] },
     { time: "2:00 PM - 3:30 PM", event: "Stuff-a-Critter", location: "Chapel Quad", categories: ["Interactive Events", "Giveaways"] },
     { time: "2:00 PM - 4:00 PM", event: "Karaoke", location: "Wellness", categories: ["Interactive Events"] },
-    { time: "3:00 PM - 6:00 PM", event: "Penn Pavilion BBQ", location: "Penn Pavilion", categories: ["Free Food"] },
+    { time: "3:00 PM - 6:00 PM", event: "Penn Pavilion BBQ", location: "Penn Pavilion", categories: ["Food"] },
     { time: "3:30 PM - 5:00 PM", event: "Duke PAWS - Therapy Dogs", location: "BC Plaza", categories: ["Interactive Events"] },
-    { time: "10:00 PM - 11:59 PM", event: "Food Trucks", location: "Wellness Lot", categories: ["Free Food"] },
-    { time: "10:00 PM - 10:30 PM", event: "Midnight Pizza", location: "Chapel Quad", categories: ["Free Food"] }
+    { time: "10:00 PM - 11:59 PM", event: "Food Trucks", location: "Wellness Lot", categories: ["Food"], isFoodTruck: true, subEvents: [
+      { vendor: "Bruster's", time: "10:00 PM - 11:59 PM" },
+      { vendor: "Sister Liu's", time: "10:00 PM - 11:59 PM" },
+      { vendor: "Gussy's", time: "10:00 PM - 11:59 PM" },
+      { vendor: "Yalla!", time: "10:00 PM - 11:59 PM" }
+    ] },
+    { time: "10:00 PM - 10:30 PM", event: "Midnight Pizza", location: "Chapel Quad", categories: ["Food"] }
   ];
 
   // Function to parse time string into minutes since midnight
@@ -427,14 +438,14 @@ export default function Schedule() {
                 All
               </button>
               <button
-                onClick={() => setActiveFilter("Free Food")}
+                onClick={() => setActiveFilter("Food")}
                 className={`px-4 py-2 rounded-full font-[family-name:var(--font-love-craft)] transition-colors ${
-                  activeFilter === "Free Food"
+                  activeFilter === "Food"
                     ? 'bg-[#d14d72] text-white'
                     : 'bg-white/10 text-[#d14d72] hover:bg-[#ef959e] hover:text-white'
                 }`}
               >
-                Free Food
+                Food
               </button>
               <button
                 onClick={() => setActiveFilter("Interactive Events")}
@@ -598,7 +609,32 @@ export default function Schedule() {
                         )}
                       </div>
                     )}
-                    {event.categories.length > 0 && !event.isBreakfast && !event.isDance && !event.isConcert && (
+                    {event.isFoodTruck && (
+                      <div className="mt-2">
+                        <button
+                          onClick={() => setExpandedFoodTrucks(!expandedFoodTrucks)}
+                          className="w-full px-3 py-1 rounded-lg bg-white/20 hover:bg-white/30 text-[#d14d72] font-[family-name:var(--font-love-craft)] flex items-center justify-between transition-colors text-sm"
+                        >
+                          <span>View Food Trucks</span>
+                          <span className="text-base">{expandedFoodTrucks ? '▼' : '▶'}</span>
+                        </button>
+                        {expandedFoodTrucks && (
+                          <div className="mt-2 space-y-1">
+                            {event.subEvents.map((truck, i) => (
+                              <div 
+                                key={i} 
+                                className="px-3 py-1 rounded-lg bg-white/10 border border-[#ef959e]/30 hover:bg-white/20 transition-colors text-sm"
+                              >
+                                <div className="text-[#d14d72] font-[family-name:var(--font-love-craft)]">
+                                  {truck.vendor} - {truck.time}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                    {event.categories.length > 0 && !event.isBreakfast && !event.isDance && !event.isConcert && !event.isFoodTruck && (
                       <div className="flex flex-wrap gap-1 mt-1">
                         {event.categories.map((category, i) => (
                           <button
