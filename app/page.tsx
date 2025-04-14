@@ -289,9 +289,9 @@ export default function Schedule() {
         {/* Base logo */}
         <div className={`grid place-items-center min-h-screen ${showOverlay ? 'hidden' : ''}`}>
           <Image 
-            src="/fulllogo.png" 
+            src="/poster.png" 
             alt="LDOC" 
-            className="w-[80vw] h-auto animate-fadeIn"
+            className="w-[90vw] md:w-[45vw] h-auto animate-fadeIn"
             width={1500}
             height={1500}
             priority
