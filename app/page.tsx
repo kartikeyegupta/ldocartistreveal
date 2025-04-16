@@ -45,7 +45,8 @@ export default function Schedule() {
     { sponsor: "Duke Libraries", location: "Kilgo Quad" },
     { sponsor: "Alumni Engagement and Development", location: "Keohane Quad" },
     { sponsor: "NSFP", location: "Edens Quad" },
-    { sponsor: "OUE", location: "Crowell Quad" }
+    { sponsor: "OUE", location: "Crowell Quad" },
+    { sponsor: "Marketing and Communications", location: "Hollows Quad" }
   ];
 
   const events = [
@@ -59,15 +60,15 @@ export default function Schedule() {
     },
     { time: "10:00 AM - 2:00 PM", event: "Chapel Activities - Lawn Games, Cotton Candy, Popcorn, and T-shirts", location: "Chapel Quad", categories: ["Food", "Interactive Events", "Giveaways"] },
     { time: "10:00 AM - 2:00 PM", event: "Poetry Fox", location: "WU", categories: ["Interactive Events"] },
-    { time: "10:00 AM - 12:00 PM", event: "VR Escape Room", location: "Link MPS Studio - Between Link and Bostock", categories: ["Interactive Events"] },
+    { time: "10:00 AM - 12:00 PM", event: "VR Escape Room", location: "Link MPS Studio - Between Link and Bostock", categories: ["Interactive Events", "Substance Free"] },
     { 
       time: "10:00 AM - 10:45 AM", 
       event: "Yoga", 
       location: "K-Ville", 
-      categories: ["Interactive Events"],
+      categories: ["Interactive Events", "Substance Free"],
       description: "Start your LDOC the chill way with an outdoor yoga session on Kville! Flow, stretch, and vibe with us at 10AM– no experience needed. Bring a mat if you have one; we've got extras if you don't. Let's soak up the sun and good energy before the celebrations begin!"
     },
-    { time: "10:30 AM - 12:30 PM", event: "DuWell Narcan Training", location: "BC Plaza", categories: ["Interactive Events"] },
+    { time: "10:30 AM - 12:30 PM", event: "DuWell Narcan Training", location: "BC Plaza", categories: ["Interactive Events", "Substance Free"] },
     { 
       time: "11:00 AM - 12:40 PM", 
       event: "Dance Performances", 
@@ -97,19 +98,19 @@ export default function Schedule() {
       ]
     },
     { time: "10:00 AM - 12:00 PM", event: "VisArts Flower Crown Making + Cowboy Hat Decorating", location: "Chapel Quad", categories: ["Giveaways", "Interactive Events"] },
-    { time: "11:00 AM - 3:00 PM", event: "Duke Rec Lawn Games", location: "K-Ville", categories: ["Interactive Events"] },
+    { time: "11:00 AM - 3:00 PM", event: "Duke Rec Lawn Games", location: "K-Ville", categories: ["Interactive Events", "Substance Free"] },
     { time: "11:00 AM - 2:00 PM", event: "Food Trucks", location: "Wellness Lot", categories: ["Food"], isFoodTruck: true, subEvents: [
       { vendor: "Latin Effect", time: "11:00 AM - 2:00 PM" },
       { vendor: "Bon Fritay", time: "11:00 AM - 2:00 PM" },
       { vendor: "Bulkogi", time: "11:00 AM - 2:00 PM" },
       { vendor: "The Flat Drum", time: "11:00 AM - 2:00 PM" }
     ] },
-    { time: "11:30 AM - 2:30 PM", event: "Chapel Climbs", location: "Chapel", categories: ["Interactive Events"] },
+    { time: "11:30 AM - 2:30 PM", event: "Chapel Climbs - SIGN UP ON DUKEGROUPS!", location: "Chapel", categories: ["Interactive Events", "Substance Free"] },
     { 
       time: "11:30 AM - 4:30 PM", 
       event: "Sensory Friendly Programming", 
       location: "Academic Resource Center - East Campus", 
-      categories: ["Interactive Events"],
+      categories: ["Interactive Events", "Substance Free"],
       description: "Drop by the ARC for a low-key, sensory-friendly craft and snack hang out. Stay as long as you like - no pressure. Ideal for students who want to get creative and meet people but prefer smaller groups. All materials provided."
     },
     { 
@@ -123,7 +124,7 @@ export default function Schedule() {
     { time: "12:00 PM - 2:00 PM", event: "Tote Bags", location: "Chapel Quad", categories: ["Giveaways", "Interactive Events"] },
     { time: "12:00 PM - 3:00 PM", event: "Tarot Card Readings", location: "Chapel Quad", categories: ["Interactive Events"] },
     { time: "12:00 PM - 2:00 PM", event: "Cynanotypes with DukeArts", location: "Chapel Quad", categories: ["Giveaways", "Interactive Events"] },
-    { time: "12:00 PM - 2:00 PM", event: "Mindfulness Painting", location: "Wellness", categories: ["Interactive Events"] },
+    { time: "12:00 PM - 2:00 PM", event: "Mindfulness Painting", location: "Wellness Center, 2nd Floor Atrium", categories: ["Interactive Events", "Substance Free"] },
     { 
       time: "12:30 PM - 2:30 PM", 
       event: "STR Postcards", 
@@ -159,9 +160,9 @@ export default function Schedule() {
     { 
       time: "1:00 PM - 5:00 PM", 
       event: "Spring Fling", 
-      location: "Few FF/GG Quad - Sigma Chi, Pikapp & Hoops with Troops", 
+      location: "Few FF/GG Quad - Sigma Chi, Pikapp & HWT", 
       categories: ["Darties"],
-      description: "Join Sigma Chi, Pikapp, and Hoops with Troops for a vibrant Spring Fling in Few FF/GG Quad! Enjoy a friendly atmosphere filled with lawn games, food, and refreshing drinks while soaking in the Woodstock-inspired vibe with flower decorations and music. Bring your friends for a day of camaraderie, creativity, and colorful festivities and a chance to embrace the beauty of spring!"
+      description: "Join Sigma Chi, Pikapp, and HWT for a vibrant Spring Fling in Few FF/GG Quad! Enjoy a friendly atmosphere filled with lawn games, food, and refreshing drinks while soaking in the Woodstock-inspired vibe with flower decorations and music. Bring your friends for a day of camaraderie, creativity, and colorful festivities and a chance to embrace the beauty of spring!"
     },
     { 
       time: "1:00 PM - 5:00 PM", 
@@ -173,9 +174,9 @@ export default function Schedule() {
     { 
       time: "1:00 PM - 5:00 PM", 
       event: "Spring into Summer", 
-      location: "Craven Quad - ADPhi", 
+      location: "Craven Quad - ADPhi & KA", 
       categories: ["Darties"],
-      description: "ADPhi is bringing sunshine and fun times to Craven Quad for LDOC! Join in celebrating the joy of spring with delicious food, cold treats, and good fun. Come for the food and activities and leave with LDOC memories!"
+      description: "ADPhi and KA are bringing sunshine and fun times to Craven Quad for LDOC! Join in celebrating the joy of spring with delicious food, cold treats, and good fun. Come for the food and activities and leave with LDOC memories!"
     },
     { 
       time: "1:00 PM - 5:00 PM", 
@@ -187,7 +188,7 @@ export default function Schedule() {
     { 
       time: "1:00 PM - 4:00 PM", 
       event: "East Farewell Fiesta", 
-      location: "Wannamaker Quad - Class of 2028", 
+      location: "Wannamaker Quad - Class of 2028 & East Campus Council ", 
       categories: ["Darties"],
       description: "Join the Class of 2028 outside Wannamaker Quad for a lively celebration hosted by the East Campus Council! Enjoy music, food, fun activities, and more as we bid farewell to Easton this LDOC and welcome the exciting experience of living on West!"
     },
@@ -200,11 +201,11 @@ export default function Schedule() {
     },
     { time: "1:00 PM - 4:00 PM", event: "Casino Games", location: "Outside Kraft - WU", categories: ["Interactive Events"] },
     { time: "1:00 PM - 2:00 PM", event: "Duke@Nite Trivia", location: "Inside Kraft - WU", categories: ["Interactive Events"] },
-    { time: "2:00 PM - 4:00 PM", event: "I&E Events - Polaroids, Popsicles, Lawn Games", location: "BC Plaza", categories: ["Interactive Events", "Giveaways", "Food"] },
+    { time: "2:00 PM - 4:00 PM", event: "I&E Events - Polaroids, Popsicles, Lawn Games", location: "BC Plaza", categories: ["Interactive Events", "Giveaways", "Food", "Substance Free"] },
     { time: "2:00 PM - 3:30 PM", event: "Stuff-a-Critter", location: "Chapel Quad", categories: ["Interactive Events", "Giveaways"] },
-    { time: "2:00 PM - 4:00 PM", event: "Karaoke", location: "Wellness", categories: ["Interactive Events"] },
+    { time: "2:00 PM - 4:00 PM", event: "Karaoke", location: "Wellness Center, Rm 148", categories: ["Interactive Events", "Substance Free"] },
     { time: "3:00 PM - 6:00 PM", event: "Penn Pavilion BBQ", location: "Penn Pavilion", categories: ["Food"] },
-    { time: "3:30 PM - 5:00 PM", event: "Duke PAWS - Therapy Dogs", location: "BC Plaza", categories: ["Interactive Events"] },
+    { time: "3:30 PM - 5:00 PM", event: "Duke PAWS - Therapy Dogs", location: "BC Plaza", categories: ["Interactive Events", "Substance Free"] },
     { time: "10:00 PM - 11:59 PM", event: "Food Trucks", location: "Wellness Lot", categories: ["Food"], isFoodTruck: true, subEvents: [
       { vendor: "Bruster's", time: "10:00 PM - 11:59 PM" },
       { vendor: "Sister Liu's", time: "10:00 PM - 11:59 PM" },
@@ -489,6 +490,16 @@ export default function Schedule() {
                 }`}
               >
                 Concert
+              </button>
+              <button
+                onClick={() => setActiveFilter("Substance Free")}
+                className={`px-4 py-2 rounded-full font-[family-name:var(--font-love-craft)] transition-colors ${
+                  activeFilter === "Substance Free"
+                    ? 'bg-[#d14d72] text-white'
+                    : 'bg-white/10 text-[#d14d72] hover:bg-[#ef959e] hover:text-white'
+                }`}
+              >
+                Substance Free
               </button>
             </div>
 
