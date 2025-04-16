@@ -11,6 +11,7 @@ export default function Schedule() {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [expandedDance, setExpandedDance] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
+  const [showAlcoholPolicy, setShowAlcoholPolicy] = useState(false);
   const [expandedConcert, setExpandedConcert] = useState(true);
   const [expandedFoodTrucks, setExpandedFoodTrucks] = useState(false);
   const [expandedDescriptions, setExpandedDescriptions] = useState<{[key: string]: boolean}>({});
@@ -23,6 +24,17 @@ export default function Schedule() {
 
     return () => clearTimeout(timer);
   }, []);
+
+  // Show alcohol policy after overlay appears
+  useEffect(() => {
+    if (showOverlay) {
+      const timer = setTimeout(() => {
+        setShowAlcoholPolicy(true);
+      }, 500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [showOverlay]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -683,6 +695,30 @@ export default function Schedule() {
             </div>
           </div>
         </div>
+
+        {/* Alcohol Policy Popup */}
+        {showAlcoholPolicy && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
+            <div className="relative bg-[#fcd598] p-4 sm:p-6 rounded-lg w-[75%] sm:w-[70%] md:w-[40%] lg:w-[40%] xl:w-[30%] max-h-[90vh] overflow-y-auto">
+              <div className="flex flex-col items-center">
+                <Image 
+                  src="/alcoholpolicy.png" 
+                  alt="LDOC Alcohol Policy" 
+                  width={800}
+                  height={800}
+                  className="w-full h-auto"
+                  priority
+                />
+                <button
+                  onClick={() => setShowAlcoholPolicy(false)}
+                  className="mt-4 sm:mt-6 px-6 sm:px-8 py-2 sm:py-3 bg-[#d14d72] text-white rounded-full font-[family-name:var(--font-love-craft)] text-base sm:text-lg hover:bg-[#ef959e] transition-colors"
+                >
+                  I Understand
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Back to Top Button */}
         {showBackToTop && (
