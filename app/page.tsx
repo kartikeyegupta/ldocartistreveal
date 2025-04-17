@@ -179,9 +179,9 @@ export default function Schedule() {
     { 
       time: "1:00 PM - 5:00 PM", 
       event: "Sunny Spring Bash", 
-      location: "Quad between Few and Craven - ATO", 
+      location: "Quad between Few and Craven - ATO & SNU", 
       categories: ["Darties"],
-      description: "Join ATO in celebrating LDOC with food, drinks, and outdoor games that capture the spirit of spring! Enjoy delicious refreshments and engage in fun activities like cornhole as we bid farewell to the semester and welcome the sunny days ahead!"
+      description: "Join ATO & SNU in celebrating LDOC with food, drinks, and outdoor games that capture the spirit of spring! Enjoy delicious refreshments and engage in fun activities like cornhole as we bid farewell to the semester and welcome the sunny days ahead!"
     },
     { 
       time: "1:00 PM - 5:00 PM", 
