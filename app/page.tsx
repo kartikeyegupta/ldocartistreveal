@@ -171,10 +171,10 @@ export default function Schedule() {
     },
     { 
       time: "1:00 PM - 5:00 PM", 
-      event: "Spring Fling", 
-      location: "Few FF/GG Quad - Sigma Chi, Pikapp & HWT", 
+      event: "Flowers for Finals", 
+      location: "Few FF/GG Quad - Sigma Chi & Pikapp", 
       categories: ["Darties"],
-      description: "Join Sigma Chi, Pikapp, and HWT for a vibrant Spring Fling in Few FF/GG Quad! Enjoy a friendly atmosphere filled with lawn games, food, and refreshing drinks while soaking in the Woodstock-inspired vibe with flower decorations and music. Bring your friends for a day of camaraderie, creativity, and colorful festivities and a chance to embrace the beauty of spring!"
+      description: "Come party into the LDOC performances with Sigma Chi and Pikapp at Flowers for Finals! As the afternoon passes, DJs will light up Few FF/GG quad with B2Bs and music for all. Join us in celebrating the Spring weather and taking a break from the workload of classes with drinks, food, and fun for all. Bring your friends, soak up the sun, and let's make this LDOC one to remember!"
     },
     { 
       time: "1:00 PM - 5:00 PM", 
