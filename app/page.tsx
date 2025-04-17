@@ -15,6 +15,7 @@ export default function Schedule() {
   const [expandedConcert, setExpandedConcert] = useState(true);
   const [expandedFoodTrucks, setExpandedFoodTrucks] = useState(false);
   const [expandedDescriptions, setExpandedDescriptions] = useState<{[key: string]: boolean}>({});
+  const [showBanner, setShowBanner] = useState(true);
 
   useEffect(() => {
     // Show overlay after 1.5 seconds
@@ -388,6 +389,55 @@ export default function Schedule() {
 
   return (
     <main>
+      {showOverlay && showBanner && (
+        <div className="fixed top-0 left-0 w-full bg-gradient-to-r from-[#d14d72] to-[#ef959e] text-white z-50 shadow-lg">
+          <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white/20 flex items-center justify-center">
+                  <span className="text-base sm:text-lg">🎟️</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-[family-name:var(--font-love-craft)] text-base sm:text-lg">Wristbanding </span>
+                  <span className="text-xs sm:text-sm text-white/90">Duke ID required for entry</span>
+                </div>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white/20 flex items-center justify-center">
+                    <span className="text-xs sm:text-sm font-[family-name:var(--font-love-craft)]">21</span>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="font-[family-name:var(--font-love-craft)] text-sm sm:text-base">April 21</span>
+                    <span className="text-xs sm:text-sm text-white/90">10:30AM – 7:30PM | Wellness 148 </span>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white/20 flex items-center justify-center">
+                    <span className="text-xs sm:text-sm font-[family-name:var(--font-love-craft)]">22</span>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="font-[family-name:var(--font-love-craft)] text-sm sm:text-base">April 22 </span>
+                    <span className="text-xs sm:text-sm text-white/90">9:30AM – 4:45PM | Wellness 148</span>
+                  </div>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setShowBanner(false)}
+                className="absolute right-2 top-2 sm:relative sm:right-auto sm:top-auto p-1.5 sm:p-2 rounded-full hover:bg-white/20 transition-colors"
+                aria-label="Dismiss"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="min-h-screen bg-[#fcd598]">
         {/* Base logo */}
         <div className={`grid place-items-center min-h-screen ${showOverlay ? 'hidden' : ''}`}>
@@ -402,7 +452,7 @@ export default function Schedule() {
         </div>
 
         {/* Overlay content */}
-        <div className={`absolute inset-0 bg-[#fcd598] flex flex-col items-center transition-opacity duration-1000 ${showOverlay ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+        <div className={`absolute inset-0 bg-[#fcd598] flex flex-col items-center transition-opacity duration-1000 ${showBanner && showOverlay ? 'mt-40 lg:mt-25 md:mt-30 sm:mt-30' : ''} ${showOverlay ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
           <div className="relative pt-2 md:pt-4 flex justify-center">
             <Image 
               src="/fulllogo.png" 
