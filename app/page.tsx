@@ -31,7 +31,7 @@ export default function Schedule() {
     if (showOverlay) {
       const timer = setTimeout(() => {
         setShowAlcoholPolicy(true);
-      }, 500);
+      }, 200);
 
       return () => clearTimeout(timer);
     }
@@ -84,7 +84,7 @@ export default function Schedule() {
     { time: "10:30 AM - 12:30 PM", event: "DuWell Narcan Training", location: "BC Plaza", categories: ["Interactive Events", "Substance Free"] },
     { 
       time: "11:00 AM - 12:40 PM", 
-      event: "Dance Performances", 
+      event: "Dance/Singing Performances", 
       location: "BC Plaza Stage", 
       categories: ["Interactive Events"],
       isDance: true,
