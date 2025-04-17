@@ -464,9 +464,12 @@ export default function Schedule() {
           </div>
 
           <div className="container mx-auto px-4 py-4 md:py-8">
-            <h1 className="text-center text-3xl md:text-[4vw] font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-6 md:mb-12">
-              LDOC 2025 Schedule
+            <h1 className="text-center text-3xl md:text-[4vw] font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2 md:mb-4">
+              LDOC Schedule
             </h1>
+            <p className="text-center text-xl md:text-2xl font-[family-name:var(--font-love-craft)] text-[#ef959e] mb-6 md:mb-12">
+              Wednesday, April 23, 2025
+            </p>
 
             {/* Search Bar */}
             <div className="max-w-2xl mx-auto mb-6 md:mb-8">
