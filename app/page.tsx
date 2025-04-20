@@ -12,6 +12,7 @@ export default function Schedule() {
   const [expandedDance, setExpandedDance] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
   const [showAlcoholPolicy, setShowAlcoholPolicy] = useState(false);
+  const [showFoodSpecials, setShowFoodSpecials] = useState(false);
   const [expandedConcert, setExpandedConcert] = useState(true);
   const [expandedFoodTrucks, setExpandedFoodTrucks] = useState(false);
   const [expandedDescriptions, setExpandedDescriptions] = useState<{[key: string]: boolean}>({});
@@ -471,6 +472,22 @@ export default function Schedule() {
               Wednesday, April 23, 2025
             </p>
 
+            {/* Food Specials Button */}
+            <div className="flex justify-center gap-4 mb-6">
+              <button
+                onClick={() => setShowFoodSpecials(true)}
+                className="px-6 py-3 rounded-full bg-[#d14d72] text-white font-[family-name:var(--font-love-craft)] hover:bg-[#ef959e] transition-colors text-lg"
+              >
+                WU Specials
+              </button>
+              <button
+                onClick={() => setShowAlcoholPolicy(true)}
+                className="px-6 py-3 rounded-full bg-[#d14d72] text-white font-[family-name:var(--font-love-craft)] hover:bg-[#ef959e] transition-colors text-lg"
+              >
+                Alcohol Policy
+              </button>
+            </div>
+
             {/* Search Bar */}
             <div className="max-w-2xl mx-auto mb-6 md:mb-8">
               <div className="relative">
@@ -748,6 +765,30 @@ export default function Schedule() {
             </div>
           </div>
         </div>
+
+        {/* Food Specials Popup */}
+        {showFoodSpecials && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
+            <div className="relative bg-[#fcd598] p-4 sm:p-6 rounded-lg w-[75%] sm:w-[70%] md:w-[40%] lg:w-[40%] xl:w-[30%] max-h-[90vh] overflow-y-auto">
+              <div className="flex flex-col items-center">
+                <Image 
+                  src="/alldayspecials.png" 
+                  alt="LDOC Food Specials" 
+                  width={800}
+                  height={800}
+                  className="w-full h-auto"
+                  priority
+                />
+                <button
+                  onClick={() => setShowFoodSpecials(false)}
+                  className="mt-4 sm:mt-6 px-6 sm:px-8 py-2 sm:py-3 bg-[#d14d72] text-white rounded-full font-[family-name:var(--font-love-craft)] text-base sm:text-lg hover:bg-[#ef959e] transition-colors"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Alcohol Policy Popup */}
         {showAlcoholPolicy && (
