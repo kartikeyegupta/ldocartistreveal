@@ -784,7 +784,7 @@ export default function Schedule() {
                     <p className="text-[#d14d72] font-bold">$9.99</p>
                   </div>
                   <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
-                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2">JB'S ROASTS & CHOPS</h3>
+                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2">JB&apos;S ROASTS & CHOPS</h3>
                     <p className="text-[#ef959e]">Chimichurri Burger Sliders w/ One Side</p>
                     <p className="text-[#d14d72] font-bold">$7.99</p>
                   </div>
@@ -829,7 +829,7 @@ export default function Schedule() {
                     <p className="text-[#d14d72] font-bold">$7.99</p>
                   </div>
                   <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
-                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> Chef's Kitchen </h3>
+                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> Chef&apos;s Kitchen </h3>
                     <p className="text-[#ef959e]">Deep-Fried Tastykake</p>
                     <p className="text-[#d14d72] font-bold">$4.99 or w/ Ice Cream: $6.99</p>
                   </div>
