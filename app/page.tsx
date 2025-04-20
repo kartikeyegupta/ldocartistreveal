@@ -769,19 +769,74 @@ export default function Schedule() {
         {/* Food Specials Popup */}
         {showFoodSpecials && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
-            <div className="relative bg-[#fcd598] p-4 sm:p-6 rounded-lg w-[75%] sm:w-[70%] md:w-[40%] lg:w-[40%] xl:w-[30%] max-h-[90vh] overflow-y-auto">
+            <div className="relative bg-[#fcd598] p-6 sm:p-8 rounded-lg w-[90%] sm:w-[80%] md:w-[60%] lg:w-[50%] max-h-[90vh] overflow-y-auto">
               <div className="flex flex-col items-center">
-                <Image 
-                  src="/alldayspecials.png" 
-                  alt="LDOC Food Specials" 
-                  width={800}
-                  height={800}
-                  className="w-full h-auto"
-                  priority
-                />
+                <h2 className="text-2xl md:text-3xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-6">WU Specials</h2>
+                <div className="w-full space-y-4">
+                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
+                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> Krafthouse </h3>
+                    <p className="text-[#ef959e]">Beer-Battered Cod w/ Fries & Cajun Remoulade</p>
+                    <p className="text-[#d14d72] font-bold">$9.99</p>
+                  </div>
+                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
+                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> GINGER+ SOY</h3>
+                    <p className="text-[#ef959e]">Tteokbokki (Korean Spicy Rice Cake)</p>
+                    <p className="text-[#d14d72] font-bold">$9.99</p>
+                  </div>
+                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
+                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2">JB'S ROASTS & CHOPS</h3>
+                    <p className="text-[#ef959e]">Chimichurri Burger Sliders w/ One Side</p>
+                    <p className="text-[#d14d72] font-bold">$7.99</p>
+                  </div>
+                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
+                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> TANDOOR </h3>
+                    <p className="text-[#ef959e]">Samosa Chaat</p>
+                    <p className="text-[#d14d72] font-bold">$9.99</p>
+                  </div>
+                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
+                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> SPROUT </h3>
+                    <p className="text-[#ef959e]">Mixed Berry Salad</p>
+                    <p className="text-[#d14d72] font-bold">$7.99</p>
+                  </div>
+                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
+                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> GYOTAKU </h3>
+                    <p className="text-[#ef959e]">Vegan Sushi Roll</p>
+                    <p className="text-[#d14d72] font-bold">$9.99</p>
+                  </div>
+                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
+                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> FARMSTEAD </h3>
+                    <p className="text-[#ef959e]">Pork or Chicken Kabobs served w/ Rice</p>
+                    <p className="text-[#d14d72] font-bold">$8.99</p>
+                  </div>
+                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
+                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> SAZON </h3>
+                    <p className="text-[#ef959e]">Crunch Wrap, Chips, & Pico</p>
+                    <p className="text-[#d14d72] font-bold">$9.99</p>
+                  </div>
+                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
+                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> CAFE </h3>
+                    <p className="text-[#ef959e]">Gianduja Chocolate Mousse Cake w/ Vanilla Gelato</p>
+                    <p className="text-[#d14d72] font-bold">$8.49</p>
+                  </div>
+                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
+                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> IL FORNO </h3>
+                    <p className="text-[#ef959e]">Pepperoni & Sausage Calzone w/ Two Sides</p>
+                    <p className="text-[#d14d72] font-bold">$9.99</p>
+                  </div>
+                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
+                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> SKILLET </h3>
+                    <p className="text-[#ef959e]">Cinnamon Roll Pancakes w/ One Side</p>
+                    <p className="text-[#d14d72] font-bold">$7.99</p>
+                  </div>
+                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
+                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> Chef's Kitchen </h3>
+                    <p className="text-[#ef959e]">Deep-Fried Tastykake</p>
+                    <p className="text-[#d14d72] font-bold">$4.99 or w/ Ice Cream: $6.99</p>
+                  </div>
+                </div>
                 <button
                   onClick={() => setShowFoodSpecials(false)}
-                  className="mt-4 sm:mt-6 px-6 sm:px-8 py-2 sm:py-3 bg-[#d14d72] text-white rounded-full font-[family-name:var(--font-love-craft)] text-base sm:text-lg hover:bg-[#ef959e] transition-colors"
+                  className="mt-6 px-6 py-2 bg-[#d14d72] text-white rounded-full font-[family-name:var(--font-love-craft)] text-lg hover:bg-[#ef959e] transition-colors"
                 >
                   Close
                 </button>
