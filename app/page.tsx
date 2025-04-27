@@ -463,7 +463,7 @@ export default function Schedule() {
       </div>
       <div className="absolute bottom-4 right-4 text-sm text-[#d14d72]">
         <div className="flex items-center gap-2">
-          <span>Developed by Tiki</span>
+          <span> Developed by Kartikeye (Tiki) Gupta </span>
           <span>|</span>
           <a 
             href="mailto:kartikeye.gupta@duke.edu" 
