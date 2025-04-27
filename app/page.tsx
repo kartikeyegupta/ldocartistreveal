@@ -390,70 +390,8 @@ export default function Schedule() {
 
   return (
     <main>
-      {showOverlay && showBanner && (
-        <div className="fixed top-0 left-0 w-full bg-gradient-to-r from-[#d14d72] to-[#ef959e] text-white z-50 shadow-lg">
-          <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
-              <div className="flex items-center gap-2 sm:gap-3">
-                <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white/20 flex items-center justify-center">
-                  <span className="text-base sm:text-lg">🎟️</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-[family-name:var(--font-love-craft)] text-base sm:text-lg">Wristbanding </span>
-                  <span className="text-xs sm:text-sm text-white/90">Duke ID required for entry</span>
-                </div>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6">
-                <div className="flex items-center gap-2 sm:gap-3">
-                  <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white/20 flex items-center justify-center">
-                    <span className="text-xs sm:text-sm font-[family-name:var(--font-love-craft)]">21</span>
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="font-[family-name:var(--font-love-craft)] text-sm sm:text-base">April 21</span>
-                    <span className="text-xs sm:text-sm text-white/90">10:30AM – 7:30PM | Wellness 148 </span>
-                  </div>
-                </div>
-                
-                <div className="flex items-center gap-2 sm:gap-3">
-                  <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white/20 flex items-center justify-center">
-                    <span className="text-xs sm:text-sm font-[family-name:var(--font-love-craft)]">22</span>
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="font-[family-name:var(--font-love-craft)] text-sm sm:text-base">April 22 </span>
-                    <span className="text-xs sm:text-sm text-white/90">9:30AM – 4:45PM | Wellness 148</span>
-                  </div>
-                </div>
-              </div>
-
-              <button
-                onClick={() => setShowBanner(false)}
-                className="absolute right-2 top-2 sm:relative sm:right-auto sm:top-auto p-1.5 sm:p-2 rounded-full hover:bg-white/20 transition-colors"
-                aria-label="Dismiss"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
       <div className="min-h-screen bg-[#fcd598]">
-        {/* Base logo */}
-        <div className={`grid place-items-center min-h-screen ${showOverlay ? 'hidden' : ''}`}>
-          <Image 
-            src="/poster.png" 
-            alt="LDOC" 
-            className="w-[90vw] md:w-[45vw] h-auto animate-fadeIn"
-            width={1500}
-            height={1500}
-            priority
-          />
-        </div>
-
-        {/* Overlay content */}
-        <div className={`absolute inset-0 bg-[#fcd598] flex flex-col items-center transition-opacity duration-1000 ${showBanner && showOverlay ? 'mt-40 lg:mt-25 md:mt-30 sm:mt-30' : ''} ${showOverlay ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+        <div className="absolute inset-0 bg-[#fcd598] flex flex-col items-center">
           <div className="relative pt-2 md:pt-4 flex justify-center">
             <Image 
               src="/fulllogo.png" 
@@ -464,434 +402,85 @@ export default function Schedule() {
             />
           </div>
 
-          <div className="container mx-auto px-4 py-4 md:py-8">
+          <div className="container mx-auto px-4 py-4 md:py-8 flex flex-col items-center justify-center min-h-[60vh]">
             <h1 className="text-center text-3xl md:text-[4vw] font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2 md:mb-4">
-              LDOC Schedule
+              LDOC 2025 is a wrap.
             </h1>
-            <p className="text-center text-xl md:text-2xl font-[family-name:var(--font-love-craft)] text-[#ef959e] mb-6 md:mb-12">
-              Wednesday, April 23, 2025
+            <p className="text-center text-xl md:text-2xl font-[family-name:var(--font-love-craft)] text-[#ef959e]">
+              See you next year! - Your LDOC Committee 🙂
             </p>
-
-            {/* Food Specials Button */}
-            <div className="flex justify-center gap-4 mb-6">
-              <button
-                onClick={() => setShowFoodSpecials(true)}
-                className="px-6 py-3 rounded-full bg-[#d14d72] text-white font-[family-name:var(--font-love-craft)] hover:bg-[#ef959e] transition-colors text-lg"
+            
+            <div className="flex flex-wrap justify-center gap-4 mt-8">
+              <a 
+                href="/schedule" 
+                className="px-6 py-3 bg-[#d14d72] text-white rounded-lg hover:bg-[#ef959e] transition-colors duration-200 font-[family-name:var(--font-love-craft)]"
               >
-                WU Specials
-              </button>
-              <button
-                onClick={() => setShowAlcoholPolicy(true)}
-                className="px-6 py-3 rounded-full bg-[#d14d72] text-white font-[family-name:var(--font-love-craft)] hover:bg-[#ef959e] transition-colors text-lg"
+                Schedule
+              </a>
+              <a 
+                href="/artistreveal" 
+                className="px-6 py-3 bg-[#d14d72] text-white rounded-lg hover:bg-[#ef959e] transition-colors duration-200 font-[family-name:var(--font-love-craft)]"
               >
-                Alcohol Policy
-              </button>
+                Artist Reveal
+              </a>
+              <a 
+                href="/lavardoc" 
+                className="px-6 py-3 bg-[#d14d72] text-white rounded-lg hover:bg-[#ef959e] transition-colors duration-200 font-[family-name:var(--font-love-craft)]"
+              >
+                Lavardoc
+              </a>
+              <a 
+                href="/hint" 
+                className="px-6 py-3 bg-[#d14d72] text-white rounded-lg hover:bg-[#ef959e] transition-colors duration-200 font-[family-name:var(--font-love-craft)]"
+              >
+                Original Clues
+              </a>
             </div>
-
-            {/* Search Bar */}
-            <div className="max-w-2xl mx-auto mb-6 md:mb-8">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search events, locations, or times..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-4 py-3 rounded-full bg-white/10 border-2 border-[#ef959e] text-[#d14d72] placeholder-[#ef959e] focus:outline-none focus:border-[#d14d72] font-[family-name:var(--font-love-craft)] text-sm md:text-base"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery('')}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[#ef959e] hover:text-[#d14d72]"
-                  >
-                    ✕
-                  </button>
-                )}
-              </div>
-            </div>
-
-            <div className="flex flex-wrap justify-center gap-2 mb-8">
-              <button
-                onClick={() => setActiveFilter(null)}
-                className={`px-4 py-2 rounded-full font-[family-name:var(--font-love-craft)] transition-colors ${
-                  activeFilter === null
-                    ? 'bg-[#d14d72] text-white'
-                    : 'bg-white/10 text-[#d14d72] hover:bg-[#ef959e] hover:text-white'
-                }`}
+            <div className="flex justify-center gap-4 mt-4">
+              <a 
+                href="https://www.instagram.com/dukeldoc" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-transparent border-2 border-[#d14d72] text-[#d14d72] rounded-lg hover:bg-[#d14d72]/10 transition-colors duration-200 flex items-center gap-2"
               >
-                All
-              </button>
-              <button
-                onClick={() => setActiveFilter("Food")}
-                className={`px-4 py-2 rounded-full font-[family-name:var(--font-love-craft)] transition-colors ${
-                  activeFilter === "Food"
-                    ? 'bg-[#d14d72] text-white'
-                    : 'bg-white/10 text-[#d14d72] hover:bg-[#ef959e] hover:text-white'
-                }`}
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="#d14d72" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </a>
+              <a 
+                href="https://duuke.org/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-transparent border-2 border-[#d14d72] text-[#d14d72] rounded-lg hover:bg-[#d14d72]/10 transition-colors duration-200 flex items-center gap-2"
               >
-                Food
-              </button>
-              <button
-                onClick={() => setActiveFilter("Interactive Events")}
-                className={`px-4 py-2 rounded-full font-[family-name:var(--font-love-craft)] transition-colors ${
-                  activeFilter === "Interactive Events"
-                    ? 'bg-[#d14d72] text-white'
-                    : 'bg-white/10 text-[#d14d72] hover:bg-[#ef959e] hover:text-white'
-                }`}
-              >
-                Interactive
-              </button>
-              <button
-                onClick={() => setActiveFilter("Giveaways")}
-                className={`px-4 py-2 rounded-full font-[family-name:var(--font-love-craft)] transition-colors ${
-                  activeFilter === "Giveaways"
-                    ? 'bg-[#d14d72] text-white'
-                    : 'bg-white/10 text-[#d14d72] hover:bg-[#ef959e] hover:text-white'
-                }`}
-              >
-                Giveaways
-              </button>
-              <button
-                onClick={() => setActiveFilter("Darties")}
-                className={`px-4 py-2 rounded-full font-[family-name:var(--font-love-craft)] transition-colors ${
-                  activeFilter === "Darties"
-                    ? 'bg-[#d14d72] text-white'
-                    : 'bg-white/10 text-[#d14d72] hover:bg-[#ef959e] hover:text-white'
-                }`}
-              >
-                Darties
-              </button>
-              <button
-                onClick={() => {
-                  setActiveFilter("Concert");
-                  setExpandedConcert(true);
-                }}
-                className={`px-4 py-2 rounded-full font-[family-name:var(--font-love-craft)] transition-colors ${
-                  activeFilter === "Concert"
-                    ? 'bg-[#d14d72] text-white'
-                    : 'bg-white/10 text-[#d14d72] hover:bg-[#ef959e] hover:text-white'
-                }`}
-              >
-                Concert
-              </button>
-              <button
-                onClick={() => setActiveFilter("Substance Free")}
-                className={`px-4 py-2 rounded-full font-[family-name:var(--font-love-craft)] transition-colors ${
-                  activeFilter === "Substance Free"
-                    ? 'bg-[#d14d72] text-white'
-                    : 'bg-white/10 text-[#d14d72] hover:bg-[#ef959e] hover:text-white'
-                }`}
-              >
-                Substance Free
-              </button>
-            </div>
-
-            {/* Location Filter */}
-            <div className="max-w-2xl mx-auto mb-8">
-              <div className="relative">
-                <select
-                  value={selectedLocation || ''}
-                  onChange={(e) => setSelectedLocation(e.target.value || null)}
-                  className="w-full px-4 py-3 rounded-full bg-white/10 border-2 border-[#ef959e] text-[#d14d72] font-[family-name:var(--font-love-craft)] text-sm md:text-base appearance-none cursor-pointer focus:outline-none focus:border-[#d14d72]"
-                >
-                  <option value="">All Locations</option>
-                  {locations.map((location) => (
-                    <option key={location} value={location}>
-                      {location}
-                    </option>
-                  ))}
-                </select>
-                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#ef959e]">
-                  ▼
-                </div>
-              </div>
-            </div>
-
-            <div className="max-w-3xl mx-auto">
-              {filteredEvents.map((event, index) => (
-                <div 
-                  key={index} 
-                  className="mb-4 md:mb-8 relative flex items-center group hover:transform hover:scale-105 transition-transform"
-                >
-                  {/* Timeline dot and line */}
-                  <div className="absolute left-[12px] md:left-[20px] top-0 bottom-0 w-1 bg-[#ef959e] group-hover:bg-[#d14d72] transition-colors"/>
-                  <div className="absolute left-[10px] md:left-[17px] top-[50%] w-[8px] h-[8px] md:w-[10px] md:h-[10px] rounded-full bg-[#ef959e] group-hover:bg-[#d14d72] transition-colors"/>
-
-                  {/* Event content */}
-                  <div className="ml-8 md:ml-12 p-2 md:p-4 bg-white/10 backdrop-blur-sm rounded-lg border-2 border-[#ef959e] w-full">
-                    <div className="text-xs md:text-base font-[family-name:var(--font-love-craft)] text-[#ef959e] group-hover:text-[#d14d72] transition-colors">
-                      {event.time}
-                    </div>
-                    <div className="text-base md:text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72]">
-                      {event.event}
-                    </div>
-                    <div className="text-xs md:text-sm font-[family-name:var(--font-love-craft)] text-[#ef959e]">
-                      {event.location}
-                    </div>
-                    {event.isBreakfast && (
-                      <div className="mt-2">
-                        <button
-                          onClick={() => setExpandedBreakfast(!expandedBreakfast)}
-                          className="w-full px-3 py-1 rounded-lg bg-white/20 hover:bg-white/30 text-[#d14d72] font-[family-name:var(--font-love-craft)] flex items-center justify-between transition-colors text-sm"
-                        >
-                          <span>View Locations</span>
-                          <span className="text-base">{expandedBreakfast ? '▼' : '▶'}</span>
-                        </button>
-                        {expandedBreakfast && (
-                          <div className="mt-2 space-y-1">
-                            {event.subEvents.map((breakfast, i) => (
-                              <div 
-                                key={i} 
-                                className="px-3 py-1 rounded-lg bg-white/10 border border-[#ef959e]/30 hover:bg-white/20 transition-colors text-sm"
-                              >
-                                <div className="text-[#d14d72] font-[family-name:var(--font-love-craft)]">
-                                  {breakfast.sponsor} - {breakfast.location}
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    )}
-                    {event.isDance && (
-                      <div className="mt-2">
-                        <button
-                          onClick={() => setExpandedDance(!expandedDance)}
-                          className="w-full px-3 py-1 rounded-lg bg-white/20 hover:bg-white/30 text-[#d14d72] font-[family-name:var(--font-love-craft)] flex items-center justify-between transition-colors text-sm"
-                        >
-                          <span>View Groups</span>
-                          <span className="text-base">{expandedDance ? '▼' : '▶'}</span>
-                        </button>
-                        {expandedDance && (
-                          <div className="mt-2 space-y-1">
-                            {event.subEvents.map((dance, i) => (
-                              <div 
-                                key={i} 
-                                className="px-3 py-1 rounded-lg bg-white/10 border border-[#ef959e]/30 hover:bg-white/20 transition-colors text-sm"
-                              >
-                                <div className="text-[#d14d72] font-[family-name:var(--font-love-craft)]">
-                                  {dance.group} - {dance.time}
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    )}
-                    {event.isConcert && (
-                      <div className="mt-2">
-                        <button
-                          onClick={() => setExpandedConcert(!expandedConcert)}
-                          className="w-full px-3 py-1 rounded-lg bg-white/20 hover:bg-white/30 text-[#d14d72] font-[family-name:var(--font-love-craft)] flex items-center justify-between transition-colors text-sm"
-                        >
-                          <span>View Lineup</span>
-                          <span className="text-base">{expandedConcert ? '▼' : '▶'}</span>
-                        </button>
-                        {expandedConcert && (
-                          <div className="mt-2 space-y-1">
-                            {event.subEvents.map((concert, i) => (
-                              <div 
-                                key={i} 
-                                className="px-3 py-1 rounded-lg bg-white/10 border border-[#ef959e]/30 hover:bg-white/20 transition-colors text-sm"
-                              >
-                                <div className="text-[#d14d72] font-[family-name:var(--font-love-craft)]">
-                                  {concert.artist} - {concert.time}
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    )}
-                    {event.isFoodTruck && (
-                      <div className="mt-2">
-                        <button
-                          onClick={() => setExpandedFoodTrucks(!expandedFoodTrucks)}
-                          className="w-full px-3 py-1 rounded-lg bg-white/20 hover:bg-white/30 text-[#d14d72] font-[family-name:var(--font-love-craft)] flex items-center justify-between transition-colors text-sm"
-                        >
-                          <span>View Food Trucks</span>
-                          <span className="text-base">{expandedFoodTrucks ? '▼' : '▶'}</span>
-                        </button>
-                        {expandedFoodTrucks && (
-                          <div className="mt-2 space-y-1">
-                            {event.subEvents.map((truck, i) => (
-                              <div 
-                                key={i} 
-                                className="px-3 py-1 rounded-lg bg-white/10 border border-[#ef959e]/30 hover:bg-white/20 transition-colors text-sm"
-                              >
-                                <div className="text-[#d14d72] font-[family-name:var(--font-love-craft)]">
-                                  {truck.vendor} - {truck.time}
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    )}
-                    {event.categories.length > 0 && !event.isBreakfast && !event.isDance && !event.isConcert && !event.isFoodTruck && (
-                      <div className="flex flex-wrap gap-1 mt-1">
-                        {event.categories.map((category, i) => (
-                          <button
-                            key={i}
-                            onClick={() => setActiveFilter(category)}
-                            className="text-xs px-2 py-0.5 rounded-full bg-[#ef959e] text-white hover:bg-[#d14d72] transition-colors cursor-pointer font-[family-name:var(--font-love-craft)]"
-                          >
-                            {category}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                    {event.description && (
-                      <div className="mt-2">
-                        <button
-                          onClick={() => setExpandedDescriptions(prev => ({
-                            ...prev,
-                            [event.event]: !prev[event.event]
-                          }))}
-                          className="w-full px-3 py-1 rounded-lg bg-white/20 hover:bg-white/30 text-[#d14d72] font-[family-name:var(--font-love-craft)] flex items-center justify-between transition-colors text-sm"
-                        >
-                          <span>View Description</span>
-                          <span className="text-base">{expandedDescriptions[event.event] ? '▼' : '▶'}</span>
-                        </button>
-                        {expandedDescriptions[event.event] && (
-                          <div className="mt-2 px-3 py-2 rounded-lg bg-white/10 border border-[#ef959e]/30 text-[#d14d72] font-[family-name:var(--font-love-craft)] text-sm">
-                            {event.description}
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="#d14d72" viewBox="0 0 24 24">
+                  <path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V11H19V6.413L11.207 14.207L9.793 12.793L17.585 5H13V3H21Z"/>
+                </svg>
+              </a>
             </div>
           </div>
         </div>
-
-        {/* Food Specials Popup */}
-        {showFoodSpecials && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
-            <div className="relative bg-[#fcd598] p-6 sm:p-8 rounded-lg w-[90%] sm:w-[80%] md:w-[60%] lg:w-[50%] max-h-[90vh] overflow-y-auto">
-              <div className="flex flex-col items-center">
-                <h2 className="text-2xl md:text-3xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-6">WU Specials</h2>
-                <div className="w-full space-y-4">
-                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
-                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> Krafthouse </h3>
-                    <p className="text-[#ef959e]">Beer-Battered Cod w/ Fries & Cajun Remoulade</p>
-                    <p className="text-[#d14d72] font-bold">$9.99</p>
-                  </div>
-                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
-                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> GINGER+ SOY</h3>
-                    <p className="text-[#ef959e]">Tteokbokki (Korean Spicy Rice Cake)</p>
-                    <p className="text-[#d14d72] font-bold">$9.99</p>
-                  </div>
-                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
-                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2">JB&apos;S ROASTS & CHOPS</h3>
-                    <p className="text-[#ef959e]">Chimichurri Burger Sliders w/ One Side</p>
-                    <p className="text-[#d14d72] font-bold">$7.99</p>
-                  </div>
-                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
-                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> TANDOOR </h3>
-                    <p className="text-[#ef959e]">Samosa Chaat</p>
-                    <p className="text-[#d14d72] font-bold">$9.99</p>
-                  </div>
-                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
-                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> SPROUT </h3>
-                    <p className="text-[#ef959e]">Mixed Berry Salad</p>
-                    <p className="text-[#d14d72] font-bold">$7.99</p>
-                  </div>
-                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
-                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> GYOTAKU </h3>
-                    <p className="text-[#ef959e]">Vegan Sushi Roll</p>
-                    <p className="text-[#d14d72] font-bold">$9.99</p>
-                  </div>
-                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
-                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> FARMSTEAD </h3>
-                    <p className="text-[#ef959e]">Pork or Chicken Kabobs served w/ Rice</p>
-                    <p className="text-[#d14d72] font-bold">$8.99</p>
-                  </div>
-                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
-                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> SAZON </h3>
-                    <p className="text-[#ef959e]">Crunch Wrap, Chips, & Pico</p>
-                    <p className="text-[#d14d72] font-bold">$9.99</p>
-                  </div>
-                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
-                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> CAFE </h3>
-                    <p className="text-[#ef959e]">Gianduja Chocolate Mousse Cake w/ Vanilla Gelato</p>
-                    <p className="text-[#d14d72] font-bold">$8.49</p>
-                  </div>
-                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
-                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> IL FORNO </h3>
-                    <p className="text-[#ef959e]">Pepperoni & Sausage Calzone w/ Two Sides</p>
-                    <p className="text-[#d14d72] font-bold">$9.99</p>
-                  </div>
-                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
-                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> SKILLET </h3>
-                    <p className="text-[#ef959e]">Cinnamon Roll Pancakes w/ One Side</p>
-                    <p className="text-[#d14d72] font-bold">$7.99</p>
-                  </div>
-                  <div className="bg-white/10 p-4 rounded-lg border-2 border-[#ef959e]">
-                    <h3 className="text-xl font-[family-name:var(--font-love-craft)] text-[#d14d72] mb-2"> Chef&apos;s Kitchen </h3>
-                    <p className="text-[#ef959e]">Deep-Fried Tastykake</p>
-                    <p className="text-[#d14d72] font-bold">$4.99 or w/ Ice Cream: $6.99</p>
-                  </div>
-                </div>
-                <button
-                  onClick={() => setShowFoodSpecials(false)}
-                  className="mt-6 px-6 py-2 bg-[#d14d72] text-white rounded-full font-[family-name:var(--font-love-craft)] text-lg hover:bg-[#ef959e] transition-colors"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Alcohol Policy Popup */}
-        {showAlcoholPolicy && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
-            <div className="relative bg-[#fcd598] p-4 sm:p-6 rounded-lg w-[75%] sm:w-[70%] md:w-[40%] lg:w-[40%] xl:w-[30%] max-h-[90vh] overflow-y-auto">
-              <div className="flex flex-col items-center">
-                <Image 
-                  src="/alcoholpolicy.png" 
-                  alt="LDOC Alcohol Policy" 
-                  width={800}
-                  height={800}
-                  className="w-full h-auto"
-                  priority
-                />
-                <button
-                  onClick={() => setShowAlcoholPolicy(false)}
-                  className="mt-4 sm:mt-6 px-6 sm:px-8 py-2 sm:py-3 bg-[#d14d72] text-white rounded-full font-[family-name:var(--font-love-craft)] text-base sm:text-lg hover:bg-[#ef959e] transition-colors"
-                >
-                  I Understand
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Back to Top Button */}
-        {showBackToTop && (
-          <button
-            onClick={scrollToTop}
-            className="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-[#d14d72] flex items-center justify-center shadow-lg hover:bg-[#ef959e] transition-colors z-50"
-            aria-label="Back to top"
+      </div>
+      <div className="absolute bottom-4 right-4 text-sm text-[#d14d72]">
+        <div className="flex items-center gap-2">
+          <span>Developed by Tiki</span>
+          <span>|</span>
+          <a 
+            href="mailto:kartikeye.gupta@duke.edu" 
+            className="hover:text-[#ef959e] transition-colors duration-200"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 10l7-7m0 0l7 7m-7-7v18"
-              />
-            </svg>
-          </button>
-        )}
+            Email
+          </a>
+          <span>|</span>
+          <a 
+            href="https://github.com/kartikeyegupta" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="hover:text-[#ef959e] transition-colors duration-200"
+          >
+            GitHub
+          </a>
+        </div>
       </div>
     </main>
   );
