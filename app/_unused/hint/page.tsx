@@ -1,5 +1,5 @@
 'use client';
-import WindowShutters from '../open-window';
+import WindowShutters from '../../open-window';
 
 export default function Home() {
   return (

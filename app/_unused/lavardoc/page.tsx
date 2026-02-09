@@ -1,8 +1,8 @@
 'use client';
 import { useState, useEffect } from 'react';
-import NightShutters from '../night-window';
+import NightShutters from '../../night-window';
 import Image from 'next/image';
-import Stars from '../stars';
+import Stars from '../../stars';
 export default function Home() {
   // const [password, setPassword] = useState('');
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
