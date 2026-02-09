@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 const BASE_TEXT = 'loading';
 const TYPING_INTERVAL = 120;
@@ -9,13 +9,6 @@ const DOTS_INTERVAL = 400;
 export default function Schedule() {
   const [visibleLength, setVisibleLength] = useState(0);
   const [dots, setDots] = useState('');
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  const playAudio = () => {
-    if (!audioRef.current) return;
-    audioRef.current.currentTime = 0;
-    audioRef.current.play().catch(() => {});
-  };
 
   useEffect(() => {
     if (visibleLength >= BASE_TEXT.length) return;
@@ -73,10 +66,10 @@ export default function Schedule() {
           />
         </p>
 
-        <audio ref={audioRef} src="/4raws.mp3" preload="metadata" />
-        <button
-          type="button"
-          onClick={playAudio}
+        <a
+          href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          target="_blank"
+          rel="noopener noreferrer"
           className="group relative inline-flex items-center justify-center px-8 py-4 font-mono text-sm uppercase tracking-[0.4em] text-cyan-300/90 transition-all duration-300"
         >
           {/* Glow layer */}
@@ -110,7 +103,7 @@ export default function Schedule() {
           <span className="relative z-10 group-hover:text-cyan-200 transition-colors duration-300">
             Initiate
           </span>
-        </button>
+        </a>
       </div>
 
     </main>
