@@ -78,3 +78,12 @@ body {
 .glow-text {
   text-shadow: 0 0 10px rgba(252, 213, 152, 0.3); /* Warm golden glow */
 }
+
+@keyframes cursor-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.animate-cursor-blink {
+  animation: cursor-blink 1s step-end infinite;
+}
